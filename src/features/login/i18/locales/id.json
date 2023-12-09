@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "name": "NEXUS"
+  },
+  "form": {
+    "name": "Masuk",
+    "description": "Masukkan email dan kata sandi anda",
+    "email": {
+      "label": "Email",
+      "placeholder": "Masukkan email Anda"
+    },
+    "password": {
+      "label": "Kata Sandi",
+      "placeholder": "Masukkan kata sandi Anda"
+    },
+    "errors": {
+      "incorrect_account": {
+        "message": "Your email and password are incorrect!"
+      },
+      "internal_server_error": {
+        "message": "Internal Server Error"
+      }
+    },
+    "remember_me": {
+      "label": "Ingat saya"
+    },
+    "actions": {
+      "login": "Masuk",
+      "dont_have_account": {
+        "description": "Belum mempunyai akun? ",
+        "actions": {
+          "name": "Daftar",
+          "link": "/register"
+        }
+      }
+    }
+  }
+}

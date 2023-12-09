@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "name": "NEXUS"
+  },
+  "form": {
+    "name": "LOGIN",
+    "description": "Enter your email and password",
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "errors": {
+      "incorrect_account": {
+        "message": "Your email and password are incorrect!"
+      },
+      "internal_server_error": {
+        "message": "Internal Server Error"
+      }
+    },
+    "remember_me": {
+      "label": "Remember me"
+    },
+    "actions": {
+      "login": "Login",
+      "dont_have_account": {
+        "description": "Don’t have an account? ",
+        "actions": {
+          "name": "Sign Up",
+          "link": "/register"
+        }
+      }
+    }
+  }
+}
