@@ -3,7 +3,7 @@
     "name": "NEXUS"
   },
   "form": {
-    "name": "REGISTRATION",
+    "name": "Register",
     "description": "Enter your email and password",
     "email": {
       "label": "Email",

@@ -1,0 +1,59 @@
+{
+  "title": "Document",
+  "upload": {
+    "button": {
+      "placeholder": "Upload Document"
+    },
+    "dialog": {
+      "title": "Upload",
+      "description": "You are about to upload document. Please upload your document(s):",
+      "setting": {
+        "label": "Document Setting",
+        "input": {
+          "private_document": {
+            "label": "Private Document",
+            "name": "private_document-documents"
+          }
+        }
+      },
+      "actions": {
+        "primary": {
+          "text": "Upload"
+        },
+        "secondary": {
+          "text": "Cancel"
+        }
+      }
+    }
+  },
+  "data_table": {
+    "initial": {
+      "message": "Get started to uploading document"
+    },
+    "empty": {
+      "message": "Data is empty"
+    },
+    "search": {
+      "input": {
+        "name": "search_documents",
+        "placeholder": "Search"
+      }
+    },
+    "head": {
+      "data": [
+        {
+          "id": "no",
+          "label": "No"
+        },
+        {
+          "id": "file_name",
+          "label": "File Name"
+        },
+        {
+          "id": "date",
+          "label": "Date"
+        }
+      ]
+    }
+  }
+}

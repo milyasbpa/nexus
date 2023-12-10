@@ -1,0 +1,24 @@
+{
+  "brand": {
+    "name": "NEXUS"
+  },
+  "menu": {
+    "data": [
+      {
+        "id": "documents",
+        "link": "/documents",
+        "name": "Document"
+      },
+      {
+        "id": "about",
+        "link": "/about",
+        "name": "About"
+      },
+      {
+        "id": "chats",
+        "link": "/chats",
+        "name": "Chats"
+      }
+    ]
+  }
+}

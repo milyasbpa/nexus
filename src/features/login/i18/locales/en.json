@@ -3,7 +3,7 @@
     "name": "NEXUS"
   },
   "form": {
-    "name": "LOGIN",
+    "name": "Login",
     "description": "Enter your email and password",
     "email": {
       "label": "Email",

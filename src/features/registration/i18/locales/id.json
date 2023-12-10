@@ -3,7 +3,7 @@
     "name": "NEXUS"
   },
   "form": {
-    "name": "DAFTAR",
+    "name": "Daftar",
     "description": "Masukkan email dan kata sandi anda",
     "email": {
       "label": "Email",
