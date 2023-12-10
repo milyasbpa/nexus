@@ -29,6 +29,7 @@ export const DragnDropFilePreviewDocuments = ({
           "grid grid-cols-1 place-content-center place-items-center gap-y-[0.25rem]"
         )}
       >
+        <img src={"/icons/documents/file_uploaded.svg"} />
         <p
           className={clsx(
             "text-[#404852]",
