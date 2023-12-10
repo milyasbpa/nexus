@@ -12,10 +12,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import clsx from "clsx";
-// import Search from "@/core/components/search/Search.component";
 import { useFormContext } from "react-hook-form";
-// import { queryClient } from "@/core/utils/react_query/provider";
-// import { AccountListReactQueryKey } from "../../react_query/keys";
 import { getDictionaries } from "../../i18";
 import { TableColumnHeaderDocuments } from "../../components/table_column_header";
 import { TableCellDocuments } from "../../components/table_cell";
@@ -46,7 +43,7 @@ export const DataTableDocuments = () => {
     state: {
       pagination: {
         pageIndex: 0,
-        pageSize: 20,
+        pageSize: 10,
       },
     },
 

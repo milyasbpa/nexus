@@ -4,16 +4,15 @@ import * as React from "react";
 import clsx from "clsx";
 import { Textfield } from "@/core/components/textfield";
 import { getDictionaries } from "../i18";
-import { plusJakartaSans } from "@/core/fonts";
-import {
-  MagnifyingGlassCircleIcon,
-  PlusSmallIcon,
-} from "@heroicons/react/20/solid";
 import { DataTableDocuments } from "../fragments/data_table/DataTable.documents";
 import { FormProvider, useForm } from "react-hook-form";
+import { UploadDocuments } from "../fragments/upload";
+import { defaultValues } from "../react_hook_form/constants/default_values";
 
 export const DocumentsContainer = () => {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: defaultValues,
+  });
   const dictionaries = getDictionaries("en");
 
   return (
@@ -45,31 +44,7 @@ export const DocumentsContainer = () => {
                 />
               </div>
 
-              <button
-                className={clsx(
-                  "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]",
-                  "rounded-[0.25rem]",
-                  "px-[1rem] py-[0.625rem]",
-                  "bg-[#232931]",
-                  "text-[1rem] text-[white] font-semibold",
-                  plusJakartaSans.className
-                )}
-              >
-                <div
-                  className={clsx(
-                    "w-[1.5rem] h-[1.5rem]",
-                    "bg-white",
-                    "rounded-[50%]",
-                    "relative"
-                  )}
-                >
-                  <PlusSmallIcon
-                    className={clsx("text-[#232931]", "w-[1.5rem] h-[1.5rem]")}
-                  />
-                </div>
-
-                {dictionaries.upload.button.placeholder}
-              </button>
+              <UploadDocuments />
             </div>
 
             <DataTableDocuments />

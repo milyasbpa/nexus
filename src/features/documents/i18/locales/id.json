@@ -4,24 +4,75 @@
     "button": {
       "placeholder": "Upload Document"
     },
+
     "dialog": {
+      "name": "upload-documents",
       "title": "Upload",
       "description": "You are about to upload document. Please upload your document(s):",
-      "setting": {
-        "label": "Document Setting",
+      "tab": {
+        "name": "upload_tab-documents",
+        "data": [
+          {
+            "id": "drag_and_drop",
+            "name": "Drag and Drop or Browse"
+          },
+          {
+            "id": "url",
+            "name": "Upload via url"
+          }
+        ]
+      },
+      "browse": {
+        "description": "You are about to upload document. Please upload your document(s):",
         "input": {
-          "private_document": {
-            "label": "Private Document",
-            "name": "private_document-documents"
+          "name": "drag_n_drop_file_input-document",
+          "message": "Drag and drop or {{actions}} files",
+          "description": "Support: pdf, jpg, jpeg and max size 10 mb",
+          "actions": "browse"
+        },
+        "preview": {
+          "actions": "Remove File"
+        },
+        "setting": {
+          "label": "Document Setting",
+          "input": {
+            "private_document": {
+              "label": "Private Document",
+              "name": "private_document-url-documents"
+            }
+          }
+        },
+        "actions": {
+          "primary": {
+            "text": "Upload"
+          },
+          "secondary": {
+            "text": "Cancel"
           }
         }
       },
-      "actions": {
-        "primary": {
-          "text": "Upload"
+      "url": {
+        "description": "You are about to upload document. Please upload your document(s):",
+        "input": {
+          "name": "url_file_input-document",
+          "placeholder": "e.g https://drive.google.com"
         },
-        "secondary": {
-          "text": "Cancel"
+        "setting": {
+          "label": "Document Setting",
+          "input": {
+            "private_document": {
+              "label": "Private Document",
+              "name": "private_document-documents"
+            }
+          }
+        },
+        "actions": {
+          "primary": {
+            "text": "Upload"
+          },
+          "secondary": {
+            "text": "Cancel"
+          }
         }
       }
     }
