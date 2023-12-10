@@ -7,10 +7,12 @@
     "description": "Enter your email and password",
     "email": {
       "label": "Email",
+      "name": "email_login",
       "placeholder": "Enter your email"
     },
     "password": {
       "label": "Password",
+      "name": "password_login",
       "placeholder": "Enter your password"
     },
     "errors": {
@@ -26,6 +28,7 @@
     },
     "actions": {
       "login": "Login",
+      "google_login": "Login with google",
       "dont_have_account": {
         "description": "Don’t have an account? ",
         "actions": {

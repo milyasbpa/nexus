@@ -15,6 +15,11 @@
       "name": "password_login",
       "placeholder": "Masukkan kata sandi Anda"
     },
+    "password_confirmation": {
+      "label": "Konfirmasi Kata Sandi",
+      "name": "password-confirmation_login",
+      "placeholder": "Masukkan ulang kata sandi Anda"
+    },
     "errors": {
       "incorrect_account": {
         "message": "Your email and password are incorrect!"

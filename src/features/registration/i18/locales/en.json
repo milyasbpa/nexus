@@ -3,17 +3,22 @@
     "name": "NEXUS"
   },
   "form": {
-    "name": "Masuk",
-    "description": "Masukkan email dan kata sandi anda",
+    "name": "LOGIN",
+    "description": "Enter your email and password",
     "email": {
       "label": "Email",
       "name": "email_login",
-      "placeholder": "Masukkan email Anda"
+      "placeholder": "Enter your email"
     },
     "password": {
-      "label": "Kata Sandi",
+      "label": "Password",
       "name": "password_login",
-      "placeholder": "Masukkan kata sandi Anda"
+      "placeholder": "Enter your password"
+    },
+    "password_confirmation": {
+      "label": "Password Confirmation",
+      "name": "password-confirmation_login",
+      "placeholder": "Enter your password confirmation"
     },
     "errors": {
       "incorrect_account": {
@@ -24,15 +29,15 @@
       }
     },
     "remember_me": {
-      "label": "Ingat saya"
+      "label": "Remember me"
     },
     "actions": {
-      "login": "Masuk",
+      "login": "Login",
       "google_login": "Login with google",
       "dont_have_account": {
-        "description": "Belum mempunyai akun? ",
+        "description": "Don’t have an account? ",
         "actions": {
-          "name": "Daftar",
+          "name": "Sign Up",
           "link": "/register"
         }
       }

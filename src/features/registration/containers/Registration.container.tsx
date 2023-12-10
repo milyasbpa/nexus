@@ -3,11 +3,11 @@ import clsx from "clsx";
 import { getDictionaries } from "../i18";
 import Link from "next/link";
 import { libreBaskerville } from "@/core/fonts";
-import { LoginFormLogin } from "../fragments/login_form";
-import { GoogleLoginFormLogin } from "../fragments/google_login_form";
+import { RegistrationFormRegistration } from "../fragments/registration_form";
+import { GoogleRegistrationFormRegistration } from "../fragments/google_registration_form";
 import { FormProvider, useForm } from "react-hook-form";
 
-export const LoginContainer = () => {
+export const RegistrationContainer = () => {
   const dictionaries = getDictionaries("en");
   const methods = useForm();
   return (
@@ -65,7 +65,7 @@ export const LoginContainer = () => {
               "w-full"
             )}
           >
-            <LoginFormLogin />
+            <RegistrationFormRegistration />
             <div
               className={clsx(
                 "grid grid-cols-[1fr_auto_1fr] items-center content-center justify-start justify-item-start gap-[0.75rem]",
@@ -78,7 +78,7 @@ export const LoginContainer = () => {
               </p>
               <div className={clsx("w-full h-[1px]", "bg-[#9AA8B8]")} />
             </div>
-            <GoogleLoginFormLogin />
+            <GoogleRegistrationFormRegistration />
           </div>
         </div>
 

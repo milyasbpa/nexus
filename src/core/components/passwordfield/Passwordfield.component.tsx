@@ -27,13 +27,6 @@ export const Passwordfield = ({
   const { type, ...otherProps } = props;
   const [show, setShow] = useState(false);
   const [focus, setFocus] = useState(false);
-  const [validate, setValidate] = useState({
-    hasLow: false,
-    hasCap: false,
-    hasNumber: false,
-    has6digit: false,
-    hasSymbol: false,
-  });
 
   const handleShowPassword = () => {
     setShow(true);
@@ -54,97 +47,14 @@ export const Passwordfield = ({
     setFocus(false);
   };
 
-  const validatePassword = (password: string) => {
-    if (password.match(/\d+/g)) {
-      setValidate((o) => ({ ...o, hasNumber: true }));
-    } else {
-      setValidate((o) => ({ ...o, hasNumber: false }));
-    }
-
-    if (password.match(/[A-Z]+/g)) {
-      setValidate((o) => ({ ...o, hasCap: true }));
-    } else {
-      setValidate((o) => ({ ...o, hasCap: false }));
-    }
-
-    if (password.match(/[a-z]+/g)) {
-      setValidate((o) => ({ ...o, hasLow: true }));
-    } else {
-      setValidate((o) => ({ ...o, hasLow: false }));
-    }
-
-    if (password.length > 5) {
-      setValidate((o) => ({ ...o, has6digit: true }));
-    } else {
-      setValidate((o) => ({ ...o, has6digit: false }));
-    }
-
-    if (password.match(/[!@#$%^&*]+/g)) {
-      setValidate((o) => ({ ...o, hasSymbol: true }));
-    } else {
-      setValidate((o) => ({ ...o, hasSymbol: false }));
-    }
-  };
-
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(e);
-      validatePassword(e.currentTarget.value);
     }
   };
 
   return (
     <div className={clsx("w-full relative")}>
-      {focus && showStrength && (
-        <div
-          className={clsx(
-            "grid grid-flow-row",
-            "w-[200px] absolute bg-white left-[-220px]",
-            "py-[6px] px-[12px] gap-y-[6px] rounded-md",
-            "drop-shadow-lg"
-          )}
-        >
-          <p className={clsx("text-left text-[0.875rem] font-medium")}>
-            {"Password Strength"}
-          </p>
-          <div className={clsx("grid grid-flow-row", "gap-y-[0.25rem]")}>
-            <p
-              className={clsx(
-                "text-left text-[0.625rem] font-normal",
-                validate.has6digit ? "text-verdigris" : "text-sunset-orange"
-              )}
-            >
-              {need_min_length_label}
-            </p>
-            <p
-              className={clsx(
-                "text-left text-[0.625rem] font-normal",
-                validate.hasCap && validate.hasLow
-                  ? "text-verdigris"
-                  : "text-sunset-orange"
-              )}
-            >
-              {need_cap_label}
-            </p>
-            <p
-              className={clsx(
-                "text-left text-[0.625rem] font-normal",
-                validate.hasNumber ? "text-verdigris" : "text-sunset-orange"
-              )}
-            >
-              {need_number_label}
-            </p>
-            <p
-              className={clsx(
-                "text-left text-[0.625rem] font-normal",
-                validate.hasSymbol ? "text-verdigris" : "text-sunset-orange"
-              )}
-            >
-              {need_symbol_label}
-            </p>
-          </div>
-        </div>
-      )}
       <div
         className={clsx(
           "grid",
