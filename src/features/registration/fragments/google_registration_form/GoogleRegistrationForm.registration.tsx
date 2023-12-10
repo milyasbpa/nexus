@@ -27,7 +27,7 @@ export const GoogleRegistrationFormRegistration = () => {
           src={"/icons/login/google.svg"}
           className={clsx("absolute left-[1rem]", "w-[1.5rem] h-[1.5rem]")}
         />
-        {dictionaries.form.actions.google_login}
+        {dictionaries.form.actions.google_register}
       </button>
     </form>
   );

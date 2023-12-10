@@ -3,21 +3,21 @@
     "name": "NEXUS"
   },
   "form": {
-    "name": "LOGIN",
+    "name": "REGISTRATION",
     "description": "Enter your email and password",
     "email": {
       "label": "Email",
-      "name": "email_login",
+      "name": "email_registration",
       "placeholder": "Enter your email"
     },
     "password": {
       "label": "Password",
-      "name": "password_login",
+      "name": "password_registration",
       "placeholder": "Enter your password"
     },
     "password_confirmation": {
       "label": "Password Confirmation",
-      "name": "password-confirmation_login",
+      "name": "password-confirmation_registration",
       "placeholder": "Enter your password confirmation"
     },
     "errors": {
@@ -29,16 +29,17 @@
       }
     },
     "remember_me": {
-      "label": "Remember me"
+      "label": "Remember me",
+      "name": "remember-me_registration"
     },
     "actions": {
-      "login": "Login",
-      "google_login": "Login with google",
+      "register": "Register",
+      "google_register": "Register with google",
       "dont_have_account": {
-        "description": "Don’t have an account? ",
+        "description": "Have an account? ",
         "actions": {
-          "name": "Sign Up",
-          "link": "/register"
+          "name": "Login",
+          "link": "/"
         }
       }
     }

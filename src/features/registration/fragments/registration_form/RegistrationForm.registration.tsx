@@ -1,9 +1,10 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18";
-import Textfield from "@/core/components/textfield";
+import { Textfield } from "@/core/components/textfield";
 import { Passwordfield } from "@/core/components/passwordfield";
-import Checkbox from "@/core/components/checkbox/Checkbox.component";
+import { Checkbox } from "@/core/components/checkbox/Checkbox.component";
 import { useFormContext } from "react-hook-form";
 import { RegistrationForm } from "../../react_hook_form/keys";
 
@@ -25,9 +26,6 @@ export const RegistrationFormRegistration = () => {
     setValue(e.currentTarget.name, e.currentTarget.value);
   };
 
-  const handleChangeRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.name, !watch(e.currentTarget.name));
-  };
   return (
     <form
       className={clsx(
@@ -50,15 +48,10 @@ export const RegistrationFormRegistration = () => {
       />
       <Passwordfield
         name={dictionaries.form.password_confirmation.name}
-        label={dictionaries.form.pasword_confirmation.label}
-        value={watch(dictionaries.form.pasword_confirmation.name)}
-        placeholder={dictionaries.form.pasword_confirmation.placeholder}
+        label={dictionaries.form.password_confirmation.label}
+        value={watch(dictionaries.form.password_confirmation.name)}
+        placeholder={dictionaries.form.password_confirmation.placeholder}
         onChange={handleChangePasswordConfirmation}
-      />
-      <Checkbox
-        name={dictionaries.form.remember_me.label}
-        checked={true}
-        onChange={handleChangeRememberMe}
       />
 
       <button
@@ -71,7 +64,7 @@ export const RegistrationFormRegistration = () => {
           "text-[1rem] font-normal text-white"
         )}
       >
-        {dictionaries.form.actions.login}
+        {dictionaries.form.actions.register}
       </button>
     </form>
   );

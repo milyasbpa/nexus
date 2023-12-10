@@ -24,16 +24,17 @@
       }
     },
     "remember_me": {
-      "label": "Ingat saya"
+      "label": "Ingat saya",
+      "name": "remember-me_login"
     },
     "actions": {
       "login": "Masuk",
-      "google_login": "Login with google",
+      "google_login": "Masuk menggunakan google",
       "dont_have_account": {
         "description": "Belum mempunyai akun? ",
         "actions": {
           "name": "Daftar",
-          "link": "/register"
+          "link": "/registration"
         }
       }
     }

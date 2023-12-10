@@ -1,21 +1,26 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18";
 import Link from "next/link";
 import { libreBaskerville } from "@/core/fonts";
-import { RegistrationFormRegistration } from "../fragments/registration_form";
+import { RegistrationFormRegistration } from "../fragments/registration_form/RegistrationForm.registration";
 import { GoogleRegistrationFormRegistration } from "../fragments/google_registration_form";
 import { FormProvider, useForm } from "react-hook-form";
+import { defaultValues } from "../react_hook_form/constants/default_values";
 
 export const RegistrationContainer = () => {
   const dictionaries = getDictionaries("en");
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: defaultValues,
+  });
   return (
     <FormProvider {...methods}>
       <div
         className={clsx(
           "grid grid-cols-1 place-content-center place-items-center gap-[1.5rem]",
-          "w-full h-[100vh]"
+          "w-full h-[100vh]",
+          "px-[1.5rem]"
         )}
       >
         <h1

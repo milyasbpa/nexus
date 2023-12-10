@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { plusJakartaSans } from "@/core/fonts";
@@ -5,20 +6,22 @@ import { plusJakartaSans } from "@/core/fonts";
 export interface CheckboxProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
+  label?:string;
   name?: string;
   id?: string;
   value?: string;
   defaultChecked?: boolean;
 }
 
-export default function Checkbox({
+export const Checkbox = ({
   checked = false,
+  label='',
   defaultChecked = false,
   name = "",
   id = "",
   value = "",
   onChange,
-}: CheckboxProps) {
+}: CheckboxProps) => {
   return (
     <label
       className={clsx("flex items-center justify-start", "gap-x-[0.625rem]")}
@@ -28,6 +31,7 @@ export default function Checkbox({
         className={clsx("sr-only")}
         type="checkbox"
         value={value}
+        name={name}
         defaultChecked={defaultChecked}
         onChange={onChange}
         checked={checked}
@@ -56,16 +60,16 @@ export default function Checkbox({
         </svg>
       </span>
 
-      {name.length > 0 && (
+      {label.length > 0 && (
         <p
           className={clsx(
             "font-light text-[0.875rem] text-[#232931] sm:text-[0.875rem]",
             plusJakartaSans.className
           )}
         >
-          {name}
+          {label}
         </p>
       )}
     </label>
   );
-}
+};

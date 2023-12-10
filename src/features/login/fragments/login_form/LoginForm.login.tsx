@@ -1,9 +1,10 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18";
-import Textfield from "@/core/components/textfield";
+import { Textfield } from "@/core/components/textfield";
 import { Passwordfield } from "@/core/components/passwordfield";
-import Checkbox from "@/core/components/checkbox/Checkbox.component";
+import { Checkbox } from "@/core/components/checkbox/Checkbox.component";
 import { useFormContext } from "react-hook-form";
 import { LoginForm } from "../../react_hook_form/keys";
 
@@ -43,8 +44,9 @@ export const LoginFormLogin = () => {
         onChange={handleChangePassword}
       />
       <Checkbox
-        name={dictionaries.form.remember_me.label}
-        checked={true}
+        label={dictionaries.form.remember_me.label}
+        name={dictionaries.form.remember_me.name}
+        checked={watch(dictionaries.form.remember_me.name)}
         onChange={handleChangeRememberMe}
       />
 

@@ -1,1 +1,1 @@
-export * from "./LoginForm.login";
+export * from "./RegistrationForm.registration";

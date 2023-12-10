@@ -1,1 +1,1 @@
-export * from "./GoogleLoginForm.login";
+export * from "./GoogleRegistrationForm.registration";

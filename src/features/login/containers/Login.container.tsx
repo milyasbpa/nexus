@@ -1,3 +1,4 @@
+'use client'
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18";
@@ -15,7 +16,8 @@ export const LoginContainer = () => {
       <div
         className={clsx(
           "grid grid-cols-1 place-content-center place-items-center gap-[1.5rem]",
-          "w-full h-[100vh]"
+          "w-full h-[100vh]",
+          "px-[1.5rem]"
         )}
       >
         <h1

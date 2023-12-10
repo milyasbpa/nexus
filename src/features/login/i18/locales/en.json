@@ -24,7 +24,8 @@
       }
     },
     "remember_me": {
-      "label": "Remember me"
+      "label": "Remember me",
+      "name": "remember-me_login"
     },
     "actions": {
       "login": "Login",
@@ -33,7 +34,7 @@
         "description": "Don’t have an account? ",
         "actions": {
           "name": "Sign Up",
-          "link": "/register"
+          "link": "/registration"
         }
       }
     }
