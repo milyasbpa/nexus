@@ -10,6 +10,7 @@ export interface DashboardContainerProps {
 
 export const DashboardContainer = ({ children }: DashboardContainerProps) => {
   const dictionaries = getDictionaries("en");
+
   return (
     <div className={clsx("w-full")}>
       <div
@@ -42,9 +43,7 @@ export const DashboardContainer = ({ children }: DashboardContainerProps) => {
             <Link
               href={menu.link}
               key={menu.id}
-              className={clsx(
-                "text-[0.875rem] text-[#232931] font-semibold"
-              )}
+              className={clsx("text-[0.875rem] text-[#232931] font-semibold")}
             >
               {menu.name}
             </Link>
