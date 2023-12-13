@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { FirebaseAuth } from ".";
 import { SignInFirebaseRequestBodyInterface } from "@/core/models/firebase";
+import { FirebaseAuth } from "@/core/config/firebase";
 
 export const signInWithEmailAndPasswordFirebase = async (
   payload: SignInFirebaseRequestBodyInterface
