@@ -7,6 +7,7 @@ import { Passwordfield } from "@/core/components/passwordfield";
 import { Checkbox } from "@/core/components/checkbox/Checkbox.component";
 import { useFormContext } from "react-hook-form";
 import { LoginForm } from "../../react_hook_form/keys";
+import { SignIn } from "@/core/services/firebase";
 
 export const LoginFormLogin = () => {
   const dictionaries = getDictionaries("en");
@@ -23,14 +24,26 @@ export const LoginFormLogin = () => {
   const handleChangeRememberMe = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.name, !watch(e.currentTarget.name));
   };
+
+  const handleClickLogin = async () => {
+    try {
+      await SignIn(
+        watch(dictionaries.form.email.name),
+        watch(dictionaries.form.password.name)
+      );
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
   return (
-    <form
+    <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full"
       )}
     >
       <Textfield
+        name={dictionaries.form.email.name}
         label={dictionaries.form.email.label}
         value={watch(dictionaries.form.email.name)}
         placeholder={dictionaries.form.email.placeholder}
@@ -59,9 +72,10 @@ export const LoginFormLogin = () => {
           "bg-[#002566]",
           "text-[1rem] font-normal text-white"
         )}
+        onClick={handleClickLogin}
       >
         {dictionaries.form.actions.login}
       </button>
-    </form>
+    </div>
   );
 };
