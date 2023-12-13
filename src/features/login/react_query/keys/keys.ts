@@ -3,7 +3,10 @@ export const LoginReactQueryKey = {
     return ["LoginReactQueryKey.PostLoginNexus"];
   },
   SignInWithEmailAndPasswordFirebase: () => {
-    return ["LoginReactQueryKey.SignInFirebase"];
+    return ["LoginReactQueryKey.SignInWithEmailAndPasswordFirebase"];
+  },
+  SignInWithPopupFirebase: () => {
+    return ["LoginReactQueryKey.SignInWithPopupFirebase"];
   },
   SetRememberMeStorage: () => {
     return ["LoginReactQueryKey.SetRememberMeStorage"];
