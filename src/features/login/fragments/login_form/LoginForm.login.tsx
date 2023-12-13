@@ -7,11 +7,17 @@ import { Passwordfield } from "@/core/components/passwordfield";
 import { Checkbox } from "@/core/components/checkbox/Checkbox.component";
 import { useFormContext } from "react-hook-form";
 import { LoginForm } from "../../react_hook_form/keys";
-import { SignIn } from "@/core/services/firebase";
+import { useLoginSignInWithEmailAndPasswordFirebase } from "../../react_query/hooks/useSignInWithEmailAndPasswordFirebase.login";
+import { useLoginGetRememberMeStorage } from "../../react_query/hooks/useGetRememberMeStorage.login";
+import { useLoginSetRememberMeStorage } from "../../react_query/hooks/useSetRememberMeStorage.login";
 
 export const LoginFormLogin = () => {
   const dictionaries = getDictionaries("en");
   const { setValue, watch } = useFormContext<LoginForm>();
+  useLoginGetRememberMeStorage();
+  const { mutate: signInWithEmailAndPasswordFirebase } =
+    useLoginSignInWithEmailAndPasswordFirebase();
+  const { mutate: setRememberMeStorage } = useLoginSetRememberMeStorage();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.name, e.currentTarget.value);
@@ -25,14 +31,11 @@ export const LoginFormLogin = () => {
     setValue(e.currentTarget.name, !watch(e.currentTarget.name));
   };
 
-  const handleClickLogin = async () => {
-    try {
-      await SignIn(
-        watch(dictionaries.form.email.name),
-        watch(dictionaries.form.password.name)
-      );
-    } catch (e: any) {
-      console.log(e.message);
+  const handleClickLogin = () => {
+    if (watch(dictionaries.form.remember_me.name)) {
+      setRememberMeStorage();
+    } else {
+      signInWithEmailAndPasswordFirebase();
     }
   };
   return (
