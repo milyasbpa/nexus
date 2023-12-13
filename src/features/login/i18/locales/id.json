@@ -2,6 +2,12 @@
   "brand": {
     "name": "NEXUS"
   },
+  "introduction": {
+    "message": "Nexus transforms your documents into dynamic assets. Whether legal agreements or financial reports, <strong>inquire freely, receive concise summaries, and explore information effortlessly!</strong>",
+    "sponsor": {
+      "title": "AS FEATURED IN"
+    }
+  },
   "form": {
     "name": "Masuk",
     "description": "Masukkan email dan kata sandi anda",
