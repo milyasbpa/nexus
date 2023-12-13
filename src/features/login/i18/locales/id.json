@@ -5,6 +5,18 @@
   "form": {
     "name": "Masuk",
     "description": "Masukkan email dan kata sandi anda",
+    "type": {
+      "name": "login"
+    },
+    "uid": {
+      "name": "uid"
+    },
+    "token": {
+      "name": "token"
+    },
+    "google_email": {
+      "name": "google_email"
+    },
     "email": {
       "label": "Email",
       "name": "email_login",

@@ -11,7 +11,7 @@ import { useLoginPostLoginNexus } from "./usePostLoginNexus.login";
 
 export const useLoginSignInWithPopupFirebase = () => {
   const dictionaries = getDictionaries("en");
-  const { watch } = useFormContext<LoginForm>();
+  const { setValue } = useFormContext<LoginForm>();
   const { mutate: postLoginNexus } = useLoginPostLoginNexus();
   const mutation = useMutation<UserCredential, any>({
     mutationKey: LoginReactQueryKey.SignInWithPopupFirebase(),
@@ -20,6 +20,24 @@ export const useLoginSignInWithPopupFirebase = () => {
 
   useEffect(() => {
     if (mutation.isSuccess) {
+      setValue(
+        dictionaries.form.token.name,
+        (
+          mutation.data as UserCredential & {
+            _tokenResponse: {
+              idToken: string;
+              displayName: string;
+              email: string;
+              expires: string;
+              kind: string;
+              localId: string;
+              refreshToken: string;
+              registered: boolean;
+            };
+          }
+        )._tokenResponse.idToken
+      );
+      setValue(dictionaries.form.google_email.name, mutation.data.user.email);
       postLoginNexus({
         id_token: (
           mutation.data as UserCredential & {

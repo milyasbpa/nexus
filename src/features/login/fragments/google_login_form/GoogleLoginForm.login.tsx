@@ -2,11 +2,16 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18";
 import { useLoginSignInWithPopupFirebase } from "../../react_query/hooks/useSignInWithPopUpFirebase.login";
+import { useFormContext } from "react-hook-form";
+import { LoginForm } from "../../react_hook_form/keys";
 
 export const GoogleLoginFormLogin = () => {
+  const { setValue } = useFormContext<LoginForm>();
+
   const { mutate: signInWithPopupFirebase } = useLoginSignInWithPopupFirebase();
   const dictionaries = getDictionaries("en");
   const handleClickLogin = () => {
+    setValue(dictionaries.form.type.name, "google_login");
     signInWithPopupFirebase();
   };
   return (

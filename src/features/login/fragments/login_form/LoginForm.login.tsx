@@ -32,6 +32,7 @@ export const LoginFormLogin = () => {
   };
 
   const handleClickLogin = () => {
+    setValue(dictionaries.form.type.name, "email_password_login");
     if (watch(dictionaries.form.remember_me.name)) {
       setRememberMeStorage();
     } else {

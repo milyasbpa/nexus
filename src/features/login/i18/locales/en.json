@@ -5,6 +5,18 @@
   "form": {
     "name": "Login",
     "description": "Enter your email and password",
+    "type": {
+      "name": "login"
+    },
+    "uid": {
+      "name": "uid"
+    },
+    "token": {
+      "name": "token"
+    },
+    "google_email": {
+      "name": "google_email"
+    },
     "email": {
       "label": "Email",
       "name": "email_login",
