@@ -21,6 +21,7 @@ export const DragnDropFileInputDocuments = ({
     "{{actions}}",
     `<button id="browse-button" style="color:#005CFF;font-size:0.875rem;font-weight:500;text-decoration:underline;">${actions}</button>`
   );
+
   const inputRef = React.useRef<HTMLInputElement>(null);
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ export const DragnDropFileInputDocuments = ({
 
   const handleChangeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (e.currentTarget.files !== null) {
       if (onUpload) {
@@ -36,6 +38,7 @@ export const DragnDropFileInputDocuments = ({
       }
 
       e.preventDefault();
+      e.stopPropagation();
     }
 
     e.target.value = "";
@@ -57,14 +60,20 @@ export const DragnDropFileInputDocuments = ({
     inputRef?.current?.click();
   };
 
+  const handleButtonListener = (e: Event) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleClickUpload();
+  };
+
   React.useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
       const button = document.getElementById("browse-button");
       if (button !== null) {
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          handleClickUpload();
-        });
+        button.addEventListener("click", handleButtonListener);
+        return () => {
+          button.removeEventListener("click", handleButtonListener);
+        };
       }
     }
   }, []);

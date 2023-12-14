@@ -19,7 +19,11 @@ export const fetchPostDocumentUploadNexus = async (
   const token = cookie.get("token");
 
   return await axios
-    .post(url, payload?.data)
+    .post(url, payload?.data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((res: any) => {
       return res.data;
     })

@@ -4,6 +4,41 @@
     "button": {
       "placeholder": "Upload Document"
     },
+    "pesona_dialog": {
+      "name": "pesona_dialog-documents",
+      "input": {
+        "name": "selected_pesona_dialog-documents"
+      },
+      "title": "Hey {{name}}, choose one who do you want to chat with?🚀",
+      "data": [
+        {
+          "id": "GENERAL",
+          "image": "/images/pesona/general.png",
+          "name": "General",
+          "description": "Interact broadly with our General AI. Perfect for versatile conversations and general information."
+        },
+        {
+          "id": "LEGAL_CONSULTANT",
+          "image": "/images/pesona/legal_consultant.png",
+          "name": "Legal Consultant",
+          "description": "Get legal insights from our Legal Consultant AI. Ask legal questions and receive AI-generated legal advice"
+        },
+        {
+          "id": "FINANCIAL_CONSULTANT",
+          "image": "/images/pesona/financial_analyst.png",
+          "name": "Financial Analyst",
+          "description": "Discuss finances with our Financial Analysis AI. Perfect for insights on financial strategies and investments"
+        }
+      ],
+      "actions": {
+        "primary": {
+          "text": "Upload"
+        },
+        "secondary": {
+          "text": "Cancel"
+        }
+      }
+    },
 
     "dialog": {
       "name": "upload-documents",
@@ -31,6 +66,7 @@
           "actions": "browse"
         },
         "preview": {
+          "name": "drag_n_drop_file_preview-document",
           "actions": "Remove File"
         },
         "setting": {

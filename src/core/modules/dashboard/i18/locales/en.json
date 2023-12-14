@@ -13,11 +13,6 @@
         "id": "about",
         "link": "/about",
         "name": "About"
-      },
-      {
-        "id": "chats",
-        "link": "/chats",
-        "name": "Chats"
       }
     ]
   }

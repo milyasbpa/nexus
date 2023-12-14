@@ -1,5 +1,8 @@
 export const DocumentsReactQueryKey = {
-  GetDocumentList: () => {
-    return ["DocumentsReactQueryKey.GetDocumentList"];
+  GetDocumentListNexus: () => {
+    return ["DocumentsReactQueryKey.GetDocumentListNexus"];
+  },
+  PostDocumentUploadNexus: () => {
+    return ["DocumentsReactQueryKey.PostDocumentUploadNexus"];
   },
 };

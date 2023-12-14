@@ -95,10 +95,11 @@ export const DragnDropUploadDocuments = ({
         <button
           className={clsx(
             "w-[88px] h-[2rem]",
-            "bg-[#EBF3FA]",
+            "bg-[#232931] disabled:bg-[#EBF3FA]",
             "rounded-[0.375rem]",
             "text-[white] text-[0.75rem] font-semibold"
           )}
+          disabled={!preview?.name?.length}
           onClick={onUpload}
         >
           {actions.primary.text}

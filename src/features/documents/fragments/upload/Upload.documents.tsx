@@ -33,23 +33,26 @@ export const UploadDocuments = () => {
     setValue(dictionaries.upload.dialog.tab.name, e.currentTarget.value);
   };
 
-  const handleChangeDragnDropFileInput = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setValue(e.currentTarget.name, e.currentTarget.value);
-  };
   const handleChangePrivateDocumentDragnDropUpload = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setValue(e.currentTarget.name, !watch(e.currentTarget.name));
   };
   const handleChangeDragnDropUpload = (data: FileList) => {
+    const name = Array.from(data)
+      .map((item) => item.name)
+      .find((_, index) => index === 0) as string;
     setValue(dictionaries.upload.dialog.browse.input.name, data);
+    setValue(dictionaries.upload.dialog.browse.preview.name, name);
   };
   const handleRemoveDragnDropFileInput = () => {
-    setValue(dictionaries.upload.dialog.browse.input.name, undefined);
+    setValue(dictionaries.upload.dialog.browse.input.name, null);
+    setValue(dictionaries.upload.dialog.browse.preview.name, "");
   };
-  const handleUploadDragnDropUpload = () => {};
+  const handleUploadDragnDropUpload = () => {
+    setValue(dictionaries.upload.pesona_dialog.name, true);
+    setValue(dictionaries.upload.dialog.name, false);
+  };
   const handleCancelDragnDropUpload = () => {
     setValue(dictionaries.upload.dialog.name, false);
     setValue(
@@ -66,7 +69,9 @@ export const UploadDocuments = () => {
   ) => {
     setValue(e.currentTarget.name, !watch(e.currentTarget.name));
   };
-  const handleUploadURLUpload = () => {};
+  const handleUploadURLUpload = () => {
+    setValue(dictionaries.upload.pesona_dialog.name, true);
+  };
   const handleCancelURLUpload = () => {
     setValue(dictionaries.upload.dialog.name, false);
     setValue(
@@ -110,7 +115,7 @@ export const UploadDocuments = () => {
       >
         <Dialog.Panel
           className={clsx(
-            "grid grid-flow-row h-fit w-fit max-w-[80vw] min-w-[432px] transform overflow-y-visible overflow-x-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all gap-y-[2rem]"
+            "grid grid-flow-row h-fit w-fit max-w-[432px] min-w-[432px] transform overflow-y-visible overflow-x-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all gap-y-[2rem]"
           )}
         >
           <div
@@ -149,7 +154,7 @@ export const UploadDocuments = () => {
               <DragnDropUploadDocuments
                 message={dictionaries.upload.dialog.browse.description}
                 preview={{
-                  name: "",
+                  name: watch(dictionaries.upload.dialog.browse.preview.name),
                   actions: dictionaries.upload.dialog.browse.preview.actions,
                   onRemove: handleRemoveDragnDropFileInput,
                 }}

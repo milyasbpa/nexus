@@ -15,7 +15,7 @@ export const useDocumentsGetDocumentListNexus = () => {
     GetDocumentListNexusSuccessResponseInterface | undefined,
     any
   >({
-    queryKey: DocumentsReactQueryKey.GetDocumentList(),
+    queryKey: DocumentsReactQueryKey.GetDocumentListNexus(),
     queryFn: () => fetchGetDocumentListNexus(),
   });
 
