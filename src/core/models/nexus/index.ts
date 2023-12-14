@@ -2,3 +2,8 @@ export * from "./login.post";
 export * from "./profile.get";
 export * from "./register.post";
 export * from "./document_upload.post";
+export * from "./document_list.get";
+export * from "./clear_chat.delete";
+export * from "./chat_history.get";
+export * from "./send_chat.post";
+export * from "./chat_suggestion.get";

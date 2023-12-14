@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { RegistrationForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
-import { useRegistrationSignInWithEmailAndPasswordFirebase } from "./useSignInWithEmailAndPasswordFirebase.login";
+import { useRegistrationSignInWithEmailAndPasswordFirebase } from "./useSignInWithEmailAndPasswordFirebase.registration";
 
 export const useRegistrationPostRegisterNexus = () => {
   const { watch, setValue } = useFormContext<RegistrationForm>();

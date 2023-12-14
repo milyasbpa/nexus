@@ -1,11 +1,18 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18";
+import { useRegistrationSignInWithPopupFirebase } from "../../react_query/hooks/useSignInWithPopUpFirebase.registration";
 
 export const GoogleRegistrationFormRegistration = () => {
   const dictionaries = getDictionaries("en");
+  const { mutate: signInWithPopupFirebase } =
+    useRegistrationSignInWithPopupFirebase();
+
+  const handleClickRegister = () => {
+    signInWithPopupFirebase();
+  };
   return (
-    <form
+    <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full"
@@ -22,6 +29,7 @@ export const GoogleRegistrationFormRegistration = () => {
           "text-[1rem] font-normal text-[#232931]",
           "relative"
         )}
+        onClick={handleClickRegister}
       >
         <img
           src={"/icons/login/google.svg"}
@@ -29,6 +37,6 @@ export const GoogleRegistrationFormRegistration = () => {
         />
         {dictionaries.form.actions.google_register}
       </button>
-    </form>
+    </div>
   );
 };

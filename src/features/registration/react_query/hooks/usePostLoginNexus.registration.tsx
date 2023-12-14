@@ -7,7 +7,7 @@ import {
   PostLoginNexusRequestPayloadInterface,
   PostLoginNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
-import { useLoginSetUserStorage } from "./useSetUserStorage.login";
+import { useLoginSetUserStorage } from "./useSetUserStorage.registration";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { RegistrationForm } from "../../react_hook_form/keys";
