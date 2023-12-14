@@ -1,9 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 export interface PostLoginNexusRequestInterface extends NextApiRequest {
-  body: PostLoginNexusRequestBodyInterface;
+  payload?: PostLoginNexusRequestPayloadInterface;
 }
-export interface PostLoginNexusRequestBodyInterface {
+export interface PostLoginNexusRequestPayloadInterface {
+  data: PostLoginNexusRequestPayloadDataInterface;
+}
+
+export interface PostLoginNexusRequestPayloadDataInterface {
   id_token: string;
 }
 

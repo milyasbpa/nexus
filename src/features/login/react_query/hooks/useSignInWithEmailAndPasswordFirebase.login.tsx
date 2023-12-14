@@ -42,22 +42,7 @@ export const useLoginSignInWithEmailAndPasswordFirebase = () => {
         )._tokenResponse.idToken
       );
       setValue(dictionaries.form.email.name, mutation.data.user.email);
-      postLoginNexus({
-        id_token: (
-          mutation.data as UserCredential & {
-            _tokenResponse: {
-              idToken: string;
-              displayName: string;
-              email: string;
-              expires: string;
-              kind: string;
-              localId: string;
-              refreshToken: string;
-              registered: boolean;
-            };
-          }
-        )._tokenResponse.idToken,
-      });
+      postLoginNexus();
     }
   }, [mutation.isSuccess]);
 

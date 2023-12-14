@@ -1,19 +1,19 @@
-import { PostLoginNexusRequestPayloadInterface } from "@/core/models/nexus";
+import { PostRegisterNexusRequestPayloadInterface } from "@/core/models/nexus";
 import { NexusRestAPIURL } from "@/core/routers/rest";
 import axios from "axios";
 import Cookie from "universal-cookie";
 
-export const fetchPostLoginNexus = async (
-  payload?: PostLoginNexusRequestPayloadInterface
+export const fetchPostRegisterNexus = async (
+  payload?: PostRegisterNexusRequestPayloadInterface
 ) => {
   const url =
     process.env.NEXT_PUBLIC_NEXUS_PROXY_SERVER === "true"
       ? `${process.env.NEXT_PUBLIC_WEB_URL}${
           process.env.NEXT_PUBLIC_NEXUS_PROXY_URL
-        }${NexusRestAPIURL.postLogin()}`
+        }${NexusRestAPIURL.postRegister()}`
       : `${
           process.env.NEXT_PUBLIC_NEXUS_SERVICE_URL
-        }${NexusRestAPIURL.postLogin()}`;
+        }${NexusRestAPIURL.postRegister()}`;
 
   const cookie = new Cookie();
   const token = cookie.get("token");

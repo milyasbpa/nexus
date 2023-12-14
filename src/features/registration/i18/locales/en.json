@@ -8,9 +8,22 @@
       "title": "AS FEATURED IN"
     }
   },
+
   "form": {
     "name": "Register",
     "description": "Enter your email and password",
+    "type": {
+      "name": "registration"
+    },
+    "uid": {
+      "name": "uid"
+    },
+    "token": {
+      "name": "token"
+    },
+    "google_email": {
+      "name": "google_email"
+    },
     "email": {
       "label": "Email",
       "name": "email_registration",

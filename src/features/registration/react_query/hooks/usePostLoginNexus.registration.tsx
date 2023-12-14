@@ -1,6 +1,6 @@
 "use client";
 import { useMutation } from "@tanstack/react-query";
-import { LoginReactQueryKey } from "../keys";
+import { RegistrationReactQueryKey } from "../keys";
 import { fetchPostLoginNexus } from "@/core/services/nexus";
 import {
   PostLoginNexusErrorResponseInterface,
@@ -10,18 +10,18 @@ import {
 import { useLoginSetUserStorage } from "./useSetUserStorage.login";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { LoginForm } from "../../react_hook_form/keys";
+import { RegistrationForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 
-export const useLoginPostLoginNexus = () => {
-  const { watch, setValue } = useFormContext<LoginForm>();
+export const useRegistrationPostLoginNexus = () => {
+  const { watch, setValue } = useFormContext<RegistrationForm>();
   const dictionaries = getDictionaries("en");
   const { mutate: setUserStorage } = useLoginSetUserStorage();
   const mutation = useMutation<
     PostLoginNexusSuccessResponseInterface,
     PostLoginNexusErrorResponseInterface
   >({
-    mutationKey: LoginReactQueryKey.PostLoginNexus(),
+    mutationKey: RegistrationReactQueryKey.PostLoginNexus(),
     mutationFn: () => {
       const payload: PostLoginNexusRequestPayloadInterface = {
         data: {

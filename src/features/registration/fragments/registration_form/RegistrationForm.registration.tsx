@@ -7,10 +7,12 @@ import { Passwordfield } from "@/core/components/passwordfield";
 import { Checkbox } from "@/core/components/checkbox/Checkbox.component";
 import { useFormContext } from "react-hook-form";
 import { RegistrationForm } from "../../react_hook_form/keys";
+import { useRegistrationPostRegisterNexus } from "../../react_query/hooks/usePostRegisterNexus.registration";
 
 export const RegistrationFormRegistration = () => {
   const dictionaries = getDictionaries("en");
   const { setValue, watch } = useFormContext<RegistrationForm>();
+  const { mutate: postRegisterNexus } = useRegistrationPostRegisterNexus();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.name, e.currentTarget.value);
@@ -26,14 +28,19 @@ export const RegistrationFormRegistration = () => {
     setValue(e.currentTarget.name, e.currentTarget.value);
   };
 
+  const handleClickRegister = () => {
+    postRegisterNexus();
+  };
+
   return (
-    <form
+    <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
         "w-full"
       )}
     >
       <Textfield
+        name={dictionaries.form.email.name}
         label={dictionaries.form.email.label}
         value={watch(dictionaries.form.email.name)}
         placeholder={dictionaries.form.email.placeholder}
@@ -63,9 +70,10 @@ export const RegistrationFormRegistration = () => {
           "bg-[#002566]",
           "text-[1rem] font-normal text-white"
         )}
+        onClick={handleClickRegister}
       >
         {dictionaries.form.actions.register}
       </button>
-    </form>
+    </div>
   );
 };
