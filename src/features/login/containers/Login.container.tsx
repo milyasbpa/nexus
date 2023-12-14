@@ -8,10 +8,13 @@ import { LoginFormLogin } from "../fragments/login_form";
 import { GoogleLoginFormLogin } from "../fragments/google_login_form";
 import { FormProvider, useForm } from "react-hook-form";
 import { IntroductionLogin } from "../fragments/introduction/Introduction.login";
+import { defaultValues } from "../react_hook_form/constants/default_values";
 
 export const LoginContainer = () => {
   const dictionaries = getDictionaries("en");
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: defaultValues,
+  });
   return (
     <FormProvider {...methods}>
       <div

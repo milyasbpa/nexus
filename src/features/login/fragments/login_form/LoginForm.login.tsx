@@ -39,6 +39,10 @@ export const LoginFormLogin = () => {
       signInWithEmailAndPasswordFirebase();
     }
   };
+
+  const isLoginDisabled =
+    !watch(dictionaries.form.email.name).length ||
+    !watch(dictionaries.form.password.name).length;
   return (
     <div
       className={clsx(
@@ -73,9 +77,10 @@ export const LoginFormLogin = () => {
           "w-full",
           "rounded-[0.5rem]",
           "px-[1rem] py-[1rem]",
-          "bg-[#002566]",
+          "bg-[#002566] disabled:bg-[#99A8C2]",
           "text-[1rem] font-normal text-white"
         )}
+        disabled={isLoginDisabled}
         onClick={handleClickLogin}
       >
         {dictionaries.form.actions.login}

@@ -32,7 +32,6 @@ export const Checkbox = ({
         type="checkbox"
         value={value}
         name={name}
-        defaultChecked={defaultChecked}
         onChange={onChange}
         checked={checked}
       />

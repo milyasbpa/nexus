@@ -24,12 +24,12 @@
       "name": "google_email"
     },
     "email": {
-      "label": "Email",
+      "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_login",
       "placeholder": "Enter your email"
     },
     "password": {
-      "label": "Password",
+      "label": "Password <span style='color:#FC5959;'>*</span>",
       "name": "password_login",
       "placeholder": "Enter your password"
     },

@@ -24,12 +24,12 @@
       "name": "google_email"
     },
     "email": {
-      "label": "Email",
+      "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_login",
       "placeholder": "Masukkan email Anda"
     },
     "password": {
-      "label": "Kata Sandi",
+      "label": "Kata Sandi <span style='color:#FC5959;'>*</span>",
       "name": "password_login",
       "placeholder": "Masukkan kata sandi Anda"
     },

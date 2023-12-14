@@ -64,9 +64,8 @@ export const Passwordfield = ({
       >
         <label
           className={clsx("text-sm leading-[normal] text-[rgba(35,41,49,1)]")}
-        >
-          {label}
-        </label>
+          dangerouslySetInnerHTML={{ __html: label }}
+        />
 
         <div
           className={clsx(

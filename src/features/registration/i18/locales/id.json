@@ -23,18 +23,23 @@
     "google_email": {
       "name": "google_email"
     },
+    "full_name": {
+      "label": "Full Name",
+      "name": "full_name_registration",
+      "placeholder": "Masukkan nama lengkap Anda"
+    },
     "email": {
-      "label": "Email",
+      "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_registration",
       "placeholder": "Masukkan email Anda"
     },
     "password": {
-      "label": "Kata Sandi",
+      "label": "Kata Sandi <span style='color:#FC5959;'>*</span>",
       "name": "password_registration",
       "placeholder": "Masukkan kata sandi Anda"
     },
     "password_confirmation": {
-      "label": "Konfirmasi Kata Sandi",
+      "label": "Konfirmasi Kata Sandi <span style='color:#FC5959;'>*</span>",
       "name": "password-confirmation_registration",
       "placeholder": "Masukkan ulang kata sandi Anda"
     },

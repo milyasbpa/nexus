@@ -4,7 +4,6 @@ import clsx from "clsx";
 import { getDictionaries } from "../../i18";
 import { Textfield } from "@/core/components/textfield";
 import { Passwordfield } from "@/core/components/passwordfield";
-import { Checkbox } from "@/core/components/checkbox/Checkbox.component";
 import { useFormContext } from "react-hook-form";
 import { RegistrationForm } from "../../react_hook_form/keys";
 import { useRegistrationPostRegisterNexus } from "../../react_query/hooks/usePostRegisterNexus.registration";
@@ -13,6 +12,10 @@ export const RegistrationFormRegistration = () => {
   const dictionaries = getDictionaries("en");
   const { setValue, watch } = useFormContext<RegistrationForm>();
   const { mutate: postRegisterNexus } = useRegistrationPostRegisterNexus();
+
+  const handleChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.currentTarget.name, e.currentTarget.value);
+  };
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.name, e.currentTarget.value);
@@ -32,6 +35,11 @@ export const RegistrationFormRegistration = () => {
     postRegisterNexus();
   };
 
+  const isRegisterDisabled =
+    !watch(dictionaries.form.email.name).length ||
+    !watch(dictionaries.form.password.name).length ||
+    !watch(dictionaries.form.password_confirmation.name).length;
+
   return (
     <div
       className={clsx(
@@ -39,6 +47,13 @@ export const RegistrationFormRegistration = () => {
         "w-full"
       )}
     >
+      <Textfield
+        name={dictionaries.form.full_name.name}
+        label={dictionaries.form.full_name.label}
+        value={watch(dictionaries.form.full_name.name)}
+        placeholder={dictionaries.form.full_name.placeholder}
+        onChange={handleChangeFullName}
+      />
       <Textfield
         name={dictionaries.form.email.name}
         label={dictionaries.form.email.label}
@@ -67,9 +82,10 @@ export const RegistrationFormRegistration = () => {
           "w-full",
           "rounded-[0.5rem]",
           "px-[1rem] py-[1rem]",
-          "bg-[#002566]",
+          "bg-[#002566] disabled:bg-[#99A8C2]",
           "text-[1rem] font-normal text-white"
         )}
+        disabled={isRegisterDisabled}
         onClick={handleClickRegister}
       >
         {dictionaries.form.actions.register}

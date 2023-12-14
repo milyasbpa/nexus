@@ -18,9 +18,8 @@ export const Textfield = ({ label = "", ...otherProps }: ITextfieldProps) => {
     >
       <label
         className={clsx("text-sm leading-[normal] text-[rgba(35,41,49,1)]")}
-      >
-        {label}
-      </label>
+        dangerouslySetInnerHTML={{ __html: label }}
+      />
 
       <input
         className={clsx(
