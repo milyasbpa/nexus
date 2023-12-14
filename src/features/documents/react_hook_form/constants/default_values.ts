@@ -5,4 +5,11 @@ export const defaultValues = {
   [getDictionaries("en").upload.dialog.tab.name]: "drag_and_drop",
   [getDictionaries("en").upload.dialog.url.setting.input.private_document.name]:
     false,
+  [getDictionaries("en").data_table.name]: [
+    {
+      no: "1",
+      file_name: "Resume Feedback Loop",
+      date: "23-04-2010",
+    },
+  ],
 };

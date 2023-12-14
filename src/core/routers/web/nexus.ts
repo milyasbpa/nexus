@@ -3,5 +3,5 @@ export const NexusWebURL = {
   getRegistration: () => "/registration",
   getAbout: () => "/about",
   getDocuments: () => "/documents",
-  getChatByDocumentId: () => "/register",
+  getChatByDocumentId: (data: { doc_id?: string }) => `/chat/${data.doc_id}`,
 };

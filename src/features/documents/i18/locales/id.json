@@ -78,6 +78,7 @@
     }
   },
   "data_table": {
+    "name": "documents",
     "initial": {
       "message": "Get started to uploading document"
     },
@@ -87,7 +88,7 @@
     "search": {
       "input": {
         "name": "search_documents",
-        "placeholder": "Search"
+        "placeholder": "Search File Name"
       }
     },
     "head": {

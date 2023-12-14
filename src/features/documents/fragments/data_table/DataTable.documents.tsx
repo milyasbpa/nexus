@@ -1,8 +1,9 @@
 "use client";
 import * as React from "react";
 import Image from "next/image";
-import { TableBody } from "@/core/components/table_body";
-import { TableHead } from "@/core/components/table_head";
+import { useRouter } from "next/navigation";
+import { TableBodyDocuments } from "@/features/documents/components/table_body";
+import { TableHeadDocuments } from "@/features/documents/components/table_head";
 import {
   ColumnDef,
   getCoreRowModel,
@@ -16,10 +17,14 @@ import { useFormContext } from "react-hook-form";
 import { getDictionaries } from "../../i18";
 import { TableColumnHeaderDocuments } from "../../components/table_column_header";
 import { TableCellDocuments } from "../../components/table_cell";
+import { useDocumentsGetDocumentListNexus } from "../../react_query/hooks/useGetDocumentListNexus.documents";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const DataTableDocuments = () => {
   const { watch, setValue } = useFormContext();
+  const router = useRouter();
   const dictionaries = getDictionaries("en");
+  useDocumentsGetDocumentListNexus();
 
   const columns = React.useMemo<
     ColumnDef<{ [key: string]: string | { id: string; name: string }[] }>[]
@@ -38,7 +43,7 @@ export const DataTableDocuments = () => {
   }, [dictionaries.data_table.head.data]);
 
   const table = useReactTable({
-    data: [],
+    data: watch(dictionaries.data_table.name),
     columns: columns,
     state: {
       pagination: {
@@ -51,7 +56,6 @@ export const DataTableDocuments = () => {
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-
     paginateExpandedRows: false,
     autoResetPageIndex: false,
     debugTable: true,
@@ -68,7 +72,7 @@ export const DataTableDocuments = () => {
         )}
       >
         <table className={clsx("wide-spacing", "w-full")}>
-          <TableHead table={table} />
+          <TableHeadDocuments table={table} />
         </table>
         <div
           className={clsx(
@@ -92,6 +96,15 @@ export const DataTableDocuments = () => {
     );
   }
 
+  const handleSelectRow = (e: React.MouseEvent<HTMLTableRowElement>) => {
+    const docId = table
+      .getRow(e.currentTarget.id)
+      .getAllCells()
+      .find((cell) => cell.column.id === "no")
+      ?.renderValue() as string;
+    router.push(NexusWebURL.getChatByDocumentId({ doc_id: docId }));
+  };
+
   return (
     <div
       className={clsx(
@@ -102,8 +115,8 @@ export const DataTableDocuments = () => {
       )}
     >
       <table className={clsx("wide-spacing", "w-full")}>
-        <TableHead table={table} />
-        <TableBody table={table} />
+        <TableHeadDocuments table={table} />
+        <TableBodyDocuments table={table} onSelectRow={handleSelectRow} />
       </table>
     </div>
   );
