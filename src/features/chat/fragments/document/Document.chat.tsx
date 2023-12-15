@@ -136,12 +136,12 @@ export const DocumentChat = () => {
             "w-full"
           )}
         >
-          <button>
+          {/* <button>
             <img
               src={"/icons/chat/split_page.svg"}
               className={clsx("w-[1.5rem] h-[1.5rem]")}
             />
-          </button>
+          </button> */}
           <Rotate direction={RotateDirection.Backward}>
             {(props: RenderRotateProps) => (
               <button onClick={props.onClick}>
