@@ -4,6 +4,7 @@ import { ArrowUpIcon } from "@heroicons/react/20/solid";
 import { libreBaskerville } from "@/core/fonts";
 import { KeyboardChat } from "../keyboard";
 import { SuggestionChat } from "../suggestion";
+import { HistoryChat } from "../history";
 
 export interface ConversationChatProps {}
 
@@ -49,6 +50,8 @@ export const ConversationChat = (props: ConversationChatProps) => {
         </button>
       </div>
 
+      {/* history */}
+      <HistoryChat />
       {/* suggestion */}
       <SuggestionChat />
       {/* chat */}

@@ -101,6 +101,10 @@ export const PesonaDocuments = () => {
                     key={agent.id}
                     id={agent.id}
                     name={agent.name}
+                    selected={
+                      watch(dictionaries.upload.pesona_dialog.input.name) ===
+                      agent.id
+                    }
                     description={agent.description}
                     image={agent.image}
                     onClick={handleClickAgentSelector}

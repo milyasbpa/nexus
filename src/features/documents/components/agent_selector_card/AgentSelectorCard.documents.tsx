@@ -6,6 +6,7 @@ export interface AgenSelectorCardDocumentProps {
   image?: string;
   name?: string;
   description?: string;
+  selected?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -14,6 +15,7 @@ export const AgentSelectorCardDocuments = ({
   image = "",
   name = "",
   description = "",
+  selected = false,
   onClick,
 }: AgenSelectorCardDocumentProps) => {
   return (
@@ -22,7 +24,7 @@ export const AgentSelectorCardDocuments = ({
         "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
         "w-[188px] h-[240px]",
         "rounded-[0.25rem]",
-        "border border-[#BFCAD7]"
+        selected ? "border border-[#002566]" : "border border-[#BFCAD7]"
       )}
       value={id}
       onClick={onClick}
@@ -35,10 +37,18 @@ export const AgentSelectorCardDocuments = ({
           "px-[0.25rem] py-[0.5rem]"
         )}
       >
-        <p className={clsx("text-[0.75rem] text-[#232931] font-semibold text-left")}>
+        <p
+          className={clsx(
+            "text-[0.75rem] text-[#232931] font-semibold text-left"
+          )}
+        >
           {name}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#404852] font-normal text-left")}>
+        <p
+          className={clsx(
+            "text-[0.75rem] text-[#404852] font-normal text-left"
+          )}
+        >
           {description}
         </p>
       </div>

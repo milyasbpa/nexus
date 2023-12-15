@@ -1,29 +1,33 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { TrashIcon } from "@heroicons/react/20/solid";
 import { useChatGetChatSuggestionNexus } from "../../react_query/hooks/useGetChatSuggestionNexus.chat";
+import { useFormContext } from "react-hook-form";
+import { ChatForm } from "../../react_hook_form/keys";
+import { getDictionaries } from "../../i18";
+import { useChatDeleteClearChatNexus } from "../../react_query/hooks/useDeleteClearChatNexus.chat";
 
 export const SuggestionChat = () => {
+  const { watch } = useFormContext<ChatForm>();
+  const dictionaries = getDictionaries("en");
   useChatGetChatSuggestionNexus();
-  const items = [
-    {
-      message:
-        "What legal aspects are important to consider based on this bank statement?",
-    },
-  ];
+  const { mutate: deleteClearChatNexus } = useChatDeleteClearChatNexus();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const items = watch(dictionaries.conversation.suggestion.message.name);
+
+  const handleSelectSuggestion = (e: React.MouseEvent<HTMLButtonElement>) => {
     //
   };
 
   const handleClickClearChat = () => {
-    //
+    deleteClearChatNexus();
   };
+
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0.5rem]",
+        watch(dictionaries.conversation.suggestion.name) ? "grid" : "hidden",
+        "grid-cols-1 items-center content-center justify-start justify-items-start gap-[0.5rem]",
         "w-full",
         "px-[0.75rem] py-[1rem]",
         "bg-[white]",
@@ -39,7 +43,7 @@ export const SuggestionChat = () => {
         )}
       >
         <p className={clsx("text-[1.125rem] font-medium text-[#002566]")}>
-          {"Suggestion"}
+          {dictionaries.conversation.suggestion.title}
         </p>
 
         <div
@@ -58,33 +62,46 @@ export const SuggestionChat = () => {
 
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-          "w-full",
-          "px-[0.5rem] py-[1rem]",
-          "bg-[#F4F8FC]",
-          "rounded-[0.25rem]"
+          "grid place-content-start place-items-start gap-[1rem]",
+          "w-full"
         )}
+        style={{ gridTemplateColumns: `repeat(${items.length},1fr)` }}
       >
-        <p className={clsx("text-[1rem] font-semibold text-[#002566]")}>
-          {"Analyze"}
-        </p>
-        {items.map((item, itemIndex) => (
-          <button
+        {items?.map((item: any, itemIndex: number) => (
+          <div
             key={itemIndex}
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start",
+              "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
               "w-full",
-              "bg-white",
-              "rounded-[0.5rem]",
-              "px-[0.5rem] py-[0.5rem]"
+              "px-[0.5rem] py-[1rem]",
+              "bg-[#F4F8FC]",
+              "rounded-[0.25rem]"
             )}
-            value={item.message}
-            onClick={handleClick}
           >
-            <p className={clsx("text-[0.875rem] font-normal text-[#404852]")}>
-              {item.message}
+            <p className={clsx("text-[1rem] font-semibold text-[#002566]")}>
+              {item.category}
             </p>
-          </button>
+            {item.data.map((childItem: any, childItemIndex: number) => (
+              <button
+                key={childItemIndex}
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start",
+                  "w-full",
+                  "bg-white",
+                  "rounded-[0.5rem]",
+                  "px-[0.5rem] py-[0.5rem]"
+                )}
+                value={childItem.message}
+                onClick={handleSelectSuggestion}
+              >
+                <p
+                  className={clsx("text-[0.875rem] font-normal text-[#404852]")}
+                >
+                  {childItem.message}
+                </p>
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </div>

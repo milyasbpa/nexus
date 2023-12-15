@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import Link from "next/link";
 import clsx from "clsx";
 import { DocumentChat } from "../fragments/document";
 import { ConversationChat } from "../fragments/conversation";
@@ -7,6 +8,7 @@ import { libreBaskerville } from "@/core/fonts";
 import { FormProvider, useForm } from "react-hook-form";
 import { defaultValues } from "../react_hook_form/constants/default_values";
 import { getDictionaries } from "../i18";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const ChatContainer = () => {
   const dictionaries = getDictionaries("en");
@@ -29,9 +31,16 @@ export const ChatContainer = () => {
             "w-full"
           )}
         >
-          <h1 className={clsx("text-[0.875rem] text-[#232931] font-normal")}>
-            {"Back"}
-          </h1>
+          <Link
+            href={NexusWebURL.getDocuments()}
+            className={clsx("cursor-pointer")}
+          >
+            <h1
+              className={clsx("text-[0.875rem] text-[#232931] font-semibold")}
+            >
+              {dictionaries.actions.back}
+            </h1>
+          </Link>
 
           {/* menu */}
 
@@ -46,7 +55,7 @@ export const ChatContainer = () => {
                 libreBaskerville.className
               )}
             >
-              {"NEXUS"}
+              {dictionaries.brand.name}
             </h1>
           </div>
 

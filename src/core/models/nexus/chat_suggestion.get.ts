@@ -17,6 +17,13 @@ export interface GetChatSuggestionNexusResponseInterface
     | GetChatSuggestionNexusErrorResponseInterface
   > {}
 export interface GetChatSuggestionNexusSuccessResponseInterface {
+  data: {
+    suggestions: {
+      message: string;
+      persona: string;
+      category: string;
+    }[];
+  };
   message: string;
   status: number;
 }

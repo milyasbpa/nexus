@@ -1,17 +1,47 @@
-'use client'
+"use client";
 import { ArrowUpIcon } from "@heroicons/react/20/solid";
 import * as React from "react";
 import clsx from "clsx";
+import { useFormContext } from "react-hook-form";
+import { ChatForm } from "../../react_hook_form/keys";
+import { getDictionaries } from "../../i18";
 
 export interface KeyboardChatProps {}
 
 export const KeyboardChat = (props: KeyboardChatProps) => {
-//   const [isSuggestionShowed, setIsSuggestionShowed] =
-//     React.useState<boolean>(true);
+  const { watch, setValue } = useFormContext<ChatForm>();
+  const dictionaries = getDictionaries("en");
 
-  const handleClick = () => {
-    // setIsSuggestionShowed(true);
+  const handleClickHint = () => {
+    setValue(
+      dictionaries.conversation.suggestion.name,
+      !watch(dictionaries.conversation.suggestion.name)
+    );
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(
+      dictionaries.conversation.keyboard.input.name,
+      e.currentTarget.value
+    );
+  };
+
+  const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setValue(dictionaries.conversation.history.name, [
+        ...watch(dictionaries.conversation.history.name),
+        {
+          message: watch(dictionaries.conversation.keyboard.input.name),
+          user: "User",
+          initial: "",
+        },
+      ]);
+      setValue(dictionaries.conversation.suggestion.name, false);
+      setValue(dictionaries.conversation.keyboard.input.name, "");
+    }
+  };
+
+  const handleClickEnter = () => {};
   return (
     <div
       className={clsx(
@@ -23,7 +53,7 @@ export const KeyboardChat = (props: KeyboardChatProps) => {
         "bottom-0 right-0 left-0"
       )}
     >
-      <button onClick={handleClick}>
+      <button onClick={handleClickHint}>
         <img
           src={"/icons/chat/hint.svg"}
           className={clsx("w-[1.5rem] h-[1.5rem]")}
@@ -45,9 +75,15 @@ export const KeyboardChat = (props: KeyboardChatProps) => {
             "text-[1rem] font-normal text-[#232931]",
             "outline-none"
           )}
+          value={watch(dictionaries.conversation.keyboard.input.name)}
           placeholder={"Type your question"}
+          onChange={handleChange}
+          onKeyDown={handleKeyDownEnter}
         />
-        <button className={clsx("bg-[#002566]", "rounded-[0.25rem]")}>
+        <button
+          className={clsx("bg-[#002566]", "rounded-[0.25rem]")}
+          onClick={handleClickEnter}
+        >
           <ArrowUpIcon
             className={clsx("w-[1.25rem] h-[1.25rem]", "text-white")}
           />

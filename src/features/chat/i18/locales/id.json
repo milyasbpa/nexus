@@ -2,6 +2,57 @@
   "brand": {
     "name": "NEXUS"
   },
+  "actions": {
+    "back": "Back"
+  },
+  "pdf": {
+    "header": {
+      "name": "pdf_header-chat"
+    }
+  },
+  "conversation": {
+    "name": "conversation-chat",
+    "history": {
+      "name": "history_conversation-chat",
+      "default_data": [
+        {
+          "message": "Hello, {{name}}! Excited to explore financial insights with you. How can I assist you today?",
+          "initial": "",
+          "user": "Financial Analyst"
+        }
+      ]
+    },
+    "suggestion": {
+      "title": "Suggestion",
+      "name": "suggested_conversation-chat",
+      "message": {
+        "name": "suggested_message_conversation-chat",
+        "data": [
+          {
+            "category": "Analyze",
+            "data": [
+              {
+                "message": "What legal aspects are important to consider based on this bank statement?"
+              }
+            ]
+          },
+          {
+            "category": "Create",
+            "data": [
+              {
+                "message": "What legal aspects are important to consider based on this bank statement?"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "keyboard": {
+      "input": {
+        "name": "keyboard_input-chat"
+      }
+    }
+  },
   "introduction": {
     "message": "Nexus transforms your documents into dynamic assets. Whether legal agreements or financial reports, <strong>inquire freely, receive concise summaries, and explore information effortlessly!</strong>",
     "sponsor": {
@@ -9,8 +60,8 @@
     }
   },
   "form": {
-    "name": "Masuk",
-    "description": "Masukkan email dan kata sandi anda",
+    "name": "Login",
+    "description": "Enter your email and password",
     "type": {
       "name": "login"
     },
@@ -26,12 +77,12 @@
     "email": {
       "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_login",
-      "placeholder": "Masukkan email Anda"
+      "placeholder": "Enter your email"
     },
     "password": {
-      "label": "Kata Sandi <span style='color:#FC5959;'>*</span>",
+      "label": "Password <span style='color:#FC5959;'>*</span>",
       "name": "password_login",
-      "placeholder": "Masukkan kata sandi Anda"
+      "placeholder": "Enter your password"
     },
     "errors": {
       "incorrect_account": {
@@ -42,16 +93,16 @@
       }
     },
     "remember_me": {
-      "label": "Ingat saya",
+      "label": "Remember me",
       "name": "remember-me_login"
     },
     "actions": {
-      "login": "Masuk",
-      "google_login": "Masuk menggunakan google",
+      "login": "Login",
+      "google_login": "Login with google",
       "dont_have_account": {
-        "description": "Belum mempunyai akun? ",
+        "description": "Don’t have an account? ",
         "actions": {
-          "name": "Daftar",
+          "name": "Sign Up",
           "link": "/registration"
         }
       }
