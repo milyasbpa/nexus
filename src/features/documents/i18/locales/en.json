@@ -93,6 +93,9 @@
           "name": "url_file_input-document",
           "placeholder": "e.g https://drive.google.com"
         },
+        "file": {
+          "name": "file_input-document"
+        },
         "setting": {
           "label": "Document Setting",
           "input": {

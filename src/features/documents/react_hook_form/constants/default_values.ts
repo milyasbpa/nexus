@@ -4,10 +4,16 @@ export const defaultValues = {
 
   [getDictionaries("en").upload.dialog.name]: false,
   [getDictionaries("en").upload.dialog.tab.name]: "drag_and_drop",
+
+  [getDictionaries("en").upload.dialog.browse.input.name]: null,
+  [getDictionaries("en").upload.dialog.browse.setting.input.private_document
+    .name]: false,
+  [getDictionaries("en").upload.dialog.browse.preview.name]: "",
+
+  [getDictionaries("en").upload.dialog.url.input.name]: "",
+  [getDictionaries("en").upload.dialog.url.file.name]: null,
   [getDictionaries("en").upload.dialog.url.setting.input.private_document.name]:
     false,
-  [getDictionaries("en").upload.dialog.browse.input.name]: null,
-  [getDictionaries("en").upload.dialog.browse.preview.name]: "",
 
   [getDictionaries("en").upload.pesona_dialog.name]: false,
   [getDictionaries("en").upload.pesona_dialog.input.name]: "",

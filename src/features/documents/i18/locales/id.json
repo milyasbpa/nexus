@@ -5,11 +5,11 @@
       "placeholder": "Upload Document"
     },
     "pesona_dialog": {
-      "title": "Hey {{name}}, choose one who do you want to chat with?🚀",
       "name": "pesona_dialog-documents",
       "input": {
         "name": "selected_pesona_dialog-documents"
       },
+      "title": "Hey {{name}}, choose one who do you want to chat with?🚀",
       "data": [
         {
           "id": "GENERAL",
@@ -92,6 +92,9 @@
         "input": {
           "name": "url_file_input-document",
           "placeholder": "e.g https://drive.google.com"
+        },
+        "file": {
+          "name": "file_input-document"
         },
         "setting": {
           "label": "Document Setting",

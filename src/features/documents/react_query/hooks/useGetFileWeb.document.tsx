@@ -9,6 +9,8 @@ import {
   GetFileWebRequestPayloadInterface,
   GetFileWebSuccessResponseInterface,
 } from "@/core/models/web";
+import { v4 as uuidv4 } from "uuid";
+import { useEffect } from "react";
 
 export const useDocumentsGetFileWeb = () => {
   const dictionaries = getDictionaries("en");
@@ -27,6 +29,16 @@ export const useDocumentsGetFileWeb = () => {
       return fetchGetFileWeb(payload);
     },
   });
+
+  useEffect(() => {
+    if (mutation.data) {
+      const file = new File([mutation.data], `${uuidv4()}.pdf`, {
+        type: mutation.data.type,
+        lastModified: Date.now(),
+      });
+      setValue(dictionaries.upload.dialog.url.file.name, file);
+    }
+  }, [mutation.data]);
 
   return mutation;
 };
