@@ -8,6 +8,7 @@ import { DataTableDocuments } from "../fragments/data_table/DataTable.documents"
 import { FormProvider, useForm } from "react-hook-form";
 import { UploadDocuments } from "../fragments/upload";
 import { defaultValues } from "../react_hook_form/constants/default_values";
+import { PesonaDocuments } from "../fragments/pesona";
 
 export const DocumentsContainer = () => {
   const methods = useForm({
@@ -45,6 +46,7 @@ export const DocumentsContainer = () => {
               </div>
 
               <UploadDocuments />
+              <PesonaDocuments />
             </div>
 
             <DataTableDocuments />

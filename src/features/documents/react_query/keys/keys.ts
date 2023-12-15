@@ -5,4 +5,7 @@ export const DocumentsReactQueryKey = {
   PostDocumentUploadNexus: () => {
     return ["DocumentsReactQueryKey.PostDocumentUploadNexus"];
   },
+  GetFileWeb: () => {
+    return ["DocumentsReactQueryKey.GetFileWeb"];
+  },
 };

@@ -82,10 +82,11 @@ export const URLUploadDocuments = ({
         <button
           className={clsx(
             "w-[88px] h-[2rem]",
-            "bg-[#EBF3FA]",
+            "bg-[#232931] disabled:bg-[#EBF3FA]",
             "rounded-[0.375rem]",
             "text-[white] text-[0.75rem] font-semibold"
           )}
+          disabled={!input || !String(input?.value)?.length}
           onClick={onUpload}
         >
           {actions.primary.text}

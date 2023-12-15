@@ -18,6 +18,9 @@ export const UploadDocuments = () => {
   const dictionaries = getDictionaries("en");
 
   const handleOpenModal = () => {
+    setValue(dictionaries.upload.dialog.browse.input.name, null);
+    setValue(dictionaries.upload.dialog.browse.preview.name, "");
+    setValue(dictionaries.upload.dialog.url.input.name, "");
     setValue(dictionaries.upload.dialog.name, true);
   };
 
@@ -70,6 +73,7 @@ export const UploadDocuments = () => {
     setValue(e.currentTarget.name, !watch(e.currentTarget.name));
   };
   const handleUploadURLUpload = () => {
+    setValue(dictionaries.upload.dialog.name, false);
     setValue(dictionaries.upload.pesona_dialog.name, true);
   };
   const handleCancelURLUpload = () => {

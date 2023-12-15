@@ -21,7 +21,7 @@ export const useDocumentsGetDocumentListNexus = () => {
 
   useEffect(() => {
     if (query.data && query.isSuccess) {
-      const tableData = query.data.data.doc_list.map((doc) => {
+      const tableData = query.data?.data?.doc_list.map((doc) => {
         return {
           no: doc.doc_id,
           file_name: doc.file_name,

@@ -20,7 +20,7 @@ export const AgentSelectorCardDocuments = ({
     <button
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-        "w-full h-[240px]",
+        "w-[188px] h-[240px]",
         "rounded-[0.25rem]",
         "border border-[#BFCAD7]"
       )}
@@ -31,13 +31,14 @@ export const AgentSelectorCardDocuments = ({
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
-          "w-full"
+          "w-full",
+          "px-[0.25rem] py-[0.5rem]"
         )}
       >
-        <p className={clsx("text-[0.75rem] text-[#232931] font-medium")}>
+        <p className={clsx("text-[0.75rem] text-[#232931] font-semibold text-left")}>
           {name}
         </p>
-        <p className={clsx("text-[0.75rem] text-[#404852] font-normal")}>
+        <p className={clsx("text-[0.75rem] text-[#404852] font-normal text-left")}>
           {description}
         </p>
       </div>

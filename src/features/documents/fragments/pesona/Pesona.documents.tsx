@@ -7,10 +7,13 @@ import { ModalComponent } from "@/core/components/modal";
 import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
+import { useDocumentsGetFileWeb } from "../../react_query/hooks/useGetFileWeb.document";
 
 export const PesonaDocuments = () => {
   const { watch, setValue } = useFormContext<DocumentsForm>();
   const dictionaries = getDictionaries("en");
+
+  const { mutate: getFileWeb } = useDocumentsGetFileWeb();
 
   const handleCloseModal = () => {
     setValue(dictionaries.upload.pesona_dialog.name, false);
@@ -30,10 +33,15 @@ export const PesonaDocuments = () => {
   };
   const handleUpload = () => {
     // async upload
+    if (watch(dictionaries.upload.dialog.tab.name) === "url") {
+      getFileWeb();
+    }
   };
+
+  console.log(watch(dictionaries.upload.pesona_dialog.input.name), "ini apa");
   return (
     <ModalComponent
-      isOpen={watch(dictionaries.upload.dialog.name)}
+      isOpen={watch(dictionaries.upload.pesona_dialog.name)}
       onClose={handleCloseModal}
     >
       <Dialog.Panel
@@ -91,6 +99,7 @@ export const PesonaDocuments = () => {
                 {dictionaries.upload.pesona_dialog.data.map((agent) => (
                   <AgentSelectorCardDocuments
                     key={agent.id}
+                    id={agent.id}
                     name={agent.name}
                     description={agent.description}
                     image={agent.image}

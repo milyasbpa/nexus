@@ -15,7 +15,9 @@ export const useDocumentsPostDocumentUploadNexus = () => {
     any
   >({
     mutationKey: DocumentsReactQueryKey.PostDocumentUploadNexus(),
-    mutationFn: () => fetchPostDocumentUploadNexus(),
+    mutationFn: () => {
+      return fetchPostDocumentUploadNexus();
+    },
   });
 
   return mutation;
