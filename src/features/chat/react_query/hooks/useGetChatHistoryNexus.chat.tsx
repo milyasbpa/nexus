@@ -13,7 +13,7 @@ import {
 import { useParams } from "next/navigation";
 
 export const useChatGetChatSuggestionNexus = () => {
-  const { setValue } = useFormContext<ChatForm>();
+  const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
 
@@ -31,6 +31,32 @@ export const useChatGetChatSuggestionNexus = () => {
       return fetchGetChatHistoryNexus(payload);
     },
   });
+
+  useEffect(() => {
+    if (query.data) {
+      setValue(
+        dictionaries.conversation.history.name,
+        !query.data.data.chats.length
+          ? [...watch(dictionaries.conversation.history.name)]
+          : [
+              query.data.data.chats.map((chat) => {
+                const initial = chat.persona
+                  .split(" ")
+                  .reduce((acc: any, value: string) => {
+                    const firstChar = value.charAt(0);
+                    return `${acc}${firstChar}`;
+                  }, "");
+                return {
+                  message: chat.message,
+                  initial: initial,
+                  user: chat.persona,
+                };
+              }),
+              ...watch(dictionaries.conversation.history.name),
+            ]
+      );
+    }
+  }, [query.data]);
 
   return query;
 };
