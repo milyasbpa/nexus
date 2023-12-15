@@ -19,6 +19,7 @@ export const useChatGetChatSuggestionNexus = () => {
   const userStorageData = queryClient.getQueryData(
     ChatReactQueryKey.GetUserStorage()
   ) as undefined | UserStorageInterface;
+  console.log(!!userStorageData, "ini storage data");
 
   const query = useQuery<
     GetChatSuggestionNexusSuccessResponseInterface | undefined,
@@ -39,6 +40,31 @@ export const useChatGetChatSuggestionNexus = () => {
       return fetchGetChatSuggestionNexus(payload);
     },
   });
+
+  useEffect(() => {
+    if (!!query.data) {
+      const categories = query.data.data.suggestions
+        .map((item) => item.category)
+        .filter((value, index, array) => array.indexOf(value) === index);
+
+      setValue(
+        dictionaries.conversation.suggestion.message.name,
+        categories.map((category) => {
+          return {
+            category: category,
+            data:
+              query.data?.data.suggestions
+                .filter((suggestion) => suggestion.category === category)
+                .map((suggestion) => {
+                  return {
+                    message: suggestion.message,
+                  };
+                }) ?? [],
+          };
+        })
+      );
+    }
+  }, [query.data]);
 
   return query;
 };

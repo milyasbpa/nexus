@@ -6,19 +6,41 @@ import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { libreBaskerville } from "@/core/fonts";
 import { UserBubbleConversation } from "../../components/user_bubble_conversation";
+import { useChatGetChatHistoryNexus } from "../../react_query/hooks/useGetChatHistoryNexus.chat";
 
 export const HistoryChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
+  useChatGetChatHistoryNexus();
   const histories = watch(
     dictionaries.conversation.history.name
   ) as typeof dictionaries.conversation.history.default_data;
+
+  React.useEffect(() => {
+    setValue(
+      dictionaries.conversation.history.name,
+      (
+        watch(dictionaries.conversation.history.name) as {
+          message: string;
+          initial: string;
+          user: string;
+        }[]
+      ).map((history) => {
+        return {
+          ...history,
+          message: history.message.replaceAll("{{name}}", "Nadia"),
+        };
+      })
+    );
+  }, []);
   return (
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start",
         "w-full",
-        "pt-[58px]"
+        "h-[calc(100vh_-_68px_-_80px)]",
+        "pt-[58px]",
+        "overflow-auto"
       )}
     >
       {histories.map(
@@ -60,10 +82,7 @@ export const HistoryChat = () => {
                     "w-[1.75rem] h-[1.75rem]"
                   )}
                 >
-                  {history.user.split(" ").reduce((acc: any, value: string) => {
-                    const firstChar = value.charAt(0);
-                    return `${acc}${firstChar}`;
-                  }, "")}
+                  {history.initial}
                 </div>
                 <p
                   className={clsx(

@@ -15,7 +15,7 @@ import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
 
 export const useChatPostSendChatNexus = () => {
-  const { setValue } = useFormContext<ChatForm>();
+  const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
   const userStorageData = queryClient.getQueryData(
@@ -33,8 +33,8 @@ export const useChatPostSendChatNexus = () => {
           doc_id: String(params?.id) ?? "",
         },
         data: {
-          message: "",
-          persona: "GENERAL",
+          message: watch(dictionaries.conversation.question.name),
+          persona: "FINANCIAL_CONSULTANT",
         },
         headers: {
           uid: userStorageData?.uid ?? "",
@@ -44,6 +44,24 @@ export const useChatPostSendChatNexus = () => {
       return fetchPostSendChatNexus(payload);
     },
   });
+
+  useEffect(() => {
+    if (mutation.data) {
+      const persona = mutation.data.data.persona ?? "USER";
+      const initial = persona.split(" ").reduce((acc: any, value: string) => {
+        const firstChar = value.charAt(0);
+        return `${acc}${firstChar}`;
+      }, "");
+      setValue(dictionaries.conversation.history.name, [
+        ...watch(dictionaries.conversation.history.name),
+        {
+          message: mutation.data.data.message,
+          initial: initial,
+          user: persona,
+        },
+      ]);
+    }
+  }, [mutation.data]);
 
   return mutation;
 };

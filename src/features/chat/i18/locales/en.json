@@ -54,6 +54,9 @@
       "input": {
         "name": "keyboard_input-chat"
       }
+    },
+    "question": {
+      "name": "question-chat"
     }
   },
   "introduction": {

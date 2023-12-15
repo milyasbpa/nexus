@@ -9,7 +9,8 @@ export const PersonaChat = () => {
         "absolute top-0 left-0 right-0",
         "px-[1rem] py-[1rem]",
         "grid grid-flow-col items-center content-center justify-between justify-items-start",
-        "w-full"
+        "w-full",
+        "bg-white"
       )}
     >
       <div

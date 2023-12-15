@@ -5,10 +5,12 @@ import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
+import { useChatPostSendChatNexus } from "../../react_query/hooks/usePostSendChatNexus.chat";
 
 export const KeyboardChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
+  const { mutate: postSendChatNexus } = useChatPostSendChatNexus();
 
   const handleClickHint = () => {
     setValue(
@@ -18,6 +20,7 @@ export const KeyboardChat = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(dictionaries.conversation.question.name, e.currentTarget.value);
     setValue(
       dictionaries.conversation.keyboard.input.name,
       e.currentTarget.value
@@ -26,6 +29,7 @@ export const KeyboardChat = () => {
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      postSendChatNexus();
       setValue(dictionaries.conversation.history.name, [
         ...watch(dictionaries.conversation.history.name),
         {
@@ -40,6 +44,7 @@ export const KeyboardChat = () => {
   };
 
   const handleClickEnter = () => {
+    postSendChatNexus();
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),
       {

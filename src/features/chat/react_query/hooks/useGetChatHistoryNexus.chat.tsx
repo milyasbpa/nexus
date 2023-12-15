@@ -14,7 +14,7 @@ import { useParams } from "next/navigation";
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
 
-export const useChatGetChatSuggestionNexus = () => {
+export const useChatGetChatHistoryNexus = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
@@ -27,7 +27,7 @@ export const useChatGetChatSuggestionNexus = () => {
     any
   >({
     enabled: !!userStorageData,
-    queryKey: ChatReactQueryKey.GetChatSuggestionNexus(),
+    queryKey: ChatReactQueryKey.GetChatHistoryNexus(),
     queryFn: () => {
       const payload: GetChatHistoryNexusRequestPayloadInterface = {
         url: {
@@ -38,6 +38,7 @@ export const useChatGetChatSuggestionNexus = () => {
           ["access-token"]: userStorageData?.token ?? "",
         },
       };
+      console.log(payload, "ini payload");
       return fetchGetChatHistoryNexus(payload);
     },
   });
@@ -49,19 +50,22 @@ export const useChatGetChatSuggestionNexus = () => {
         !query.data.data.chats.length
           ? [...watch(dictionaries.conversation.history.name)]
           : [
-              query.data.data.chats.map((chat) => {
-                const initial = chat.persona
-                  .split(" ")
-                  .reduce((acc: any, value: string) => {
-                    const firstChar = value.charAt(0);
-                    return `${acc}${firstChar}`;
-                  }, "");
-                return {
-                  message: chat.message,
-                  initial: initial,
-                  user: chat.persona,
-                };
-              }),
+              ...query.data.data.chats
+                .sort((a, b) => a.created_at - b.created_at)
+                .map((chat) => {
+                  const persona = chat.persona ?? "USER";
+                  const initial = persona
+                    .split(" ")
+                    .reduce((acc: any, value: string) => {
+                      const firstChar = value.charAt(0);
+                      return `${acc}${firstChar}`;
+                    }, "");
+                  return {
+                    message: chat.message,
+                    initial: initial,
+                    user: persona,
+                  };
+                }),
               ...watch(dictionaries.conversation.history.name),
             ]
       );

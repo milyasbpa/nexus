@@ -5,6 +5,9 @@ export const ChatReactQueryKey = {
   GetChatSuggestionNexus: () => {
     return ["ChatReactQueryKey.GetChatSuggestionNexus"];
   },
+  GetFileWeb: () => {
+    return ["ChatReactQueryKey.GetFileWeb"];
+  },
   DeleteClearChatNexus: () => {
     return ["ChatReactQueryKey.DeleteClearChatNexus"];
   },

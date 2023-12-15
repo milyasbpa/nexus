@@ -32,7 +32,7 @@ export interface GetChatHistoryNexusSuccessResponseInterface {
       sender: string;
       sender_type: string;
       created_at: number;
-      persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT";
+      persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT" | null;
     }[];
   };
 }

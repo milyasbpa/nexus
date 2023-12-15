@@ -6,16 +6,20 @@ import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { useChatDeleteClearChatNexus } from "../../react_query/hooks/useDeleteClearChatNexus.chat";
+import { useChatPostSendChatNexus } from "../../react_query/hooks/usePostSendChatNexus.chat";
 
 export const SuggestionChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   useChatGetChatSuggestionNexus();
   const { mutate: deleteClearChatNexus } = useChatDeleteClearChatNexus();
+  const { mutate: postSendChatNexus } = useChatPostSendChatNexus();
 
   const items = watch(dictionaries.conversation.suggestion.message.name);
 
   const handleSelectSuggestion = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setValue(dictionaries.conversation.question.name, e.currentTarget.value);
+    postSendChatNexus();
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),
       {
