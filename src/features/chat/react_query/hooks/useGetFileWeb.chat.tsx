@@ -29,23 +29,18 @@ export const useChatGetFileWeb = () => {
 
   useEffect(() => {
     if (query.data) {
-      console.log(
-        query.data,
-        new File([query.data], uuidv4(), {
-          type: query.data.type,
-          lastModified: Date.now(),
-        }).name,
-        "ini name"
-      );
-      const file = new File([query.data], uuidv4(), {
+      const file = new File([query.data], `${uuidv4()}.pdf`, {
         type: query.data.type,
         lastModified: Date.now(),
       });
+      const url = URL.createObjectURL(file);
+
       setValue(dictionaries.pdf.header.name, {
         name: file.name,
         current_page: 1,
         total_page: 1,
       });
+      setValue(dictionaries.pdf.file.name, url);
     }
   }, [query.data]);
 

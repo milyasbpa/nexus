@@ -1,6 +1,7 @@
 import { getDictionaries } from "../../i18";
 export const defaultValues = {
-  // conversation
+  // pdf
+  [getDictionaries("en").pdf.file.name]: "",
   [getDictionaries("en").pdf.header.name]: {
     name: "",
     current_page: 1,

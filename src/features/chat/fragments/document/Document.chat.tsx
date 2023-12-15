@@ -1,22 +1,29 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useChatGetFileWeb } from "../../react_query/hooks/useGetFileWeb.chat";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
+import { DocumentLoadEvent, Viewer } from "@react-pdf-viewer/core";
+import { PDFViewerUpload } from "../../components/pdf_viewer";
 
-export interface DocumentChatProps {}
-
-export const DocumentChat = (props: DocumentChatProps) => {
-  const { watch } = useFormContext<ChatForm>();
+export const DocumentChat = () => {
+  const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   useChatGetFileWeb();
+
   const header = watch(dictionaries.pdf.header.name) as {
     name: string;
     current_page: number;
     total_page: number;
+  };
+
+  const handleDocumentLoad = (e: DocumentLoadEvent) => {
+    setValue(dictionaries.pdf.header.name, {
+      ...watch(dictionaries.pdf.header.name),
+      total_page: e.doc.numPages,
+    });
   };
 
   return (
@@ -25,10 +32,10 @@ export const DocumentChat = (props: DocumentChatProps) => {
       <div
         className={clsx(
           "grid grid-flow-col items-center content-center justify-items-start justify-between",
-          "w-full",
+          "w-full h-[58px]",
           "px-[1rem]",
           "bg-[#697584]",
-          "min-h-[58px]"
+          "max-h-[58px]"
         )}
       >
         <div
@@ -112,6 +119,21 @@ export const DocumentChat = (props: DocumentChatProps) => {
       </div>
 
       {/* end header */}
+
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start",
+          "w-full h-[calc(100vh_-_68px_-_58px)]",
+          "overflow-y-auto"
+        )}
+      >
+        {!!watch(dictionaries.pdf.file.name).length && (
+          <PDFViewerUpload
+            fileURL={watch(dictionaries.pdf.file.name)}
+            onDocumentLoad={handleDocumentLoad}
+          />
+        )}
+      </div>
     </div>
   );
 };
