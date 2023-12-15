@@ -45,7 +45,7 @@ export const UploadDocuments = () => {
     const name = Array.from(data)
       .map((item) => item.name)
       .find((_, index) => index === 0) as string;
-    setValue(dictionaries.upload.dialog.browse.input.name, data);
+    setValue(dictionaries.upload.dialog.browse.input.name, Array.from(data));
     setValue(dictionaries.upload.dialog.browse.preview.name, name);
   };
   const handleRemoveDragnDropFileInput = () => {

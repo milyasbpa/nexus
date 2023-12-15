@@ -21,6 +21,7 @@ export interface PostDocumentUploadNexusResponseInterface
   > {}
 export interface PostDocumentUploadNexusSuccessResponseInterface {
   data: {
+    owner_id: string;
     doc_id: string;
     file_name: string;
     file_url: string;

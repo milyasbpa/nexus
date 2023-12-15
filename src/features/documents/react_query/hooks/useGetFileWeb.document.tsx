@@ -11,10 +11,14 @@ import {
 } from "@/core/models/web";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
+import { useDocumentsPostDocumentUploadNexus } from "./usePostDocumentUploadNexus.documents";
 
 export const useDocumentsGetFileWeb = () => {
   const dictionaries = getDictionaries("en");
   const { watch, setValue } = useFormContext<DocumentsForm>();
+
+  const { mutate: postDocumentUploadNexus } =
+    useDocumentsPostDocumentUploadNexus();
   const mutation = useMutation<
     GetFileWebSuccessResponseInterface | undefined,
     any
@@ -36,7 +40,8 @@ export const useDocumentsGetFileWeb = () => {
         type: mutation.data.type,
         lastModified: Date.now(),
       });
-      setValue(dictionaries.upload.dialog.url.file.name, file);
+      setValue(dictionaries.upload.dialog.url.file.name, [file]);
+      postDocumentUploadNexus();
     }
   }, [mutation.data]);
 

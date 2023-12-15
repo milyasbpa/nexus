@@ -8,10 +8,14 @@ import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
 import { useDocumentsGetFileWeb } from "../../react_query/hooks/useGetFileWeb.document";
+import { useDocumentsPostDocumentUploadNexus } from "../../react_query/hooks/usePostDocumentUploadNexus.documents";
 
 export const PesonaDocuments = () => {
   const { watch, setValue } = useFormContext<DocumentsForm>();
   const dictionaries = getDictionaries("en");
+
+  const { mutate: postDocumentUploadNexus } =
+    useDocumentsPostDocumentUploadNexus();
 
   const { mutate: getFileWeb } = useDocumentsGetFileWeb();
 
@@ -35,6 +39,8 @@ export const PesonaDocuments = () => {
     // async upload
     if (watch(dictionaries.upload.dialog.tab.name) === "url") {
       getFileWeb();
+    } else {
+      postDocumentUploadNexus();
     }
   };
 

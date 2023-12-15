@@ -1,5 +1,6 @@
 "use client";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { DocumentsReactQueryKey } from "../keys";
 import { getDictionaries } from "../../i18";
 import {
@@ -11,9 +12,12 @@ import { DocumentsForm } from "../../react_hook_form/keys";
 import { fetchPostDocumentUploadNexus } from "@/core/services/nexus/document_upload.post";
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
+import { useEffect } from "react";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useDocumentsPostDocumentUploadNexus = () => {
   const dictionaries = getDictionaries("en");
+  const router = useRouter();
   const { watch, setValue } = useFormContext<DocumentsForm>();
   const userStorageData = queryClient.getQueryData(
     DocumentsReactQueryKey.GetUserStorage()
@@ -27,11 +31,17 @@ export const useDocumentsPostDocumentUploadNexus = () => {
     mutationFn: () => {
       const formData = new FormData();
       if (watch(dictionaries.upload.dialog.tab.name) === "url") {
-        if (!watch(dictionaries.upload.dialog.url.file.name)) {
-          formData.append(
-            "file",
-            watch(dictionaries.upload.dialog.url.file.name)
-          );
+        if (!!watch(dictionaries.upload.dialog.url.file.name)) {
+          for (
+            let file = 0;
+            file < watch(dictionaries.upload.dialog.url.input.name).length;
+            file++
+          ) {
+            formData.append(
+              "file",
+              watch(dictionaries.upload.dialog.url.file.name)[file]
+            );
+          }
         }
         formData.append(
           "private",
@@ -40,11 +50,17 @@ export const useDocumentsPostDocumentUploadNexus = () => {
           )
         );
       } else {
-        if (!watch(dictionaries.upload.dialog.browse.input.name)) {
-          formData.append(
-            "file",
-            watch(dictionaries.upload.dialog.browse.input.name)
-          );
+        if (!!watch(dictionaries.upload.dialog.browse.input.name)) {
+          for (
+            let file = 0;
+            file < watch(dictionaries.upload.dialog.browse.input.name).length;
+            file++
+          ) {
+            formData.append(
+              "file",
+              watch(dictionaries.upload.dialog.browse.input.name)[file]
+            );
+          }
         }
         formData.append(
           "private",
@@ -65,6 +81,17 @@ export const useDocumentsPostDocumentUploadNexus = () => {
       return fetchPostDocumentUploadNexus(payload);
     },
   });
+
+  useEffect(() => {
+    if (mutation.data) {
+      queryClient.refetchQueries({
+        queryKey: DocumentsReactQueryKey.GetDocumentListNexus(),
+      });
+      router.push(
+        NexusWebURL.getChatByDocumentId({ doc_id: mutation.data.data.doc_id })
+      );
+    }
+  }, [mutation.data]);
 
   return mutation;
 };

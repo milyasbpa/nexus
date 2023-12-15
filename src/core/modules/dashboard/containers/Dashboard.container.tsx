@@ -6,6 +6,7 @@ import { libreBaskerville } from "@/core/fonts";
 import Link from "next/link";
 import { ProfileDashboard } from "../fragments/profile";
 import { FormProvider, useForm } from "react-hook-form";
+import { defaultValues } from "../react_hook_form/constants";
 
 export interface DashboardContainerProps {
   children?: React.ReactNode;
@@ -13,7 +14,9 @@ export interface DashboardContainerProps {
 
 export const DashboardContainer = ({ children }: DashboardContainerProps) => {
   const dictionaries = getDictionaries("en");
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: defaultValues,
+  });
 
   return (
     <div className={clsx("w-full")}>
