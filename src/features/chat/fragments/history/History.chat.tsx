@@ -7,6 +7,9 @@ import { getDictionaries } from "../../i18";
 import { libreBaskerville } from "@/core/fonts";
 import { UserBubbleConversation } from "../../components/user_bubble_conversation";
 import { useChatGetChatHistoryNexus } from "../../react_query/hooks/useGetChatHistoryNexus.chat";
+import { queryClient } from "@/core/config/react_query";
+import { ChatReactQueryKey } from "../../react_query/keys";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const HistoryChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
@@ -16,25 +19,44 @@ export const HistoryChat = () => {
     dictionaries.conversation.history.name
   ) as typeof dictionaries.conversation.history.default_data;
 
+  const lastRefView = React.useRef<HTMLDivElement | null>(null);
+
   React.useEffect(() => {
-    setValue(
-      dictionaries.conversation.history.name,
-      (
-        watch(dictionaries.conversation.history.name) as {
-          message: string;
-          initial: string;
-          user: string;
-        }[]
-      ).map((history) => {
-        return {
-          ...history,
-          message: history.message.replaceAll("{{name}}", "Nadia"),
-        };
-      })
-    );
-  }, []);
+    if (!lastRefView) return;
+    const lastChildElement = lastRefView.current?.lastElementChild;
+    lastChildElement?.scrollIntoView({ behavior: "smooth" });
+  }, [lastRefView, histories]);
+
+  const name =
+    (
+      queryClient.getQueryData(ChatReactQueryKey.GetUserStorage()) as
+        | undefined
+        | UserStorageInterface
+    )?.email ?? "";
+
+  React.useEffect(() => {
+    if (!!name.length) {
+      setValue(
+        dictionaries.conversation.history.name,
+        (
+          watch(dictionaries.conversation.history.name) as {
+            message: string;
+            initial: string;
+            user: string;
+          }[]
+        ).map((history) => {
+          return {
+            ...history,
+            message: history.message.replaceAll("{{name}}", name),
+          };
+        })
+      );
+    }
+  }, [name]);
+
   return (
     <div
+      id={"conversation_history-chat"}
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start",
         "w-full",
@@ -42,6 +64,7 @@ export const HistoryChat = () => {
         "pt-[58px]",
         "overflow-auto"
       )}
+      ref={lastRefView}
     >
       {histories.map(
         (
@@ -111,6 +134,7 @@ export const HistoryChat = () => {
           );
         }
       )}
+      {/* <div ref={lastRefView}></div> */}
     </div>
   );
 };

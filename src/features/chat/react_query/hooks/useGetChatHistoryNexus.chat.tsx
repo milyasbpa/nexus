@@ -38,7 +38,7 @@ export const useChatGetChatHistoryNexus = () => {
           ["access-token"]: userStorageData?.token ?? "",
         },
       };
-      console.log(payload, "ini payload");
+
       return fetchGetChatHistoryNexus(payload);
     },
   });
