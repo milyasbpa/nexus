@@ -15,10 +15,7 @@ export interface GetFileWebResponseInterface
   extends NextApiResponse<
     GetFileWebSuccessResponseInterface | GetFileWebErrorResponseInterface
   > {}
-export interface GetFileWebSuccessResponseInterface {
-  message: string;
-  status: number;
-}
+export type GetFileWebSuccessResponseInterface = Blob;
 
 export interface GetFileWebErrorResponseInterface {
   error_code: string;

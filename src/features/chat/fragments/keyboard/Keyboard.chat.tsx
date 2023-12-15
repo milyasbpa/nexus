@@ -6,9 +6,7 @@ import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 
-export interface KeyboardChatProps {}
-
-export const KeyboardChat = (props: KeyboardChatProps) => {
+export const KeyboardChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
 
@@ -32,7 +30,7 @@ export const KeyboardChat = (props: KeyboardChatProps) => {
         ...watch(dictionaries.conversation.history.name),
         {
           message: watch(dictionaries.conversation.keyboard.input.name),
-          user: "User",
+          user: "USER",
           initial: "",
         },
       ]);
@@ -41,7 +39,19 @@ export const KeyboardChat = (props: KeyboardChatProps) => {
     }
   };
 
-  const handleClickEnter = () => {};
+  const handleClickEnter = () => {
+    setValue(dictionaries.conversation.history.name, [
+      ...watch(dictionaries.conversation.history.name),
+      {
+        message: watch(dictionaries.conversation.keyboard.input.name),
+        user: "USER",
+        initial: "",
+      },
+    ]);
+    setValue(dictionaries.conversation.suggestion.name, false);
+    setValue(dictionaries.conversation.keyboard.input.name, "");
+  };
+
   return (
     <div
       className={clsx(

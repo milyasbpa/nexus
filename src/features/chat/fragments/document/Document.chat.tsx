@@ -1,10 +1,24 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
+import { useChatGetFileWeb } from "../../react_query/hooks/useGetFileWeb.chat";
+import { useFormContext } from "react-hook-form";
+import { ChatForm } from "../../react_hook_form/keys";
+import { getDictionaries } from "../../i18";
 
 export interface DocumentChatProps {}
 
 export const DocumentChat = (props: DocumentChatProps) => {
+  const { watch } = useFormContext<ChatForm>();
+  const dictionaries = getDictionaries("en");
+  useChatGetFileWeb();
+  const header = watch(dictionaries.pdf.header.name) as {
+    name: string;
+    current_page: number;
+    total_page: number;
+  };
+
   return (
     <div className={clsx("w-full")}>
       {/* header */}
@@ -23,7 +37,7 @@ export const DocumentChat = (props: DocumentChatProps) => {
           )}
         >
           <p className={clsx("text-[0.875rem] font-medium text-white")}>
-            {"ubermensch.pdf"}
+            {header.name}
           </p>
           <div
             className={clsx(
@@ -39,11 +53,11 @@ export const DocumentChat = (props: DocumentChatProps) => {
                 "text-[0.75rem] font-light text-[#404852]"
               )}
             >
-              {"1"}
+              {header.current_page}
             </div>
             <p
               className={clsx("text-[0.75rem] font-light text-white")}
-            >{`of 7 page`}</p>
+            >{`of ${header.total_page} page`}</p>
           </div>
         </div>
 

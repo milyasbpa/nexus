@@ -19,12 +19,5 @@ export async function GET(request: Request) {
     return res.blob();
   });
 
-  const objectURL = URL.createObjectURL(blob);
-
-  return NextResponse.json(
-    { success: true, data: objectURL },
-    {
-      status: 200,
-    }
-  );
+  return new NextResponse(blob, { status: 200, statusText: "OK" });
 }

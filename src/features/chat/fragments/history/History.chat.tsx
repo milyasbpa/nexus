@@ -1,9 +1,11 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { libreBaskerville } from "@/core/fonts";
+import { UserBubbleConversation } from "../../components/user_bubble_conversation";
 
 export const HistoryChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
@@ -21,39 +23,15 @@ export const HistoryChat = () => {
     >
       {histories.map(
         (
-          history: (typeof dictionaries.conversation.history.default_data)[0]
+          history: (typeof dictionaries.conversation.history.default_data)[0],
+          historyIndex: number
         ) => {
-          if (history.user === "User") {
+          if (history.user.toLowerCase().includes("user")) {
             return (
-              <div
-                className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                  "w-full",
-                  "px-[1rem] py-[1rem]",
-                  "bg-[white]"
-                )}
-              >
-                <div
-                  className={clsx(
-                    "flex items-center justify-center",
-                    "bg-[#002566]",
-                    "rounded-[0.25rem]",
-                    "w-[1.75rem] h-[1.75rem]"
-                  )}
-                >
-                  <img
-                    src={"/icons/chat/person.svg"}
-                    className={clsx("w-[1rem] h-[1rem]")}
-                  />
-                </div>
-                <p
-                  className={clsx(
-                    "text-left text-[#232931] text-[0.875rem] font-normal"
-                  )}
-                >
-                  {history.message}
-                </p>
-              </div>
+              <UserBubbleConversation
+                key={historyIndex}
+                message={history.message}
+              />
             );
           }
           return (

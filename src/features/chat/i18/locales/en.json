@@ -6,6 +6,9 @@
     "back": "Back"
   },
   "pdf": {
+    "file": {
+      "name": "pdf_file-chat"
+    },
     "header": {
       "name": "pdf_header-chat"
     }

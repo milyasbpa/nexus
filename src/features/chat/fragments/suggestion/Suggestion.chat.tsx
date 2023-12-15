@@ -8,7 +8,7 @@ import { getDictionaries } from "../../i18";
 import { useChatDeleteClearChatNexus } from "../../react_query/hooks/useDeleteClearChatNexus.chat";
 
 export const SuggestionChat = () => {
-  const { watch } = useFormContext<ChatForm>();
+  const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   useChatGetChatSuggestionNexus();
   const { mutate: deleteClearChatNexus } = useChatDeleteClearChatNexus();
@@ -16,7 +16,16 @@ export const SuggestionChat = () => {
   const items = watch(dictionaries.conversation.suggestion.message.name);
 
   const handleSelectSuggestion = (e: React.MouseEvent<HTMLButtonElement>) => {
-    //
+    setValue(dictionaries.conversation.history.name, [
+      ...watch(dictionaries.conversation.history.name),
+      {
+        message: e.currentTarget.value,
+        user: "USER",
+        initial: "",
+      },
+    ]);
+    setValue(dictionaries.conversation.suggestion.name, false);
+    setValue(dictionaries.conversation.keyboard.input.name, "");
   };
 
   const handleClickClearChat = () => {
