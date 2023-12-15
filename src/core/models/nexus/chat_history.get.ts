@@ -19,6 +19,16 @@ export interface GetChatHistoryNexusResponseInterface
 export interface GetChatHistoryNexusSuccessResponseInterface {
   message: string;
   status: number;
+  data: {
+    chats: {
+      id: string;
+      message: string;
+      sender: string;
+      sender_type: string;
+      created_at: number;
+      persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT";
+    }[];
+  };
 }
 
 export interface GetChatHistoryNexusErrorResponseInterface {

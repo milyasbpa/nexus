@@ -24,8 +24,12 @@ export interface PostSendChatNexusResponseInterface
   > {}
 export interface PostSendChatNexusSuccessResponseInterface {
   data: {
-    email: string;
-    uid: string;
+    id: string;
+    message: string;
+    sender: string;
+    sender_type: string;
+    created_at: number;
+    persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT";
   };
   message: string;
   status: number;

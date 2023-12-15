@@ -1,0 +1,60 @@
+{
+  "brand": {
+    "name": "NEXUS"
+  },
+  "introduction": {
+    "message": "Nexus transforms your documents into dynamic assets. Whether legal agreements or financial reports, <strong>inquire freely, receive concise summaries, and explore information effortlessly!</strong>",
+    "sponsor": {
+      "title": "AS FEATURED IN"
+    }
+  },
+  "form": {
+    "name": "Login",
+    "description": "Enter your email and password",
+    "type": {
+      "name": "login"
+    },
+    "uid": {
+      "name": "uid"
+    },
+    "token": {
+      "name": "token"
+    },
+    "google_email": {
+      "name": "google_email"
+    },
+    "email": {
+      "label": "Email <span style='color:#FC5959;'>*</span>",
+      "name": "email_login",
+      "placeholder": "Enter your email"
+    },
+    "password": {
+      "label": "Password <span style='color:#FC5959;'>*</span>",
+      "name": "password_login",
+      "placeholder": "Enter your password"
+    },
+    "errors": {
+      "incorrect_account": {
+        "message": "Your email and password are incorrect!"
+      },
+      "internal_server_error": {
+        "message": "Internal Server Error"
+      }
+    },
+    "remember_me": {
+      "label": "Remember me",
+      "name": "remember-me_login"
+    },
+    "actions": {
+      "login": "Login",
+      "google_login": "Login with google",
+      "dont_have_account": {
+        "description": "Don’t have an account? ",
+        "actions": {
+          "name": "Sign Up",
+          "link": "/registration"
+        }
+      }
+    }
+  }
+}

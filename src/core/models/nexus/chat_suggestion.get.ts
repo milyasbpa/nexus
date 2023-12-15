@@ -4,11 +4,11 @@ export interface GetChatSuggestionNexusRequestInterface extends NextApiRequest {
   payload?: GetChatSuggestionNexusRequestPayloadInterface;
 }
 export interface GetChatSuggestionNexusRequestPayloadInterface {
-  url: GetChatSuggestionNexusRequestPayloadURLInterface;
+  params?: GetChatSuggestionNexusRequestPayloadParamsInterface;
 }
 
-export interface GetChatSuggestionNexusRequestPayloadURLInterface {
-  doc_id: string;
+export interface GetChatSuggestionNexusRequestPayloadParamsInterface {
+  persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT";
 }
 
 export interface GetChatSuggestionNexusResponseInterface

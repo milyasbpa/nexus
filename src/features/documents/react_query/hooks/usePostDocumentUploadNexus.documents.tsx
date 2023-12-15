@@ -1,5 +1,5 @@
 "use client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { DocumentsReactQueryKey } from "../keys";
 import { getDictionaries } from "../../i18";
 import { PostDocumentUploadNexusSuccessResponseInterface } from "@/core/models/nexus";

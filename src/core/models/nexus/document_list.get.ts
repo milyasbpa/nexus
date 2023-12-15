@@ -17,7 +17,7 @@ export interface GetDocumentListNexusResponseInterface
 export interface GetDocumentListNexusSuccessResponseInterface {
   data: {
     doc_list: {
-      doc_id: number;
+      doc_id: string;
       file_name: string;
       file_url: string;
       pages: {
