@@ -1,7 +1,6 @@
 import { GetDocumentListNexusRequestPayloadInterface } from "@/core/models/nexus";
 import { NexusRestAPIURL } from "@/core/routers/rest";
 import axios from "axios";
-import Cookie from "universal-cookie";
 
 export const fetchGetDocumentListNexus = async (
   payload?: GetDocumentListNexusRequestPayloadInterface

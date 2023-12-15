@@ -22,6 +22,7 @@ export const fetchPostDocumentUploadNexus = async (
     .post(url, payload?.data, {
       headers: {
         "Content-Type": "multipart/form-data",
+        ...payload?.headers,
       },
     })
     .then((res: any) => {

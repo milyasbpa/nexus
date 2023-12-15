@@ -11,11 +11,16 @@ import {
   PostSendChatNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
 import { useParams } from "next/navigation";
+import { queryClient } from "@/core/config/react_query";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const useChatPostSendChatNexus = () => {
   const { setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
+  const userStorageData = queryClient.getQueryData(
+    ChatReactQueryKey.GetUserStorage()
+  ) as undefined | UserStorageInterface;
 
   const mutation = useMutation<
     PostSendChatNexusSuccessResponseInterface | undefined,
@@ -30,6 +35,10 @@ export const useChatPostSendChatNexus = () => {
         data: {
           message: "",
           persona: "GENERAL",
+        },
+        headers: {
+          uid: userStorageData?.uid ?? "",
+          ["access-token"]: userStorageData?.token ?? "",
         },
       };
       return fetchPostSendChatNexus(payload);

@@ -10,19 +10,30 @@ import {
   GetChatSuggestionNexusRequestPayloadInterface,
   GetChatSuggestionNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
+import { queryClient } from "@/core/config/react_query";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const useChatGetChatSuggestionNexus = () => {
   const { setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
+  const userStorageData = queryClient.getQueryData(
+    ChatReactQueryKey.GetUserStorage()
+  ) as undefined | UserStorageInterface;
+
   const query = useQuery<
     GetChatSuggestionNexusSuccessResponseInterface | undefined,
     any
   >({
+    enabled: !!userStorageData,
     queryKey: ChatReactQueryKey.GetChatSuggestionNexus(),
     queryFn: () => {
       const payload: GetChatSuggestionNexusRequestPayloadInterface = {
         params: {
           persona: "GENERAL",
+        },
+        headers: {
+          uid: userStorageData?.uid ?? "",
+          ["access-token"]: userStorageData?.token ?? "",
         },
       };
       return fetchGetChatSuggestionNexus(payload);

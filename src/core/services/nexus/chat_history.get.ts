@@ -1,7 +1,6 @@
 import { GetChatHistoryNexusRequestPayloadInterface } from "@/core/models/nexus";
 import { NexusRestAPIURL } from "@/core/routers/rest";
 import axios from "axios";
-import Cookie from "universal-cookie";
 
 export const fetchGetChatHistoryNexus = async (
   payload?: GetChatHistoryNexusRequestPayloadInterface
@@ -19,11 +18,12 @@ export const fetchGetChatHistoryNexus = async (
           doc_id: payload?.url.doc_id ?? "",
         })}`;
 
-  const cookie = new Cookie();
-  const token = cookie.get("token");
-
   return await axios
-    .get(url)
+    .get(url, {
+      headers: {
+        ...payload?.headers,
+      },
+    })
     .then((res: any) => {
       return res.data;
     })

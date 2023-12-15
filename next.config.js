@@ -6,6 +6,10 @@ const nextConfig = {
         source: `/nexus/:path*`,
         destination: `${process.env.NEXT_PUBLIC_NEXUS_SERVICE_URL}/:path*`,
       },
+      {
+        source: `/gcp/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_GCP_STORAGE_URL}/:path*`,
+      },
     ];
   },
   webpack: (config) => {

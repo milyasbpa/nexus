@@ -1,7 +1,6 @@
 import { GetProfileNexusRequestPayloadInterface } from "@/core/models/nexus";
 import { NexusRestAPIURL } from "@/core/routers/rest";
 import axios from "axios";
-import Cookie from "universal-cookie";
 
 export const fetchGetProfileNexus = async (
   payload?: GetProfileNexusRequestPayloadInterface
@@ -15,11 +14,12 @@ export const fetchGetProfileNexus = async (
           process.env.NEXT_PUBLIC_NEXUS_SERVICE_URL
         }${NexusRestAPIURL.getProfile()}`;
 
-  const cookie = new Cookie();
-  const token = cookie.get("token");
-
   return await axios
-    .get(url)
+    .get(url, {
+      headers: {
+        ...payload?.headers,
+      },
+    })
     .then((res: any) => {
       return res.data;
     })

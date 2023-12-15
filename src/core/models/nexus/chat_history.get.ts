@@ -5,10 +5,16 @@ export interface GetChatHistoryNexusRequestInterface extends NextApiRequest {
 }
 export interface GetChatHistoryNexusRequestPayloadInterface {
   url: GetChatHistoryNexusRequestPayloadURLInterface;
+  headers: GetChatHistoryNexusRequestPayloadHeadersInterface;
 }
 
 export interface GetChatHistoryNexusRequestPayloadURLInterface {
   doc_id: string;
+}
+
+export interface GetChatHistoryNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
 }
 
 export interface GetChatHistoryNexusResponseInterface

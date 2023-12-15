@@ -5,10 +5,16 @@ export interface GetChatSuggestionNexusRequestInterface extends NextApiRequest {
 }
 export interface GetChatSuggestionNexusRequestPayloadInterface {
   params?: GetChatSuggestionNexusRequestPayloadParamsInterface;
+  headers: GetChatSuggestionNexusRequestPayloadHeadersInterface;
 }
 
 export interface GetChatSuggestionNexusRequestPayloadParamsInterface {
   persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT";
+}
+
+export interface GetChatSuggestionNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
 }
 
 export interface GetChatSuggestionNexusResponseInterface

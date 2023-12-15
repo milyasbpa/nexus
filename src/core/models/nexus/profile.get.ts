@@ -4,10 +4,13 @@ export interface GetProfileNexusRequestInterface extends NextApiRequest {
   payload?: GetProfileNexusRequestPayloadInterface;
 }
 export interface GetProfileNexusRequestPayloadInterface {
-  params: GetProfileNexusRequestPayloadParamsInterface;
+  headers: GetProfileNexusRequestPayloadHeadersInterface;
 }
 
-export interface GetProfileNexusRequestPayloadParamsInterface {}
+export interface GetProfileNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
+}
 
 export interface GetProfileNexusResponseInterface
   extends NextApiResponse<

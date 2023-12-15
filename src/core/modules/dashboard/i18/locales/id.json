@@ -15,5 +15,13 @@
         "name": "About"
       }
     ]
+  },
+  "profile": {
+    "data": {
+      "name": "profile_name-dashboard"
+    },
+    "actions": {
+      "logout": "Log Out"
+    }
   }
 }

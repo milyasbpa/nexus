@@ -11,21 +11,31 @@ import {
   GetChatHistoryNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
 import { useParams } from "next/navigation";
+import { queryClient } from "@/core/config/react_query";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const useChatGetChatSuggestionNexus = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
+  const userStorageData = queryClient.getQueryData(
+    ChatReactQueryKey.GetUserStorage()
+  ) as undefined | UserStorageInterface;
 
   const query = useQuery<
     GetChatHistoryNexusSuccessResponseInterface | undefined,
     any
   >({
+    enabled: !!userStorageData,
     queryKey: ChatReactQueryKey.GetChatSuggestionNexus(),
     queryFn: () => {
       const payload: GetChatHistoryNexusRequestPayloadInterface = {
         url: {
           doc_id: String(params?.id) ?? "",
+        },
+        headers: {
+          uid: userStorageData?.uid ?? "",
+          ["access-token"]: userStorageData?.token ?? "",
         },
       };
       return fetchGetChatHistoryNexus(payload);

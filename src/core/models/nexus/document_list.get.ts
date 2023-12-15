@@ -28,10 +28,7 @@ export interface GetDocumentListNexusSuccessResponseInterface {
 export interface GetDocumentListNexusSuccessResponseDataDocListInterface {
   doc_id: string;
   created_at: number;
-  file_name: {
-    file_name: string;
-    page_label: string;
-  };
+  file_name: string;
   file_url: string;
   pages: {
     page_id: string;

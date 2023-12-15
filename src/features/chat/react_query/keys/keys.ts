@@ -1,4 +1,7 @@
 export const ChatReactQueryKey = {
+  GetUserStorage: () => {
+    return ["ChatReactQueryKey.GetUserStorage"];
+  },
   GetChatSuggestionNexus: () => {
     return ["ChatReactQueryKey.GetChatSuggestionNexus"];
   },

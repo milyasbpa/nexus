@@ -9,10 +9,16 @@ import {
 import { useFormContext } from "react-hook-form";
 import { DocumentsForm } from "../../react_hook_form/keys";
 import { fetchPostDocumentUploadNexus } from "@/core/services/nexus/document_upload.post";
+import { queryClient } from "@/core/config/react_query";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const useDocumentsPostDocumentUploadNexus = () => {
   const dictionaries = getDictionaries("en");
   const { watch, setValue } = useFormContext<DocumentsForm>();
+  const userStorageData = queryClient.getQueryData(
+    DocumentsReactQueryKey.GetUserStorage()
+  ) as undefined | UserStorageInterface;
+
   const mutation = useMutation<
     PostDocumentUploadNexusSuccessResponseInterface | undefined,
     any
@@ -50,9 +56,13 @@ export const useDocumentsPostDocumentUploadNexus = () => {
       }
 
       const payload: PostDocumentUploadNexusRequestPayloadInterface = {
+        headers: {
+          uid: userStorageData?.uid ?? "",
+          ["access-token"]: userStorageData?.token ?? "",
+        },
         data: formData,
       };
-      return fetchPostDocumentUploadNexus();
+      return fetchPostDocumentUploadNexus(payload);
     },
   });
 

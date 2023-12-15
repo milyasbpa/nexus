@@ -20,11 +20,6 @@ export const useDocumentsGetDocumentListNexus = () => {
   const userStorageData = queryClient.getQueryData(
     DocumentsReactQueryKey.GetUserStorage()
   ) as undefined | UserStorageInterface;
-  const isEnabled = !!queryClient.getQueryData(
-    DocumentsReactQueryKey.GetUserStorage()
-  );
-
-  console.log(userStorageData, "ini storage");
 
   const query = useQuery<
     GetDocumentListNexusSuccessResponseInterface | undefined,
@@ -53,7 +48,7 @@ export const useDocumentsGetDocumentListNexus = () => {
         const dateString = year + "-" + month + "-" + day;
         return {
           no: doc.doc_id,
-          file_name: doc.file_name.file_name,
+          file_name: doc.file_name,
           date: dateString,
         };
       });

@@ -6,6 +6,7 @@ export interface PostSendChatNexusRequestInterface extends NextApiRequest {
 export interface PostSendChatNexusRequestPayloadInterface {
   url: PostSendChatNexusRequestPayloadURLInterface;
   data: PostSendChatNexusRequestPayloadDataInterface;
+  headers: PostSendChatNexusRequestPayloadHeadersInterface;
 }
 
 export interface PostSendChatNexusRequestPayloadURLInterface {
@@ -15,6 +16,11 @@ export interface PostSendChatNexusRequestPayloadURLInterface {
 export interface PostSendChatNexusRequestPayloadDataInterface {
   message: string;
   persona: "GENERAL" | "LEGAL_CONSULTANT" | "FINANCIAL_CONSULTANT";
+}
+
+export interface PostSendChatNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
 }
 
 export interface PostSendChatNexusResponseInterface

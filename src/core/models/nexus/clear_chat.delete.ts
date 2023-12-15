@@ -5,10 +5,16 @@ export interface DeleteClearChatNexusRequestInterface extends NextApiRequest {
 }
 export interface DeleteClearChatNexusRequestPayloadInterface {
   url: DeleteClearChatNexusRequestPayloadURLInterface;
+  headers: DeleteClearChatNexusRequestPayloadHeadersInterface;
 }
 
 export interface DeleteClearChatNexusRequestPayloadURLInterface {
   doc_id: string;
+}
+
+export interface DeleteClearChatNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
 }
 
 export interface DeleteClearChatNexusResponseInterface

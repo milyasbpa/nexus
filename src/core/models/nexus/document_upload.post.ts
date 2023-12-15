@@ -6,6 +6,12 @@ export interface PostDocumentUploadNexusRequestInterface
 }
 export interface PostDocumentUploadNexusRequestPayloadInterface {
   data: FormData;
+  headers: PostDocumentUploadNexusRequestPayloadHeadersInterface;
+}
+
+export interface PostDocumentUploadNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
 }
 
 export interface PostDocumentUploadNexusResponseInterface

@@ -1,7 +1,6 @@
 import { PostSendChatNexusRequestPayloadInterface } from "@/core/models/nexus";
 import { NexusRestAPIURL } from "@/core/routers/rest";
 import axios from "axios";
-import Cookie from "universal-cookie";
 
 export const fetchPostSendChatNexus = async (
   payload?: PostSendChatNexusRequestPayloadInterface
@@ -19,11 +18,12 @@ export const fetchPostSendChatNexus = async (
           doc_id: payload?.url.doc_id ?? "",
         })}`;
 
-  const cookie = new Cookie();
-  const token = cookie.get("token");
-
   return await axios
-    .post(url, payload?.data)
+    .post(url, payload?.data, {
+      headers: {
+        ...payload?.headers,
+      },
+    })
     .then((res: any) => {
       return res.data;
     })
