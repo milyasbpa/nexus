@@ -4,14 +4,31 @@ import clsx from "clsx";
 import { useChatGetFileWeb } from "../../react_query/hooks/useGetFileWeb.chat";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
+import {
+  RenderCurrentScaleProps,
+  RenderZoomInProps,
+  RenderZoomOutProps,
+  zoomPlugin,
+} from "@react-pdf-viewer/zoom";
 import { getDictionaries } from "../../i18";
-import { DocumentLoadEvent, Viewer } from "@react-pdf-viewer/core";
+import {
+  DocumentLoadEvent,
+  PageChangeEvent,
+  RotateDirection,
+} from "@react-pdf-viewer/core";
+import { RenderRotateProps, rotatePlugin } from "@react-pdf-viewer/rotate";
 import { PDFViewerUpload } from "../../components/pdf_viewer";
 
 export const DocumentChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   useChatGetFileWeb();
+
+  const zoomPluginInstance = zoomPlugin();
+  const { ZoomIn, ZoomOut, CurrentScale } = zoomPluginInstance;
+
+  const rotatePluginInstance = rotatePlugin();
+  const { Rotate } = rotatePluginInstance;
 
   const header = watch(dictionaries.pdf.header.name) as {
     name: string;
@@ -23,6 +40,13 @@ export const DocumentChat = () => {
     setValue(dictionaries.pdf.header.name, {
       ...watch(dictionaries.pdf.header.name),
       total_page: e.doc.numPages,
+    });
+  };
+
+  const handlePageChanges = (e: PageChangeEvent) => {
+    setValue(dictionaries.pdf.header.name, {
+      ...watch(dictionaries.pdf.header.name),
+      current_page: e.currentPage + 1,
     });
   };
 
@@ -44,7 +68,9 @@ export const DocumentChat = () => {
           )}
         >
           <p className={clsx("text-[0.875rem] font-medium text-white")}>
-            {header.name}
+            {header.name.replace(".pdf", "").length > 10
+              ? `${header.name.slice(0, 10)}... .pdf`
+              : `${header.name}`}
           </p>
           <div
             className={clsx(
@@ -73,21 +99,35 @@ export const DocumentChat = () => {
             "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]"
           )}
         >
-          <button>
-            <img
-              src={"/icons/chat/zoom_out.svg"}
-              className={clsx("w-[1.5rem] h-[1.5rem]")}
-            />
-          </button>
-          <p className={clsx("text-[1rem] font-normal text-[#F4F8FC]")}>
-            {"150%"}
-          </p>
-          <button>
-            <img
-              src={"/icons/chat/zoom_in.svg"}
-              className={clsx("w-[1.5rem] h-[1.5rem]")}
-            />
-          </button>
+          <ZoomOut>
+            {(props: RenderZoomOutProps) => (
+              <button onClick={props.onClick}>
+                <img
+                  src={"/icons/chat/zoom_out.svg"}
+                  className={clsx("w-[1.5rem] h-[1.5rem]")}
+                />
+              </button>
+            )}
+          </ZoomOut>
+
+          <CurrentScale>
+            {(props: RenderCurrentScaleProps) => (
+              <p className={clsx("text-[1rem] font-normal text-[#F4F8FC]")}>
+                {`${Math.round(props.scale * 100)}%`}
+              </p>
+            )}
+          </CurrentScale>
+
+          <ZoomIn>
+            {(props: RenderZoomInProps) => (
+              <button onClick={props.onClick}>
+                <img
+                  src={"/icons/chat/zoom_in.svg"}
+                  className={clsx("w-[1.5rem] h-[1.5rem]")}
+                />
+              </button>
+            )}
+          </ZoomIn>
         </div>
 
         <div
@@ -96,25 +136,33 @@ export const DocumentChat = () => {
             "w-full"
           )}
         >
-          {/*  */}
           <button>
             <img
               src={"/icons/chat/split_page.svg"}
               className={clsx("w-[1.5rem] h-[1.5rem]")}
             />
           </button>
-          <button>
-            <img
-              src={"/icons/chat/right_rotation.svg"}
-              className={clsx("w-[1.5rem] h-[1.5rem]")}
-            />
-          </button>
-          <button>
-            <img
-              src={"/icons/chat/left_rotation.svg"}
-              className={clsx("w-[1.5rem] h-[1.5rem]")}
-            />
-          </button>
+          <Rotate direction={RotateDirection.Backward}>
+            {(props: RenderRotateProps) => (
+              <button onClick={props.onClick}>
+                <img
+                  src={"/icons/chat/left_rotation.svg"}
+                  className={clsx("w-[1.5rem] h-[1.5rem]")}
+                />
+              </button>
+            )}
+          </Rotate>
+
+          <Rotate direction={RotateDirection.Forward}>
+            {(props: RenderRotateProps) => (
+              <button onClick={props.onClick}>
+                <img
+                  src={"/icons/chat/right_rotation.svg"}
+                  className={clsx("w-[1.5rem] h-[1.5rem]")}
+                />
+              </button>
+            )}
+          </Rotate>
         </div>
       </div>
 
@@ -130,6 +178,8 @@ export const DocumentChat = () => {
         {!!watch(dictionaries.pdf.file.name).length && (
           <PDFViewerUpload
             fileURL={watch(dictionaries.pdf.file.name)}
+            onPageChanges={handlePageChanges}
+            plugins={[zoomPluginInstance, rotatePluginInstance]}
             onDocumentLoad={handleDocumentLoad}
           />
         )}
