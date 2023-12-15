@@ -15,8 +15,14 @@ export interface PostDocumentUploadNexusResponseInterface
   > {}
 export interface PostDocumentUploadNexusSuccessResponseInterface {
   data: {
-    email: string;
-    uid: string;
+    doc_id: string;
+    file_name: string;
+    file_url: string;
+    private: boolean;
+    pages: {
+      page_id: string;
+      page_label: string;
+    }[];
   };
   message: string;
   status: number;

@@ -15,11 +15,12 @@ export const fetchGetDocumentListNexus = async (
           process.env.NEXT_PUBLIC_NEXUS_SERVICE_URL
         }${NexusRestAPIURL.getDocumentList()}`;
 
-  const cookie = new Cookie();
-  const token = cookie.get("token");
-
   return await axios
-    .get(url)
+    .get(url, {
+      headers: {
+        ...payload?.headers,
+      },
+    })
     .then((res: any) => {
       return res.data;
     })

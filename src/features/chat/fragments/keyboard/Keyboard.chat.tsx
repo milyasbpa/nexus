@@ -58,7 +58,7 @@ export const KeyboardChat = () => {
         "grid grid-cols-[auto_1fr] items-center content-center justify-start justify-items-start gap-[0.5rem]",
         "w-full",
         "p-[1rem]",
-        "bg-[#9AA8B8]",
+        "bg-[#EBF0F8]",
         "absolute",
         "bottom-0 right-0 left-0"
       )}

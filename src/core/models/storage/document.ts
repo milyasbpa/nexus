@@ -1,4 +1,4 @@
-export interface DocumentStorageInterface {
-  email: string;
-  password: string;
-}
+import { GetDocumentListNexusSuccessResponseDataDocListInterface } from "../nexus";
+
+export type DocumentStorageInterface =
+  GetDocumentListNexusSuccessResponseDataDocListInterface;

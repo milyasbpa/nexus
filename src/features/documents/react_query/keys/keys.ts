@@ -1,4 +1,7 @@
 export const DocumentsReactQueryKey = {
+  GetUserStorage: () => {
+    return ["DocumentsReactQueryKey.GetUserStorage"];
+  },
   GetDocumentListNexus: () => {
     return ["DocumentsReactQueryKey.GetDocumentListNexus"];
   },

@@ -2,15 +2,17 @@
 import { DashboardContainer } from "@/core/modules/dashboard/containers";
 import * as React from "react";
 import clsx from "clsx";
-import { Textfield } from "@/core/components/textfield";
 import { getDictionaries } from "../i18";
 import { DataTableDocuments } from "../fragments/data_table/DataTable.documents";
 import { FormProvider, useForm } from "react-hook-form";
 import { UploadDocuments } from "../fragments/upload";
 import { defaultValues } from "../react_hook_form/constants/default_values";
 import { PesonaDocuments } from "../fragments/pesona";
+import { SearchDocuments } from "../fragments/search";
+import { useDocumentsGetUserStorage } from "../react_query/hooks/useGetUserStorage.document";
 
 export const DocumentsContainer = () => {
+  useDocumentsGetUserStorage();
   const methods = useForm({
     defaultValues: defaultValues,
   });
@@ -38,12 +40,7 @@ export const DocumentsContainer = () => {
             <div
               className={clsx("flex items-center justify-between", "w-full")}
             >
-              <div className={clsx("w-full max-w-[250px]")}>
-                <Textfield
-                  name={dictionaries.data_table.search.input.name}
-                  placeholder={dictionaries.data_table.search.input.placeholder}
-                />
-              </div>
+              <SearchDocuments />
 
               <UploadDocuments />
               <PesonaDocuments />

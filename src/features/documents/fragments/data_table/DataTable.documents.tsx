@@ -24,7 +24,7 @@ export const DataTableDocuments = () => {
   const { watch, setValue } = useFormContext();
   const router = useRouter();
   const dictionaries = getDictionaries("en");
-  // useDocumentsGetDocumentListNexus();
+  useDocumentsGetDocumentListNexus();
 
   const columns = React.useMemo<
     ColumnDef<{ [key: string]: string | { id: string; name: string }[] }>[]

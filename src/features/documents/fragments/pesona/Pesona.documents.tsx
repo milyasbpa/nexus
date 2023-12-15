@@ -38,7 +38,6 @@ export const PesonaDocuments = () => {
     }
   };
 
-  console.log(watch(dictionaries.upload.pesona_dialog.input.name), "ini apa");
   return (
     <ModalComponent
       isOpen={watch(dictionaries.upload.pesona_dialog.name)}

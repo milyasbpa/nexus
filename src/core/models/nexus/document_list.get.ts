@@ -4,10 +4,13 @@ export interface GetDocumentListNexusRequestInterface extends NextApiRequest {
   payload?: GetDocumentListNexusRequestPayloadInterface;
 }
 export interface GetDocumentListNexusRequestPayloadInterface {
-  params: GetDocumentListNexusRequestPayloadParamsInterface;
+  headers: GetDocumentListNexusRequestPayloadHeadersInterface;
 }
 
-export interface GetDocumentListNexusRequestPayloadParamsInterface {}
+export interface GetDocumentListNexusRequestPayloadHeadersInterface {
+  uid: string;
+  ["access-token"]: string;
+}
 
 export interface GetDocumentListNexusResponseInterface
   extends NextApiResponse<
@@ -16,18 +19,24 @@ export interface GetDocumentListNexusResponseInterface
   > {}
 export interface GetDocumentListNexusSuccessResponseInterface {
   data: {
-    doc_list: {
-      doc_id: string;
-      file_name: string;
-      file_url: string;
-      pages: {
-        page_id: string;
-        page_label: string;
-      }[];
-    }[];
+    docs_list: GetDocumentListNexusSuccessResponseDataDocListInterface[];
   };
   message: string;
   status: number;
+}
+
+export interface GetDocumentListNexusSuccessResponseDataDocListInterface {
+  doc_id: string;
+  created_at: number;
+  file_name: {
+    file_name: string;
+    page_label: string;
+  };
+  file_url: string;
+  pages: {
+    page_id: string;
+    page_label: string;
+  }[];
 }
 
 export interface GetDocumentListNexusErrorResponseInterface {
