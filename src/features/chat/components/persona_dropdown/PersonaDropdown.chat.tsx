@@ -43,8 +43,9 @@ export const PersonaDropdownChat = ({
           "border border-[#BFCAD7]"
         )}
       >
-        {items.map((item) => (
+        {items.map((item, itemIndex) => (
           <button
+            key={itemIndex}
             className={clsx(
               "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
               "w-full",

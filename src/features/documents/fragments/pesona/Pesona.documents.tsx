@@ -7,17 +7,13 @@ import { ModalComponent } from "@/core/components/modal";
 import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
-import { useDocumentsGetFileWeb } from "../../react_query/hooks/useGetFileWeb.documents";
-import { useDocumentsPostDocumentUploadNexus } from "../../react_query/hooks/usePostDocumentUploadNexus.documents";
+import { useDocumentsSetChatStorage } from "../../react_query/hooks/useSetChatStorage.documents";
 
 export const PesonaDocuments = () => {
   const { watch, setValue } = useFormContext<DocumentsForm>();
   const dictionaries = getDictionaries("en");
 
-  const { mutate: postDocumentUploadNexus } =
-    useDocumentsPostDocumentUploadNexus();
-
-  const { mutate: getFileWeb } = useDocumentsGetFileWeb();
+  const { mutate: setChatStorage } = useDocumentsSetChatStorage();
 
   const handleCloseModal = () => {
     setValue(dictionaries.upload.pesona_dialog.name, false);
@@ -36,11 +32,7 @@ export const PesonaDocuments = () => {
     );
   };
   const handleUpload = () => {
-    if (watch(dictionaries.upload.dialog.tab.name) === "url") {
-      getFileWeb();
-    } else {
-      postDocumentUploadNexus();
-    }
+    setChatStorage;
   };
 
   return (

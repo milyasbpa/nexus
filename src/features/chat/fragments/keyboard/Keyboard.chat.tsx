@@ -87,6 +87,7 @@ export const KeyboardChat = () => {
         <input
           className={clsx(
             "w-full",
+            "bg-[white] disabled:bg-[white]",
             "placeholder:text-[1rem] placeholder:font-normal placeholder:text-[#697584]",
             "text-[1rem] font-normal text-[#232931]",
             "outline-none"
