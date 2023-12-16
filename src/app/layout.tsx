@@ -16,12 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <ReactQueryProvider>
-      <html lang="en">
-        <body
-          className={clsx(plusJakartaSans.variable, libreBaskerville.variable)}
-        >
-          {children}
-        </body>
+      <html
+        lang="en"
+        className={`${plusJakartaSans.variable} ${libreBaskerville.variable}`}
+      >
+        <body>{children}</body>
       </html>
     </ReactQueryProvider>
   );

@@ -33,7 +33,7 @@ export const LoginContainer = () => {
           <h1
             className={clsx(
               "text-[34px] font-bold text-[#232931]",
-              libreBaskerville.variable
+              "font-libreBaskerville"
             )}
           >
             {dictionaries.brand.name}
