@@ -17,9 +17,9 @@ export const useLoginGetRememberMeStorage = () => {
   });
 
   useEffect(() => {
-    if (typeof query.data !== "undefined") {
-      setValue(dictionaries.form.email.name, query.data?.email);
-      setValue(dictionaries.form.password.name, query.data?.password);
+    if (!!query.data) {
+      setValue(dictionaries.form.email.name, query.data.email);
+      setValue(dictionaries.form.password.name, query.data.password);
       setValue(dictionaries.form.remember_me.name, true);
     }
   }, [query.data]);

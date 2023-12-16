@@ -41,8 +41,8 @@ export const LoginFormLogin = () => {
   };
 
   const isLoginDisabled =
-    !watch(dictionaries.form.email.name).length ||
-    !watch(dictionaries.form.password.name).length;
+    !watch(dictionaries.form.email.name)?.length ||
+    !watch(dictionaries.form.password.name)?.length;
   return (
     <div
       className={clsx(
