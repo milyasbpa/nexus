@@ -11,6 +11,7 @@ import { getDictionaries } from "../i18";
 import { NexusWebURL } from "@/core/routers/web";
 import { useChatGetUserStorage } from "../react_query/hooks/useGetUserStorage.chat";
 import { useChatGetChatStorage } from "../react_query/hooks/useGetChatStorage.chat";
+import { NavigationChat } from "../fragments/navigation";
 
 export const ChatContainer = () => {
   useChatGetUserStorage();
@@ -24,47 +25,7 @@ export const ChatContainer = () => {
     <FormProvider {...methods}>
       <div className={clsx("w-full", "relative")}>
         {/* navbar */}
-        <div
-          className={clsx(
-            "absolute top-0 left-0 right-0",
-            "z-40",
-            "bg-[#F4F8FC]",
-            "h-[68px]",
-            "px-[1.5rem] lg:px-[52px]",
-            "grid grid-flow-col justify-between justify-items-start items-center content-center",
-            "w-full"
-          )}
-        >
-          <Link
-            href={NexusWebURL.getDocuments()}
-            className={clsx("cursor-pointer")}
-          >
-            <h1
-              className={clsx("text-[0.875rem] text-[#232931] font-semibold")}
-            >
-              {dictionaries.actions.back}
-            </h1>
-          </Link>
-
-          {/* menu */}
-
-          <div
-            className={clsx(
-              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[1rem]"
-            )}
-          >
-            <h1
-              className={clsx(
-                "text-[26px] text-[#232931] font-normal tracking-[4.68px]",
-                libreBaskerville.className
-              )}
-            >
-              {dictionaries.brand.name}
-            </h1>
-          </div>
-
-          <div></div>
-        </div>
+        <NavigationChat />
         {/* content */}
         <div
           className={clsx(

@@ -1,5 +1,5 @@
 export const NexusWebURL = {
-  getLogin: () => "/login",
+  getLogin: () => "/",
   getRegistration: () => "/registration",
   getAbout: () => "/about",
   getDocuments: () => "/documents",

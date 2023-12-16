@@ -3,7 +3,8 @@
     "name": "NEXUS"
   },
   "actions": {
-    "back": "Back"
+    "back": "Back",
+    "logout":"Log Out"
   },
   "pdf": {
     "file": {
