@@ -26,10 +26,12 @@ export interface GetDocumentListNexusSuccessResponseInterface {
 }
 
 export interface GetDocumentListNexusSuccessResponseDataDocListInterface {
+  owner_id: string;
   doc_id: string;
   created_at: number;
   file_name: string;
   file_url: string;
+  private: boolean;
   pages: {
     page_id: string;
     page_label: string;

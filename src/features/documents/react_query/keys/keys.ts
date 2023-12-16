@@ -11,4 +11,7 @@ export const DocumentsReactQueryKey = {
   GetFileWeb: () => {
     return ["DocumentsReactQueryKey.GetFileWeb"];
   },
+  SetDocumentStorage: () => {
+    return ["DocumentsReactQueryKey.SetDocumentStorage"];
+  },
 };

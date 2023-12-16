@@ -9,7 +9,7 @@ import { UploadDocuments } from "../fragments/upload";
 import { defaultValues } from "../react_hook_form/constants/default_values";
 import { PesonaDocuments } from "../fragments/pesona";
 import { SearchDocuments } from "../fragments/search";
-import { useDocumentsGetUserStorage } from "../react_query/hooks/useGetUserStorage.document";
+import { useDocumentsGetUserStorage } from "../react_query/hooks/useGetUserStorage.documents";
 
 export const DocumentsContainer = () => {
   useDocumentsGetUserStorage();

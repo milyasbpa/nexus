@@ -7,7 +7,7 @@ import { ModalComponent } from "@/core/components/modal";
 import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
-import { useDocumentsGetFileWeb } from "../../react_query/hooks/useGetFileWeb.document";
+import { useDocumentsGetFileWeb } from "../../react_query/hooks/useGetFileWeb.documents";
 import { useDocumentsPostDocumentUploadNexus } from "../../react_query/hooks/usePostDocumentUploadNexus.documents";
 
 export const PesonaDocuments = () => {
@@ -36,7 +36,6 @@ export const PesonaDocuments = () => {
     );
   };
   const handleUpload = () => {
-    // async upload
     if (watch(dictionaries.upload.dialog.tab.name) === "url") {
       getFileWeb();
     } else {

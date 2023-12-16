@@ -18,13 +18,17 @@ import { getDictionaries } from "../../i18";
 import { TableColumnHeaderDocuments } from "../../components/table_column_header";
 import { TableCellDocuments } from "../../components/table_cell";
 import { useDocumentsGetDocumentListNexus } from "../../react_query/hooks/useGetDocumentListNexus.documents";
-import { NexusWebURL } from "@/core/routers/web";
+import { useDocumentsSetDocumentStorage } from "../../react_query/hooks/useSetDocumentStorage.documents";
+import { queryClient } from "@/core/config/react_query";
+import { DocumentsReactQueryKey } from "../../react_query/keys";
+import { GetDocumentListNexusSuccessResponseInterface } from "@/core/models/nexus";
 
 export const DataTableDocuments = () => {
   const { watch, setValue } = useFormContext();
   const router = useRouter();
   const dictionaries = getDictionaries("en");
   useDocumentsGetDocumentListNexus();
+  const { mutate: setDocumentStorage } = useDocumentsSetDocumentStorage();
 
   const columns = React.useMemo<
     ColumnDef<{ [key: string]: string | { id: string; name: string }[] }>[]
@@ -102,7 +106,15 @@ export const DataTableDocuments = () => {
       .getAllCells()
       .find((cell) => cell.column.id === "no")
       ?.renderValue() as string;
-    router.push(NexusWebURL.getChatByDocumentId({ doc_id: docId }));
+    const documents = queryClient.getQueryData(
+      DocumentsReactQueryKey.GetDocumentListNexus()
+    ) as GetDocumentListNexusSuccessResponseInterface | undefined;
+    if (!documents) return;
+    const document = documents.data.docs_list.find(
+      (item) => item.doc_id === docId
+    );
+    if (!document) return;
+    setDocumentStorage(document);
   };
 
   return (

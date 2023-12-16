@@ -13,12 +13,14 @@ import { fetchPostDocumentUploadNexus } from "@/core/services/nexus/document_upl
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
 import { useEffect } from "react";
-import { NexusWebURL } from "@/core/routers/web";
+import { useDocumentsSetDocumentStorage } from "./useSetDocumentStorage.documents";
 
 export const useDocumentsPostDocumentUploadNexus = () => {
   const dictionaries = getDictionaries("en");
   const router = useRouter();
-  const { watch, setValue } = useFormContext<DocumentsForm>();
+  const { watch } = useFormContext<DocumentsForm>();
+  const { mutate: setDocumentStorage } = useDocumentsSetDocumentStorage();
+
   const userStorageData = queryClient.getQueryData(
     DocumentsReactQueryKey.GetUserStorage()
   ) as undefined | UserStorageInterface;
@@ -87,9 +89,8 @@ export const useDocumentsPostDocumentUploadNexus = () => {
       queryClient.refetchQueries({
         queryKey: DocumentsReactQueryKey.GetDocumentListNexus(),
       });
-      router.push(
-        NexusWebURL.getChatByDocumentId({ doc_id: mutation.data.data.doc_id })
-      );
+
+      setDocumentStorage(mutation.data.data);
     }
   }, [mutation.data]);
 

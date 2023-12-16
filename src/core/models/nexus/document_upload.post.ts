@@ -23,6 +23,7 @@ export interface PostDocumentUploadNexusSuccessResponseInterface {
   data: {
     owner_id: string;
     doc_id: string;
+    created_at: number;
     file_name: string;
     file_url: string;
     private: boolean;
