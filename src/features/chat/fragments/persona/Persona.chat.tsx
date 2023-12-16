@@ -1,8 +1,29 @@
 import * as React from "react";
 import clsx from "clsx";
 import { libreBaskerville } from "@/core/fonts";
+import { useFormContext } from "react-hook-form";
+import { ChatForm } from "../../react_hook_form/keys";
+import { getDictionaries } from "../../i18";
+import { PersonaDropdownChat } from "../../components/persona_dropdown";
 
 export const PersonaChat = () => {
+  const { watch, setValue } = useFormContext<ChatForm>();
+  const dictionaries = getDictionaries("en");
+
+  const name = watch(dictionaries.conversation.persona.name)?.name ?? "";
+  const initial = name.split(" ").reduce((acc: any, value: string) => {
+    const firstChar = value.charAt(0);
+    return `${acc}${firstChar}`;
+  }, "");
+
+  const handleClickSelectPersona = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const selectedPersona =
+      dictionaries.conversation.persona.data.find(
+        (item) => item.id === e.currentTarget.value
+      ) ?? null;
+    setValue(dictionaries.conversation.persona.name, selectedPersona);
+  };
+
   return (
     <div
       className={clsx(
@@ -23,24 +44,23 @@ export const PersonaChat = () => {
           className={clsx(
             "bg-[#244E46]",
             "rounded-[0.25rem]",
-            "text-[0.875rem] font-medium text-[white]",
-            libreBaskerville.className,
-            "px-[0.5rem] py-[0.5rem]"
+            "w-[1.75rem] h-[1.75rem]",
+            "flex items-center justify-center",
+            "text-[0.875rem] font-medium text-[white] font-libreBaskerville"
           )}
         >
-          {"FA"}
+          {initial}
         </div>
         <p className={clsx("teext-[0.875rem] text-[#232931] font-medium")}>
-          {"Financial Analyst"}
+          {name}
         </p>
       </div>
 
-      <button>
-        <img
-          src={"/icons/chat/menu.svg"}
-          className={clsx("w-[1.5rem] h-[1.5rem]")}
-        />
-      </button>
+      <PersonaDropdownChat
+        selected={watch(dictionaries.conversation.persona.name)}
+        items={dictionaries.conversation.persona.data}
+        onClickSelect={handleClickSelectPersona}
+      />
     </div>
   );
 };

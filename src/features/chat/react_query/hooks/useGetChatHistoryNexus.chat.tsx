@@ -53,7 +53,14 @@ export const useChatGetChatHistoryNexus = () => {
               ...query.data.data.chats
                 .sort((a, b) => a.created_at - b.created_at)
                 .map((chat) => {
-                  const persona = chat.persona ?? "USER";
+                  const persona =
+                    chat.persona === "FINANCIAL_CONSULTANT"
+                      ? "Financial Analyst"
+                      : chat.persona === "LEGAL_CONSULTANT"
+                      ? "Legal Consultant"
+                      : chat.persona === "GENERAL"
+                      ? "General"
+                      : "USER";
                   const initial = persona
                     .split(" ")
                     .reduce((acc: any, value: string) => {

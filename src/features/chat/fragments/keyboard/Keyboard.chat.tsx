@@ -93,7 +93,11 @@ export const KeyboardChat = () => {
           )}
           disabled={isPendingPostSendChatNexus}
           value={watch(dictionaries.conversation.keyboard.input.name)}
-          placeholder={"Type your question"}
+          placeholder={
+            isPendingPostSendChatNexus
+              ? "Wait your answer"
+              : "Type your question"
+          }
           onChange={handleChange}
           onKeyDown={handleKeyDownEnter}
         />

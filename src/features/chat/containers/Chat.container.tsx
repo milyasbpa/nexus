@@ -9,7 +9,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { defaultValues } from "../react_hook_form/constants/default_values";
 import { getDictionaries } from "../i18";
 import { NexusWebURL } from "@/core/routers/web";
-import { useChatGetUserStorage } from "../react_query/hooks/useGetUserStorage.document";
+import { useChatGetUserStorage } from "../react_query/hooks/useGetUserStorage.chat";
 
 export const ChatContainer = () => {
   useChatGetUserStorage();
