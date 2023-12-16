@@ -10,9 +10,11 @@ import { defaultValues } from "../react_hook_form/constants/default_values";
 import { getDictionaries } from "../i18";
 import { NexusWebURL } from "@/core/routers/web";
 import { useChatGetUserStorage } from "../react_query/hooks/useGetUserStorage.chat";
+import { useChatGetChatStorage } from "../react_query/hooks/useGetChatStorage.chat";
 
 export const ChatContainer = () => {
   useChatGetUserStorage();
+  useChatGetChatStorage();
   const dictionaries = getDictionaries("en");
 
   const methods = useForm({

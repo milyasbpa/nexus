@@ -1,3 +1,6 @@
 export interface ChatStorageInterface {
-  persona: string;
+  persona: {
+    id: string;
+    name: string;
+  };
 }

@@ -1,14 +1,17 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import { getDictionaries } from "../../i18";
 import { useDashboardGetProfileNexus } from "../../react_query/hooks/useGetProfileNexus.dashboard";
 import { useFormContext } from "react-hook-form";
 import { DashboardForm } from "../../react_hook_form/keys";
 import { useDashboardGetUserStorage } from "../../react_query/hooks/useGetUserStorage.dashboard";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const ProfileDashboard = () => {
   const dictionaries = getDictionaries("en");
+  const router = useRouter();
   const { watch } = useFormContext<DashboardForm>();
   useDashboardGetUserStorage();
   useDashboardGetProfileNexus();
@@ -23,7 +26,7 @@ export const ProfileDashboard = () => {
       : watch(dictionaries.profile.data.name);
 
   const handleClickLogOut = () => {
-    //
+    router.push(NexusWebURL.getLogin());
   };
   return (
     <div className={clsx("relative")}>

@@ -34,7 +34,8 @@ export const useChatPostSendChatNexus = () => {
         },
         data: {
           message: watch(dictionaries.conversation.question.name),
-          persona: "FINANCIAL_CONSULTANT",
+          persona:
+            watch(dictionaries.conversation.persona.name)?.id ?? "GENERAL",
         },
         headers: {
           uid: userStorageData?.uid ?? "",

@@ -13,7 +13,7 @@ export const useChatGetDocumentStorage = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
 
   const query = useQuery<DocumentStorageInterface | undefined, any>({
-    queryKey: ChatReactQueryKey.GetUserStorage(),
+    queryKey: ChatReactQueryKey.GetDocumentStorage(),
     queryFn: () => {
       return getDocumentStorage();
     },

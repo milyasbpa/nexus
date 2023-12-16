@@ -12,7 +12,10 @@ import {
 } from "@/core/models/nexus";
 import { useParams } from "next/navigation";
 import { queryClient } from "@/core/config/react_query";
-import { UserStorageInterface } from "@/core/models/storage";
+import {
+  ChatStorageInterface,
+  UserStorageInterface,
+} from "@/core/models/storage";
 
 export const useChatGetChatHistoryNexus = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
@@ -21,6 +24,10 @@ export const useChatGetChatHistoryNexus = () => {
   const userStorageData = queryClient.getQueryData(
     ChatReactQueryKey.GetUserStorage()
   ) as undefined | UserStorageInterface;
+
+  const chatStorageData = queryClient.getQueryData(
+    ChatReactQueryKey.GetChatStorage()
+  ) as undefined | ChatStorageInterface;
 
   const query = useQuery<
     GetChatHistoryNexusSuccessResponseInterface | undefined,
@@ -76,6 +83,30 @@ export const useChatGetChatHistoryNexus = () => {
               ...watch(dictionaries.conversation.history.name),
             ]
       );
+      const persona = !query.data.data.chats.length
+        ? chatStorageData?.persona ?? {
+            id: "GENERAL",
+            name: "General",
+          }
+        : !!query.data.data.chats.filter((chat) => !!chat.persona).at(-1)?.id
+        ? {
+            id:
+              query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
+                ?.persona ?? "GENERAL",
+            name:
+              query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
+                ?.persona === "FINANCIAL_CONSULTANT"
+                ? "Financial Analyst"
+                : query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
+                    ?.persona === "LEGAL_CONSULTANT"
+                ? "Legal Consultant"
+                : "General",
+          }
+        : {
+            id: "GENERAL",
+            name: "General",
+          };
+      setValue(dictionaries.conversation.persona.name, persona);
     }
   }, [query.data]);
 

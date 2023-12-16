@@ -19,7 +19,6 @@ export const useChatGetChatSuggestionNexus = () => {
   const userStorageData = queryClient.getQueryData(
     ChatReactQueryKey.GetUserStorage()
   ) as undefined | UserStorageInterface;
-  console.log(!!userStorageData, "ini storage data");
 
   const query = useQuery<
     GetChatSuggestionNexusSuccessResponseInterface | undefined,

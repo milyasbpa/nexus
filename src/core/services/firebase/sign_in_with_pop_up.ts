@@ -7,7 +7,7 @@ export const signInWithPopupFirebase = async () => {
     .then((res) => {
       const credential = GoogleAuthProvider.credentialFromResult(res);
       const token = credential?.accessToken;
-      console.log(token, res, "ini token");
+
       return res;
     })
     .catch((err: any) => {

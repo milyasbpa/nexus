@@ -100,8 +100,7 @@ export const HistoryChat = () => {
                     "flex items-center justify-center",
                     "bg-[#244E46]",
                     "rounded-[0.25rem]",
-                    "text-[0.75rem] font-medium text-[white]",
-                    libreBaskerville.className,
+                    "text-[0.75rem] font-medium text-[white] font-libreBaskerville",
                     "w-[1.75rem] h-[1.75rem]"
                   )}
                 >
@@ -134,7 +133,6 @@ export const HistoryChat = () => {
           );
         }
       )}
-      {/* <div ref={lastRefView}></div> */}
     </div>
   );
 };
