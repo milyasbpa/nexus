@@ -10,6 +10,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        libreBaskerville: ["var(--font-libre-baskerville)"],
+        plusJakartaSans: ["var(--font-plus-jakarta-sans)"],
+      },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
