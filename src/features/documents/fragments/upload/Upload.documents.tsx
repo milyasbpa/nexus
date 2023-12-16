@@ -92,8 +92,7 @@ export const UploadDocuments = () => {
           "rounded-[0.25rem]",
           "px-[1rem] py-[0.625rem]",
           "bg-[#232931]",
-          "text-[1rem] text-[white] font-semibold",
-          plusJakartaSans.className
+          "text-[1rem] text-[white] font-semibold font-plusJakartaSans"
         )}
         onClick={handleOpenModal}
       >
@@ -133,7 +132,9 @@ export const UploadDocuments = () => {
             >
               <Dialog.Title
                 as="h3"
-                className={clsx("text-[1.125rem] font-semibold text-[#232931]")}
+                className={clsx(
+                  "text-[1.125rem] font-semibold text-[#232931] font-plusJakartaSans"
+                )}
               >
                 {dictionaries.upload.dialog.title}
               </Dialog.Title>

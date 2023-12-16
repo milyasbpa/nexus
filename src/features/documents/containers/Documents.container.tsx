@@ -34,7 +34,11 @@ export const DocumentsContainer = () => {
               "max-w-[1000px] w-full"
             )}
           >
-            <h1 className={clsx("text-[1.5rem] font-medium text-[#232931]")}>
+            <h1
+              className={clsx(
+                "text-[1.5rem] font-medium text-[#232931] font-plusJakartaSans"
+              )}
+            >
               {dictionaries.title}
             </h1>
             <div

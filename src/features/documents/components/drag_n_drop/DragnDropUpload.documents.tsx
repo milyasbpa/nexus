@@ -53,7 +53,11 @@ export const DragnDropUploadDocuments = ({
         "w-full"
       )}
     >
-      <p className={clsx("text-[0.875rem] text-[#232931] font-light")}>
+      <p
+        className={clsx(
+          "text-[0.875rem] text-[#232931] font-light font-plusJakartaSans"
+        )}
+      >
         {message}
       </p>
 
@@ -69,7 +73,11 @@ export const DragnDropUploadDocuments = ({
           "w-full"
         )}
       >
-        <p className={clsx("text-[0.875rem] text-[#232931] font-light")}>
+        <p
+          className={clsx(
+            "text-[0.875rem] text-[#232931] font-light font-plusJakartaSans"
+          )}
+        >
           {setting?.label}
         </p>
         <Checkbox {...setting?.checkbox} />
@@ -86,7 +94,7 @@ export const DragnDropUploadDocuments = ({
             "w-[88px] h-[2rem]",
             "bg-white",
             "rounded-[0.375rem]",
-            "text-[#FC5959] text-[0.75rem] font-semibold"
+            "text-[#FC5959] text-[0.75rem] font-semibold font-plusJakartaSans"
           )}
           onClick={onCancel}
         >
@@ -97,7 +105,7 @@ export const DragnDropUploadDocuments = ({
             "w-[88px] h-[2rem]",
             "bg-[#232931] disabled:bg-[#EBF3FA]",
             "rounded-[0.375rem]",
-            "text-[white] text-[0.75rem] font-semibold"
+            "text-[white] text-[0.75rem] font-semibold font-plusJakartaSans"
           )}
           disabled={!preview?.name?.length}
           onClick={onUpload}
