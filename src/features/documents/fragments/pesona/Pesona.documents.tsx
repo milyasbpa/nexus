@@ -8,6 +8,9 @@ import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
 import { useDocumentsSetChatStorage } from "../../react_query/hooks/useSetChatStorage.documents";
+import { queryClient } from "@/core/config/react_query";
+import { DocumentsReactQueryKey } from "../../react_query/keys";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const PesonaDocuments = () => {
   const { watch, setValue } = useFormContext<DocumentsForm>();
@@ -15,6 +18,9 @@ export const PesonaDocuments = () => {
 
   const { mutate: setChatStorage } = useDocumentsSetChatStorage();
 
+  const userStorageData = queryClient.getQueryData(
+    DocumentsReactQueryKey.GetUserStorage()
+  ) as undefined | UserStorageInterface;
   const handleCloseModal = () => {
     setValue(dictionaries.upload.pesona_dialog.name, false);
   };
@@ -34,6 +40,13 @@ export const PesonaDocuments = () => {
   const handleUpload = () => {
     setChatStorage();
   };
+
+  const dialogTitle = !userStorageData
+    ? dictionaries.upload.dialog.title.replace("{{name}}", "")
+    : dictionaries.upload.dialog.title.replace(
+        "{{name}}",
+        userStorageData.email
+      );
 
   return (
     <ModalComponent
@@ -56,7 +69,7 @@ export const PesonaDocuments = () => {
               as="h3"
               className={clsx("text-[1.125rem] font-semibold text-[#232931]")}
             >
-              {dictionaries.upload.dialog.title}
+              {dialogTitle}
             </Dialog.Title>
             <XMarkIcon
               className={clsx(
