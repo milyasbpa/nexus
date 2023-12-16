@@ -20,6 +20,7 @@ export default function RootLayout({
         lang="en"
         className={`${plusJakartaSans.variable} ${libreBaskerville.variable}`}
       >
+        <link rel="icon" href="/favicon/favicon.svg" sizes="any" />
         <body>{children}</body>
       </html>
     </ReactQueryProvider>
