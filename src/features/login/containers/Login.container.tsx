@@ -3,12 +3,12 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../i18";
 import Link from "next/link";
-import { libreBaskerville } from "@/core/fonts";
 import { LoginFormLogin } from "../fragments/login_form";
 import { GoogleLoginFormLogin } from "../fragments/google_login_form";
 import { FormProvider, useForm } from "react-hook-form";
 import { IntroductionLogin } from "../fragments/introduction/Introduction.login";
 import { defaultValues } from "../react_hook_form/constants/default_values";
+import { NotificationLogin } from "../fragments/notification";
 
 export const LoginContainer = () => {
   const dictionaries = getDictionaries("en");
@@ -77,6 +77,7 @@ export const LoginContainer = () => {
                 "w-full"
               )}
             >
+              <NotificationLogin />
               <LoginFormLogin />
               <div
                 className={clsx(

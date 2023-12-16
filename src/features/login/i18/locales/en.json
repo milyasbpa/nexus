@@ -8,6 +8,22 @@
       "title": "AS FEATURED IN"
     }
   },
+  "notification": {
+    "is_open": {
+      "name": "open_notification-login"
+    },
+    "message": {
+      "name": "message_notification-login",
+      "template": {
+        "invalid_login_credentials": "Invalid Login Credentials",
+        "invalid_email": "Invalid Email",
+        "internal_server_error": "Internal Server Error"
+      }
+    },
+    "variant": {
+      "name": "variant_notification-login"
+    }
+  },
   "form": {
     "name": "Login",
     "description": "Enter your email and password",

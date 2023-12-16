@@ -8,12 +8,13 @@ import { UserCredential } from "firebase/auth";
 import { getDictionaries } from "../../i18";
 import { useEffect } from "react";
 import { useLoginPostLoginNexus } from "./usePostLoginNexus.login";
+import { FirebaseError } from "firebase/app";
 
 export const useLoginSignInWithEmailAndPasswordFirebase = () => {
   const dictionaries = getDictionaries("en");
   const { watch, setValue } = useFormContext<LoginForm>();
   const { mutate: postLoginNexus } = useLoginPostLoginNexus();
-  const mutation = useMutation<UserCredential, any>({
+  const mutation = useMutation<UserCredential, FirebaseError>({
     mutationKey: LoginReactQueryKey.SignInWithEmailAndPasswordFirebase(),
     mutationFn: () =>
       signInWithEmailAndPasswordFirebase({
@@ -45,6 +46,20 @@ export const useLoginSignInWithEmailAndPasswordFirebase = () => {
       postLoginNexus();
     }
   }, [mutation.isSuccess]);
+
+  useEffect(() => {
+    if (mutation.isError) {
+      const message = mutation.error.message.includes("auth/invalid-credential")
+        ? dictionaries.notification.message.template.invalid_login_credentials
+        : mutation.error.message.includes("auth/invalid-email")
+        ? dictionaries.notification.message.template.invalid_email
+        : dictionaries.notification.message.template.internal_server_error;
+        
+      setValue(dictionaries.notification.is_open.name, true);
+      setValue(dictionaries.notification.message.name, message);
+      setValue(dictionaries.notification.variant.name, "danger");
+    }
+  }, [mutation.isError]);
 
   return mutation;
 };

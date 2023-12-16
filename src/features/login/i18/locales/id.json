@@ -8,9 +8,25 @@
       "title": "AS FEATURED IN"
     }
   },
+  "notification": {
+    "is_open": {
+      "name": "open_notification-login"
+    },
+    "message": {
+      "name": "message_notification-login",
+      "template": {
+        "invalid_login_credentials": "Invalid Login Credentials",
+        "invalid_email": "Invalid Email",
+        "internal_server_error": "Internal Server Error"
+      }
+    },
+    "variant": {
+      "name": "variant_notification-login"
+    }
+  },
   "form": {
-    "name": "Masuk",
-    "description": "Masukkan email dan kata sandi anda",
+    "name": "Login",
+    "description": "Enter your email and password",
     "type": {
       "name": "login"
     },
@@ -26,12 +42,12 @@
     "email": {
       "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_login",
-      "placeholder": "Masukkan email Anda"
+      "placeholder": "Enter your email"
     },
     "password": {
-      "label": "Kata Sandi <span style='color:#FC5959;'>*</span>",
+      "label": "Password <span style='color:#FC5959;'>*</span>",
       "name": "password_login",
-      "placeholder": "Masukkan kata sandi Anda"
+      "placeholder": "Enter your password"
     },
     "errors": {
       "incorrect_account": {
@@ -42,16 +58,16 @@
       }
     },
     "remember_me": {
-      "label": "Ingat saya",
+      "label": "Remember me",
       "name": "remember-me_login"
     },
     "actions": {
-      "login": "Masuk",
-      "google_login": "Masuk menggunakan google",
+      "login": "Login",
+      "google_login": "Login with google",
       "dont_have_account": {
-        "description": "Belum mempunyai akun? ",
+        "description": "Don’t have an account? ",
         "actions": {
-          "name": "Daftar",
+          "name": "Sign Up",
           "link": "/registration"
         }
       }

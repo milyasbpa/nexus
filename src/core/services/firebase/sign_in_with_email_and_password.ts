@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, AuthError } from "firebase/auth";
 import { SignInFirebaseRequestBodyInterface } from "@/core/models/firebase";
 import { FirebaseAuth } from "@/core/config/firebase";
 
@@ -11,7 +11,7 @@ export const signInWithEmailAndPasswordFirebase = async (
     payload.password
   )
     .then((res) => res)
-    .catch((err: any) => {
+    .catch((err: AuthError) => {
       throw err;
     });
 };
