@@ -19,10 +19,10 @@ export const defaultValues = {
   [getDictionaries("en").upload.pesona_dialog.input.name]: "",
 
   [getDictionaries("en").data_table.name]: [
-    {
-      no: "1",
-      file_name: "Resume Feedback Loop",
-      date: "23-04-2010",
-    },
+    // {
+    //   no: "1",
+    //   file_name: "Resume Feedback Loop",
+    //   date: "23-04-2010",
+    // },
   ],
 };
