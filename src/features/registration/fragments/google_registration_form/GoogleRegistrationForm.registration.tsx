@@ -26,7 +26,7 @@ export const GoogleRegistrationFormRegistration = () => {
           "px-[1rem] py-[1rem]",
           "border border-[#002566]",
           "bg-white",
-          "text-[1rem] font-normal text-[#232931]",
+          "text-[1rem] font-normal text-[#232931] font-plusJakartaSans",
           "relative"
         )}
         onClick={handleClickRegister}

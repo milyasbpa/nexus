@@ -81,7 +81,7 @@ export const Passwordfield = ({
             className={clsx(
               "w-full outline-0",
               "bg-white",
-              "text-sm leading-[normal] text-charleston-green placeholder:text-[rgba(154,168,184,1)]"
+              "text-sm leading-[normal] text-charleston-green font-plusJakartaSans placeholder:text-[rgba(154,168,184,1)] placeholder:font-plusJakartaSans"
             )}
             type={inputType}
             onFocus={handleFocus}

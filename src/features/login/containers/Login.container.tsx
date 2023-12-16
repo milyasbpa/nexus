@@ -57,14 +57,14 @@ export const LoginContainer = () => {
             >
               <h2
                 className={clsx(
-                  "text-[1.5rem] font-bold text-[#232931] text-center"
+                  "text-[1.5rem] font-bold text-[#232931] text-center font-plusJakartaSans"
                 )}
               >
                 {dictionaries.form.name}
               </h2>
               <p
                 className={clsx(
-                  "text-[0.875rem] font-normal text-[#404852] text-center"
+                  "text-[0.875rem] font-normal text-[#404852] text-cente font-plusJakartaSans"
                 )}
               >
                 {dictionaries.form.description}
@@ -85,7 +85,11 @@ export const LoginContainer = () => {
                 )}
               >
                 <div className={clsx("w-full h-[1px]", "bg-[#9AA8B8]")} />
-                <p className={clsx("text-[1rem] font-normal text-[#9AA8B8]")}>
+                <p
+                  className={clsx(
+                    "text-[1rem] font-normal text-[#9AA8B8] font-plusJakartaSans"
+                  )}
+                >
                   {"or"}
                 </p>
                 <div className={clsx("w-full h-[1px]", "bg-[#9AA8B8]")} />
@@ -94,11 +98,17 @@ export const LoginContainer = () => {
             </div>
           </div>
 
-          <p className={clsx("text-[1rem] font-normal text-[#404852]")}>
+          <p
+            className={clsx(
+              "text-[1rem] font-normal text-[#404852] font-plusJakartaSans"
+            )}
+          >
             {dictionaries.form.actions.dont_have_account.description}
             <Link
               href={dictionaries.form.actions.dont_have_account.actions.link}
-              className={clsx("text-[1rem] font-semibold text-[#232931]")}
+              className={clsx(
+                "text-[1rem] font-semibold text-[#232931] font-plusJakartaSans"
+              )}
             >
               {dictionaries.form.actions.dont_have_account.actions.name}
             </Link>

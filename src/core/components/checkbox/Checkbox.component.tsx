@@ -6,7 +6,7 @@ import { plusJakartaSans } from "@/core/fonts";
 export interface CheckboxProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
-  label?:string;
+  label?: string;
   name?: string;
   id?: string;
   value?: string;
@@ -15,7 +15,7 @@ export interface CheckboxProps {
 
 export const Checkbox = ({
   checked = false,
-  label='',
+  label = "",
   defaultChecked = false,
   name = "",
   id = "",
@@ -63,7 +63,7 @@ export const Checkbox = ({
         <p
           className={clsx(
             "font-light text-[0.875rem] text-[#232931] sm:text-[0.875rem]",
-            plusJakartaSans.className
+            "font-plusJakartaSans"
           )}
         >
           {label}

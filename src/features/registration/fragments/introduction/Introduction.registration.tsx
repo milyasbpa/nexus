@@ -26,7 +26,7 @@ export const IntroductionRegistration = () => {
         <div className={clsx("max-w-[600px] w-full")}>
           <p
             className={clsx(
-              "text-[1.125rem] font-normal text-[#404852] text-center"
+              "text-[1.125rem] font-normal text-[#404852] text-center font-plusJakartaSans"
             )}
             dangerouslySetInnerHTML={{
               __html: dictionaries.introduction.message,
@@ -42,7 +42,7 @@ export const IntroductionRegistration = () => {
         >
           <p
             className={clsx(
-              "text-[1.125rem] font-medium text-center text-[#697584]"
+              "text-[1.125rem] font-medium text-center text-[#697584] font-plusJakartaSans"
             )}
           >
             {dictionaries.introduction.sponsor.title}

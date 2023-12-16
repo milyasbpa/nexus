@@ -25,7 +25,7 @@ export const RegistrationContainer = () => {
       >
         <div
           className={clsx(
-            "grid grid-cols-1 place-content-center place-items-center gap-[1.5rem]",
+            "grid grid-cols-1 place-content-center place-items-center gap-[1rem]",
             "w-full h-[100vh]",
             "px-[1.5rem]"
           )}
@@ -43,7 +43,7 @@ export const RegistrationContainer = () => {
             className={clsx(
               "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
               "max-w-[460px] w-full",
-              "pt-[2rem] pb-[1.5rem] px-[30px]",
+              "pt-[1rem] pb-[1.5rem] px-[30px]",
               "bg-white",
               "rounded-[0.5rem]"
             )}
@@ -51,20 +51,20 @@ export const RegistrationContainer = () => {
           >
             <div
               className={clsx(
-                "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[1rem]",
+                "grid grid-cols-1 items-start content-start justify-center justify-items-center gap-[0.5rem]",
                 "w-full"
               )}
             >
               <h2
                 className={clsx(
-                  "text-[1.5rem] font-bold text-[#232931] text-center"
+                  "text-[1.5rem] font-bold text-[#232931] text-center font-plusJakartaSans"
                 )}
               >
                 {dictionaries.form.name}
               </h2>
               <p
                 className={clsx(
-                  "text-[0.875rem] font-normal text-[#404852] text-center"
+                  "text-[0.875rem] font-normal text-[#404852] text-center font-plusJakartaSans"
                 )}
               >
                 {dictionaries.form.description}
@@ -73,7 +73,7 @@ export const RegistrationContainer = () => {
 
             <div
               className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
                 "w-full"
               )}
             >
@@ -85,7 +85,11 @@ export const RegistrationContainer = () => {
                 )}
               >
                 <div className={clsx("w-full h-[1px]", "bg-[#9AA8B8]")} />
-                <p className={clsx("text-[1rem] font-normal text-[#9AA8B8]")}>
+                <p
+                  className={clsx(
+                    "text-[1rem] font-normal text-[#9AA8B8] font-plusJakartaSans"
+                  )}
+                >
                   {"or"}
                 </p>
                 <div className={clsx("w-full h-[1px]", "bg-[#9AA8B8]")} />
@@ -98,7 +102,9 @@ export const RegistrationContainer = () => {
             {dictionaries.form.actions.dont_have_account.description}
             <Link
               href={dictionaries.form.actions.dont_have_account.actions.link}
-              className={clsx("text-[1rem] font-semibold text-[#232931]")}
+              className={clsx(
+                "text-[1rem] font-semibold text-[#232931] font-plusJakartaSans"
+              )}
             >
               {dictionaries.form.actions.dont_have_account.actions.name}
             </Link>

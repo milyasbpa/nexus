@@ -17,7 +17,9 @@ export const Textfield = ({ label = "", ...otherProps }: ITextfieldProps) => {
       )}
     >
       <label
-        className={clsx("text-sm leading-[normal] text-[rgba(35,41,49,1)]")}
+        className={clsx(
+          "text-sm leading-[normal] text-[rgba(35,41,49,1)] font-plusJakartaSans"
+        )}
         dangerouslySetInnerHTML={{ __html: label }}
       />
 
@@ -26,7 +28,7 @@ export const Textfield = ({ label = "", ...otherProps }: ITextfieldProps) => {
           "w-full",
           "rounded-[0.5rem] border border-cadet-grey px-[1rem] py-[0.75rem] outline-0",
           "focus:border-tufts-blue focus:drop-shadow-[0px_-1px_8px_#D6EDFF]",
-          "text-sm leading-[normal] text-charleston-green placeholder:text-[rgba(154,168,184,1)]"
+          "text-sm leading-[normal] text-charleston-green placeholder:text-[rgba(154,168,184,1)] font-plusJakartaSans placeholder:font-plusJakartaSans"
         )}
         {...otherProps}
       />

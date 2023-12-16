@@ -43,39 +43,45 @@ export const RegistrationFormRegistration = () => {
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
         "w-full"
       )}
     >
-      <Textfield
-        name={dictionaries.form.full_name.name}
-        label={dictionaries.form.full_name.label}
-        value={watch(dictionaries.form.full_name.name)}
-        placeholder={dictionaries.form.full_name.placeholder}
-        onChange={handleChangeFullName}
-      />
-      <Textfield
-        name={dictionaries.form.email.name}
-        label={dictionaries.form.email.label}
-        value={watch(dictionaries.form.email.name)}
-        placeholder={dictionaries.form.email.placeholder}
-        onChange={handleChangeEmail}
-      />
-      <Passwordfield
-        name={dictionaries.form.password.name}
-        label={dictionaries.form.password.label}
-        value={watch(dictionaries.form.password.name)}
-        placeholder={dictionaries.form.password.placeholder}
-        onChange={handleChangePassword}
-      />
-      <Passwordfield
-        name={dictionaries.form.password_confirmation.name}
-        label={dictionaries.form.password_confirmation.label}
-        value={watch(dictionaries.form.password_confirmation.name)}
-        placeholder={dictionaries.form.password_confirmation.placeholder}
-        onChange={handleChangePasswordConfirmation}
-      />
-
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
+          "w-full"
+        )}
+      >
+        <Textfield
+          name={dictionaries.form.full_name.name}
+          label={dictionaries.form.full_name.label}
+          value={watch(dictionaries.form.full_name.name)}
+          placeholder={dictionaries.form.full_name.placeholder}
+          onChange={handleChangeFullName}
+        />
+        <Textfield
+          name={dictionaries.form.email.name}
+          label={dictionaries.form.email.label}
+          value={watch(dictionaries.form.email.name)}
+          placeholder={dictionaries.form.email.placeholder}
+          onChange={handleChangeEmail}
+        />
+        <Passwordfield
+          name={dictionaries.form.password.name}
+          label={dictionaries.form.password.label}
+          value={watch(dictionaries.form.password.name)}
+          placeholder={dictionaries.form.password.placeholder}
+          onChange={handleChangePassword}
+        />
+        <Passwordfield
+          name={dictionaries.form.password_confirmation.name}
+          label={dictionaries.form.password_confirmation.label}
+          value={watch(dictionaries.form.password_confirmation.name)}
+          placeholder={dictionaries.form.password_confirmation.placeholder}
+          onChange={handleChangePasswordConfirmation}
+        />
+      </div>
       <button
         className={clsx(
           "flex items-center justify-center",
@@ -83,7 +89,7 @@ export const RegistrationFormRegistration = () => {
           "rounded-[0.5rem]",
           "px-[1rem] py-[1rem]",
           "bg-[#002566] disabled:bg-[#99A8C2]",
-          "text-[1rem] font-normal text-white"
+          "text-[1rem] font-normal text-white font-plusJakartaSans"
         )}
         disabled={isRegisterDisabled}
         onClick={handleClickRegister}
