@@ -32,7 +32,7 @@ export const PesonaDocuments = () => {
     );
   };
   const handleUpload = () => {
-    setChatStorage;
+    setChatStorage();
   };
 
   return (
