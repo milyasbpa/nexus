@@ -14,11 +14,9 @@ export const fetchPostRegisterNexus = async (
           process.env.NEXT_PUBLIC_NEXUS_SERVICE_URL
         }${NexusRestAPIURL.postRegister()}`;
 
-  console.log(payload?.data, "ini axios");
   return await axios
     .post(url, payload?.data)
     .then((res: any) => {
-      console.log(res, "ini axios");
       return res.data;
     })
     .catch((err) => {
