@@ -7,6 +7,7 @@ export const defaultValues = {
     current_page: 1,
     total_page: 1,
   },
+  [getDictionaries("en").pdf.private.name]: null,
 
   // conversation
   [getDictionaries("en").conversation.name]: true,

@@ -4,7 +4,7 @@
   },
   "actions": {
     "back": "Back",
-    "logout":"Log Out"
+    "logout": "Log Out"
   },
   "pdf": {
     "file": {
@@ -12,6 +12,10 @@
     },
     "header": {
       "name": "pdf_header-chat"
+    },
+    "private": {
+      "name": "pdf_private-chat",
+      "message": "Sorry, document's private. Let's chat for details instead"
     }
   },
   "conversation": {

@@ -51,6 +51,29 @@ export const DocumentChat = () => {
     });
   };
 
+  if (watch(dictionaries.pdf.private.name) === null) {
+    return <div />;
+  }
+
+  if (watch(dictionaries.pdf.private.name) === true) {
+    return (
+      <div
+        className={clsx(
+          "grid grid-cols-1 place-content-center place-items-center",
+          "w-full h-[calc(100vh_-_68px)]"
+        )}
+      >
+        <p
+          className={clsx(
+            "text-[0.875rem] font-normal text-[#404852] font-plusJakartaSans text-center"
+          )}
+        >
+          {dictionaries.pdf.private.message}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className={clsx("w-full")}>
       {/* header */}
