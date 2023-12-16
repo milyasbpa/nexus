@@ -66,6 +66,15 @@
       },
       "internal_server_error": {
         "message": "Internal Server Error"
+      },
+      "invalid_email": {
+        "message": "Please enter valid email format!"
+      },
+      "invalid_password_format": {
+        "message": "Password must have minimum 6 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"
+      },
+      "password_not_match": {
+        "message": "Password confirmation isn't match"
       }
     },
     "remember_me": {

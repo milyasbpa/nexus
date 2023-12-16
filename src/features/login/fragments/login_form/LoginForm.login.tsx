@@ -66,7 +66,6 @@ export const LoginFormLogin = () => {
     !watch(dictionaries.form.password.name)?.length ||
     !!Object.keys(errors).length;
 
-  console.log(errors, "ini errors");
   return (
     <div
       className={clsx(
