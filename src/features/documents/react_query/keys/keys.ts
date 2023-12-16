@@ -14,4 +14,7 @@ export const DocumentsReactQueryKey = {
   SetDocumentStorage: () => {
     return ["DocumentsReactQueryKey.SetDocumentStorage"];
   },
+  SetChatStorage: () => {
+    return ["DocumentsReactQueryKey.SetChatStorage"];
+  },
 };
