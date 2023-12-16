@@ -8,9 +8,26 @@
       "title": "AS FEATURED IN"
     }
   },
+  "notification": {
+    "is_open": {
+      "name": "open_notification-registration"
+    },
+    "message": {
+      "name": "message_notification-registration",
+      "template": {
+        "invalid_login_credentials": "Invalid Login Credentials",
+        "invalid_email": "Invalid Email",
+        "invalid_password_length": "Password must be a string with at least 6 characters.",
+        "internal_server_error": "Internal Server Error"
+      }
+    },
+    "variant": {
+      "name": "variant_notification-registration"
+    }
+  },
   "form": {
-    "name": "Daftar",
-    "description": "Masukkan email dan kata sandi anda",
+    "name": "Register",
+    "description": "Enter your email and password",
     "type": {
       "name": "registration"
     },
@@ -26,22 +43,22 @@
     "full_name": {
       "label": "Full Name",
       "name": "full_name_registration",
-      "placeholder": "Masukkan nama lengkap Anda"
+      "placeholder": "Enter your full name"
     },
     "email": {
       "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_registration",
-      "placeholder": "Masukkan email Anda"
+      "placeholder": "Enter your email"
     },
     "password": {
-      "label": "Kata Sandi <span style='color:#FC5959;'>*</span>",
+      "label": "Password <span style='color:#FC5959;'>*</span>",
       "name": "password_registration",
-      "placeholder": "Masukkan kata sandi Anda"
+      "placeholder": "Enter your password"
     },
     "password_confirmation": {
-      "label": "Konfirmasi Kata Sandi <span style='color:#FC5959;'>*</span>",
+      "label": "Password Confirmation <span style='color:#FC5959;'>*</span>",
       "name": "password-confirmation_registration",
-      "placeholder": "Masukkan ulang kata sandi Anda"
+      "placeholder": "Enter your password confirmation"
     },
     "errors": {
       "incorrect_account": {
@@ -52,16 +69,16 @@
       }
     },
     "remember_me": {
-      "label": "Ingat saya",
+      "label": "Remember me",
       "name": "remember-me_registration"
     },
     "actions": {
-      "register": "Daftar",
-      "google_register": "Daftar menggunakan google",
+      "register": "Register",
+      "google_register": "Register with google",
       "dont_have_account": {
-        "description": "Punya akun? ",
+        "description": "Have an account? ",
         "actions": {
-          "name": "Masuk",
+          "name": "Login",
           "link": "/"
         }
       }

@@ -1,7 +1,6 @@
 import { PostRegisterNexusRequestPayloadInterface } from "@/core/models/nexus";
 import { NexusRestAPIURL } from "@/core/routers/rest";
 import axios from "axios";
-import Cookie from "universal-cookie";
 
 export const fetchPostRegisterNexus = async (
   payload?: PostRegisterNexusRequestPayloadInterface
@@ -15,12 +14,11 @@ export const fetchPostRegisterNexus = async (
           process.env.NEXT_PUBLIC_NEXUS_SERVICE_URL
         }${NexusRestAPIURL.postRegister()}`;
 
-  const cookie = new Cookie();
-  const token = cookie.get("token");
-
+  console.log(payload?.data, "ini axios");
   return await axios
     .post(url, payload?.data)
     .then((res: any) => {
+      console.log(res, "ini axios");
       return res.data;
     })
     .catch((err) => {

@@ -8,7 +8,23 @@
       "title": "AS FEATURED IN"
     }
   },
-
+  "notification": {
+    "is_open": {
+      "name": "open_notification-registration"
+    },
+    "message": {
+      "name": "message_notification-registration",
+      "template": {
+        "invalid_login_credentials": "Invalid Login Credentials",
+        "invalid_email": "Invalid Email",
+        "invalid_password_length": "Password must be a string with at least 6 characters.",
+        "internal_server_error": "Internal Server Error"
+      }
+    },
+    "variant": {
+      "name": "variant_notification-registration"
+    }
+  },
   "form": {
     "name": "Register",
     "description": "Enter your email and password",

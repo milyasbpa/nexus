@@ -33,6 +33,7 @@ export const useRegistrationPostRegisterNexus = () => {
           password: watch(dictionaries.form.password.name),
         },
       };
+
       return fetchPostRegisterNexus(payload);
     },
   });
@@ -43,6 +44,24 @@ export const useRegistrationPostRegisterNexus = () => {
       signInWithEmailAndPasswordFirebase();
     }
   }, [mutation.data]);
+
+  useEffect(() => {
+    if (mutation.isError) {
+      const message = mutation.error.message.includes(
+        "The email address is improperly formatted."
+      )
+        ? dictionaries.notification.message.template.invalid_email
+        : mutation.error.message.includes(
+            "The password must be a string with at least 6 characters."
+          )
+        ? dictionaries.notification.message.template.invalid_password_length
+        : dictionaries.notification.message.template.internal_server_error;
+
+      setValue(dictionaries.notification.is_open.name, true);
+      setValue(dictionaries.notification.message.name, message);
+      setValue(dictionaries.notification.variant.name, "danger");
+    }
+  }, [mutation.isError]);
 
   return mutation;
 };

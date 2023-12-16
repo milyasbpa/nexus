@@ -9,6 +9,7 @@ import { GoogleRegistrationFormRegistration } from "../fragments/google_registra
 import { FormProvider, useForm } from "react-hook-form";
 import { defaultValues } from "../react_hook_form/constants/default_values";
 import { IntroductionRegistration } from "../fragments/introduction/Introduction.registration";
+import { NotificationRegistration } from "../fragments/notification";
 
 export const RegistrationContainer = () => {
   const dictionaries = getDictionaries("en");
@@ -77,6 +78,7 @@ export const RegistrationContainer = () => {
                 "w-full"
               )}
             >
+              <NotificationRegistration />
               <RegistrationFormRegistration />
               <div
                 className={clsx(
