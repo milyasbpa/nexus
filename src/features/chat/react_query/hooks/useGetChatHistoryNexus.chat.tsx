@@ -52,10 +52,33 @@ export const useChatGetChatHistoryNexus = () => {
 
   useEffect(() => {
     if (query.data) {
+      const lastPersona = !query.data.data.chats.length
+        ? chatStorageData?.persona ?? {
+            id: "GENERAL",
+            name: "General",
+          }
+        : !!query.data.data.chats.filter((chat) => !!chat.persona).at(-1)?.id
+        ? {
+            id:
+              query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
+                ?.persona ?? "GENERAL",
+            name:
+              query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
+                ?.persona === "FINANCIAL_CONSULTANT"
+                ? "Financial Analyst"
+                : query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
+                    ?.persona === "LEGAL_CONSULTANT"
+                ? "Legal Consultant"
+                : "General",
+          }
+        : {
+            id: "GENERAL",
+            name: "General",
+          };
       setValue(
         dictionaries.conversation.history.name,
         !query.data.data.chats.length
-          ? [...watch(dictionaries.conversation.history.name)]
+          ? [dictionaries.conversation.history.greeting.template]
           : [
               ...query.data.data.chats
                 .sort((a, b) => a.created_at - b.created_at)
@@ -80,33 +103,25 @@ export const useChatGetChatHistoryNexus = () => {
                     user: persona,
                   };
                 }),
-              ...watch(dictionaries.conversation.history.name),
+              {
+                ...dictionaries.conversation.history.greeting.template,
+                message:
+                  dictionaries.conversation.history.greeting.template.message.replace(
+                    "{{name}}",
+                    userStorageData?.email ?? ""
+                  ),
+                user: lastPersona.name,
+                initial: lastPersona.name
+                  .split(" ")
+                  .reduce((acc: any, value: string) => {
+                    const firstChar = value.charAt(0);
+                    return `${acc}${firstChar}`;
+                  }, ""),
+              },
             ]
       );
-      const persona = !query.data.data.chats.length
-        ? chatStorageData?.persona ?? {
-            id: "GENERAL",
-            name: "General",
-          }
-        : !!query.data.data.chats.filter((chat) => !!chat.persona).at(-1)?.id
-        ? {
-            id:
-              query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
-                ?.persona ?? "GENERAL",
-            name:
-              query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
-                ?.persona === "FINANCIAL_CONSULTANT"
-                ? "Financial Analyst"
-                : query.data.data.chats.filter((chat) => !!chat.persona).at(-1)
-                    ?.persona === "LEGAL_CONSULTANT"
-                ? "Legal Consultant"
-                : "General",
-          }
-        : {
-            id: "GENERAL",
-            name: "General",
-          };
-      setValue(dictionaries.conversation.persona.name, persona);
+
+      setValue(dictionaries.conversation.persona.name, lastPersona);
     }
   }, [query.data]);
 

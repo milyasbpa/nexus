@@ -5,6 +5,9 @@ import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { PersonaDropdownChat } from "../../components/persona_dropdown";
+import { queryClient } from "@/core/config/react_query";
+import { ChatReactQueryKey } from "../../react_query/keys";
+import { UserStorageInterface } from "@/core/models/storage";
 
 export const PersonaChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
@@ -17,11 +20,32 @@ export const PersonaChat = () => {
   }, "");
 
   const handleClickSelectPersona = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const userStorageData = queryClient.getQueryData(
+      ChatReactQueryKey.GetUserStorage()
+    ) as undefined | UserStorageInterface;
     const selectedPersona =
       dictionaries.conversation.persona.data.find(
         (item) => item.id === e.currentTarget.value
       ) ?? null;
     setValue(dictionaries.conversation.persona.name, selectedPersona);
+    setValue(dictionaries.conversation.history.name, [
+      ...watch(dictionaries.conversation.history.name),
+      {
+        ...dictionaries.conversation.history.greeting.template,
+        message:
+          dictionaries.conversation.history.greeting.template.message.replace(
+            "{{name}}",
+            userStorageData?.email ?? ""
+          ),
+        user: selectedPersona?.name,
+        initial: selectedPersona?.name
+          .split(" ")
+          .reduce((acc: any, value: string) => {
+            const firstChar = value.charAt(0);
+            return `${acc}${firstChar}`;
+          }, ""),
+      },
+    ]);
   };
 
   return (

@@ -16,8 +16,8 @@ export const defaultValues = {
     name: "General",
   },
   // history
-  [getDictionaries("en").conversation.history.name]:
-    getDictionaries("en").conversation.history.default_data,
+  [getDictionaries("en").conversation.history.name]: [],
+  // getDictionaries("en").conversation.history.default_data,
   // suggestion
   [getDictionaries("en").conversation.suggestion.name]: true,
   [getDictionaries("en").conversation.suggestion.message.name]:

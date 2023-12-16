@@ -38,9 +38,16 @@
         {
           "message": "Hello, {{name}}! Excited to explore financial insights with you. How can I assist you today?",
           "initial": "",
-          "user": "Financial Analyst"
+          "user": ""
         }
-      ]
+      ],
+      "greeting": {
+        "template": {
+          "message": "Hello, {{name}}! Excited to explore financial insights with you. How can I assist you today?",
+          "initial": "",
+          "user": ""
+        }
+      }
     },
     "suggestion": {
       "title": "Suggestion",
