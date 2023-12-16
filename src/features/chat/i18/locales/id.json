@@ -57,6 +57,11 @@
     },
     "question": {
       "name": "question-chat"
+    },
+    "answer": {
+      "is_loading": {
+        "name": "is_loading_answer-chat"
+      }
     }
   },
   "introduction": {

@@ -10,7 +10,8 @@ import { useChatPostSendChatNexus } from "../../react_query/hooks/usePostSendCha
 export const KeyboardChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
-  const { mutate: postSendChatNexus } = useChatPostSendChatNexus();
+  const { mutate: postSendChatNexus, isPending: isPendingPostSendChatNexus } =
+    useChatPostSendChatNexus();
 
   const handleClickHint = () => {
     setValue(
@@ -90,19 +91,29 @@ export const KeyboardChat = () => {
             "text-[1rem] font-normal text-[#232931]",
             "outline-none"
           )}
+          disabled={isPendingPostSendChatNexus}
           value={watch(dictionaries.conversation.keyboard.input.name)}
           placeholder={"Type your question"}
           onChange={handleChange}
           onKeyDown={handleKeyDownEnter}
         />
-        <button
-          className={clsx("bg-[#002566]", "rounded-[0.25rem]")}
-          onClick={handleClickEnter}
-        >
-          <ArrowUpIcon
-            className={clsx("w-[1.25rem] h-[1.25rem]", "text-white")}
-          />
-        </button>
+        {isPendingPostSendChatNexus ? (
+          <div>
+            <img
+              src={"/icons/chat/loading.svg"}
+              className={clsx("w-[30px] h-[30px]")}
+            />
+          </div>
+        ) : (
+          <button
+            className={clsx("bg-[#002566]", "rounded-[0.25rem]")}
+            onClick={handleClickEnter}
+          >
+            <ArrowUpIcon
+              className={clsx("w-[1.25rem] h-[1.25rem]", "text-white")}
+            />
+          </button>
+        )}
       </div>
     </div>
   );
