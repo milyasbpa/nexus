@@ -1,40 +1,64 @@
-"use client";
-import * as React from "react";
 import clsx from "clsx";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 export interface AlertComponentProps {
-  variant?: "danger" | "success" | "warning";
-  message?: string;
   isOpen?: boolean;
+  message?: string;
+  variant?: "success" | "danger" | "info";
+  onClose?: () => void;
 }
 
 export const AlertComponent = ({
-  variant = "danger",
-  message = "",
   isOpen = false,
+  message = "",
+  variant = "info",
+  onClose,
 }: AlertComponentProps) => {
+  const handleClickClose = () => {
+    
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
     <div
       className={clsx(
-        isOpen ? "grid" : "hidden",
-        "grid-cols-1 place-content-start place-items-start",
-        "w-full",
-        "px-[1rem] py-[1rem]",
         variant === "danger"
           ? "border border-[#FC5959]"
           : "border border-[#FC5959]",
         variant === "danger" ? "bg-[#FFF0F0]" : "bg-[#FFF0F0]",
-        "rounded-[0.25rem]"
+        "rounded-[0.5rem]",
+        isOpen
+          ? "grid grid-flow-col items-center content-center justify-between justify-items-start"
+          : "hidden",
+        "fixed top-[2.25rem] left-[50%]",
+        "translate-x-[-50%]",
+        "py-[0.5rem] px-[1rem] gap-x-[0.5rem]",
+        "max-w-[432px] w-full",
+        "z-[60]"
       )}
     >
       <p
         className={clsx(
           variant === "danger" ? "text-[#662424]" : "text-[#662424]",
-          "text-[0.875rem] font-normal font-plusJakartaSans"
+          "text-[1rem] font-normal"
         )}
+        dangerouslySetInnerHTML={{ __html: message }}
+      />
+
+      {/* <button
+        className={clsx(
+          "flex items-center justify-end",
+          "rounded-[0.375rem]",
+          "cursor-pointer"
+        )}
+        onClick={handleClickClose}
       >
-        {message}
-      </p>
+        <XMarkIcon
+          className={clsx("w-[1.5rem] h-[1.5rem]", "text-[#662424]")}
+        />
+      </button> */}
     </div>
   );
 };

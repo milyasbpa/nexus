@@ -5,6 +5,9 @@ export const defaultValues = {
   // data tables
   [getDictionaries("en").data_table.search.input.name]: "",
 
+  // upload
+  [getDictionaries("en").upload.alert.name]: false,
+
   [getDictionaries("en").upload.dialog.name]: false,
   [getDictionaries("en").upload.dialog.tab.name]: "drag_and_drop",
 

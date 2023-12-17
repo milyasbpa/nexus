@@ -12,9 +12,16 @@ import { DocumentsForm } from "../../react_hook_form/keys";
 import { PlusSmallIcon } from "@heroicons/react/20/solid";
 import { plusJakartaSans } from "@/core/fonts";
 import { DragnDropUploadDocuments } from "../../components/drag_n_drop";
+import { AlertComponent } from "@/core/components/alert";
 
 export const UploadDocuments = () => {
-  const { watch, setValue } = useFormContext<DocumentsForm>();
+  const {
+    watch,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<DocumentsForm>();
   const dictionaries = getDictionaries("en");
 
   const handleOpenModal = () => {
@@ -24,7 +31,18 @@ export const UploadDocuments = () => {
     setValue(dictionaries.upload.dialog.name, true);
   };
 
+  const handleCloseOutsideModal = () => {
+    if (!watch(dictionaries.upload.alert.name)) {
+      setValue(dictionaries.upload.dialog.name, false);
+      setValue(
+        dictionaries.upload.dialog.tab.name,
+        dictionaries.upload.dialog.tab.data[0].id
+      );
+    }
+  };
+
   const handleCloseModal = () => {
+    setValue(dictionaries.upload.alert.name, false);
     setValue(dictionaries.upload.dialog.name, false);
     setValue(
       dictionaries.upload.dialog.tab.name,
@@ -42,6 +60,32 @@ export const UploadDocuments = () => {
     setValue(e.currentTarget.name, !watch(e.currentTarget.name));
   };
   const handleChangeDragnDropUpload = (data: FileList) => {
+    const type = Array.from(data)
+      .map((item) => item.type)
+      .find((_, index) => index === 0) as string;
+    const size = Array.from(data)
+      .map((item) => item.size)
+      .find((_, index) => index === 0) as number;
+
+    if (type !== "application/pdf") {
+      setValue(dictionaries.upload.alert.name, true);
+      setError(dictionaries.upload.alert.name, {
+        message: dictionaries.upload.errors.template.invalid_format.message,
+      });
+      return;
+    }
+
+    const maximumSize = 10; //in Mb
+
+    if (size >= maximumSize / 1024) {
+      setValue(dictionaries.upload.alert.name, true);
+      setError(dictionaries.upload.alert.name, {
+        message: dictionaries.upload.errors.template.invalid_size.message,
+      });
+      return;
+    }
+
+    clearErrors(dictionaries.upload.alert.name);
     const name = Array.from(data)
       .map((item) => item.name)
       .find((_, index) => index === 0) as string;
@@ -84,8 +128,18 @@ export const UploadDocuments = () => {
     );
   };
 
+  const handleCloseAlert = () => {
+    console.log("ini apa");
+    setValue(dictionaries.upload.alert.name, false);
+  };
+
   return (
     <>
+      <AlertComponent
+        isOpen={watch(dictionaries.upload.alert.name)}
+        message={String(errors[dictionaries.upload.alert.name]?.message) ?? ""}
+        onClose={handleCloseAlert}
+      />
       <button
         className={clsx(
           "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]",
@@ -114,7 +168,7 @@ export const UploadDocuments = () => {
 
       <ModalComponent
         isOpen={watch(dictionaries.upload.dialog.name)}
-        onClose={handleCloseModal}
+        onClose={handleCloseOutsideModal}
       >
         <Dialog.Panel
           className={clsx(

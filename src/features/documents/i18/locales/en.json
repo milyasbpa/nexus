@@ -12,6 +12,19 @@
     "button": {
       "placeholder": "Upload Document"
     },
+    "alert": {
+      "name": "alert_upload-documents"
+    },
+    "errors": {
+      "template": {
+        "invalid_format": {
+          "message": "Please upload in valid format"
+        },
+        "invalid_size": {
+          "message": "Please upload in valid size"
+        }
+      }
+    },
     "pesona_dialog": {
       "name": "pesona_dialog-documents",
       "input": {
