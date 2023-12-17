@@ -39,6 +39,9 @@
     "google_email": {
       "name": "google_email"
     },
+    "full_name": {
+      "name": "display_name"
+    },
     "email": {
       "label": "Email <span style='color:#FC5959;'>*</span>",
       "name": "email_login",

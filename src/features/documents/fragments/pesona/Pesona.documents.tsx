@@ -8,9 +8,6 @@ import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
 import { useDocumentsSetChatStorage } from "../../react_query/hooks/useSetChatStorage.documents";
-import { queryClient } from "@/core/config/react_query";
-import { DocumentsReactQueryKey } from "../../react_query/keys";
-import { UserStorageInterface } from "@/core/models/storage";
 
 export const PesonaDocuments = () => {
   const { watch, setValue } = useFormContext<DocumentsForm>();
@@ -18,9 +15,6 @@ export const PesonaDocuments = () => {
 
   const { mutate: setChatStorage } = useDocumentsSetChatStorage();
 
-  const userStorageData = queryClient.getQueryData(
-    DocumentsReactQueryKey.GetUserStorage()
-  ) as undefined | UserStorageInterface;
   const handleCloseModal = () => {
     setValue(dictionaries.upload.pesona_dialog.name, false);
   };
@@ -41,12 +35,10 @@ export const PesonaDocuments = () => {
     setChatStorage();
   };
 
-  const dialogTitle = !userStorageData
-    ? dictionaries.upload.dialog.title.replace("{{name}}", "")
-    : dictionaries.upload.dialog.title.replace(
-        "{{name}}",
-        userStorageData.email
-      );
+  const dialogTitle = dictionaries.upload.pesona_dialog.title.replace(
+    "{{name}}",
+    watch(dictionaries.upload.pesona_dialog.full_name.name)
+  );
 
   return (
     <ModalComponent
@@ -93,12 +85,6 @@ export const PesonaDocuments = () => {
                 "w-full"
               )}
             >
-              <p
-                className={clsx("text-[#232931] text-[1.125rem] font-semibold")}
-              >
-                {dictionaries.upload.pesona_dialog.title}
-              </p>
-
               <div
                 className={clsx(
                   "grid grid-cols-1 lg:grid-cols-3 place-content-start place-items-start gap-[1.5rem]",

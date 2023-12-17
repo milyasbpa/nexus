@@ -40,6 +40,9 @@
     "google_email": {
       "name": "google_email"
     },
+    "google_full_name": {
+      "name": "google_full_name"
+    },
     "full_name": {
       "label": "Full Name",
       "name": "full_name_registration",
@@ -69,6 +72,9 @@
       },
       "invalid_email": {
         "message": "Please enter valid email format!"
+      },
+      "invalid_full_name": {
+        "message": "Please enter your full name!"
       },
       "invalid_password_format": {
         "message": "Password must have minimum 6 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"

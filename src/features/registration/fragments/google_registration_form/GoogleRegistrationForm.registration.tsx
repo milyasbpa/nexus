@@ -13,7 +13,7 @@ export const GoogleRegistrationFormRegistration = () => {
     useRegistrationSignInWithPopupFirebase();
 
   const handleClickRegister = () => {
-    setValue(dictionaries.form.type.name, "google_register");
+    setValue(dictionaries.form.type.name, "google_registration");
     setValue(dictionaries.form.actions.google_register.is_loading.name, false);
     signInWithPopupFirebase();
   };

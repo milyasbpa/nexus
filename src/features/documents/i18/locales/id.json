@@ -17,6 +17,9 @@
       "input": {
         "name": "selected_pesona_dialog-documents"
       },
+      "full_name": {
+        "name": "full_name-documents"
+      },
       "title": "Hey {{name}}, choose one who do you want to chat with?🚀",
       "data": [
         {

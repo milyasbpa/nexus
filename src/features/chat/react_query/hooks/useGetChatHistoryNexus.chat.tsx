@@ -95,16 +95,34 @@ export const useChatGetChatHistoryNexus = () => {
                   lastPersona.id === "FINANCIAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
                         "{{name}}",
-                        userStorageData?.email ?? ""
+                        userStorageData?.full_name &&
+                          !!userStorageData.full_name.length
+                          ? userStorageData?.full_name
+                          : userStorageData?.full_name &&
+                            !userStorageData.full_name.length
+                          ? userStorageData?.email ?? ""
+                          : ""
                       )
                     : lastPersona.id === "LEGAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
                         "{{name}}",
-                        userStorageData?.email ?? ""
+                        userStorageData?.full_name &&
+                          !!userStorageData.full_name.length
+                          ? userStorageData?.full_name
+                          : userStorageData?.full_name &&
+                            !userStorageData.full_name.length
+                          ? userStorageData?.email ?? ""
+                          : ""
                       )
                     : dictionaries.conversation.history.greeting.template.general.message.replace(
                         "{{name}}",
-                        userStorageData?.email ?? ""
+                        userStorageData?.full_name &&
+                          !!userStorageData.full_name.length
+                          ? userStorageData?.full_name
+                          : userStorageData?.full_name &&
+                            !userStorageData.full_name.length
+                          ? userStorageData?.email ?? ""
+                          : ""
                       ),
                 user: lastPersona.name,
                 initial: lastPersona.name
@@ -144,16 +162,34 @@ export const useChatGetChatHistoryNexus = () => {
                   lastPersona.id === "FINANCIAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
                         "{{name}}",
-                        userStorageData?.email ?? ""
+                        userStorageData?.full_name &&
+                          !!userStorageData.full_name.length
+                          ? userStorageData?.full_name
+                          : userStorageData?.full_name &&
+                            !userStorageData.full_name.length
+                          ? userStorageData?.email ?? ""
+                          : ""
                       )
                     : lastPersona.id === "LEGAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
                         "{{name}}",
-                        userStorageData?.email ?? ""
+                        userStorageData?.full_name &&
+                          !!userStorageData.full_name.length
+                          ? userStorageData?.full_name
+                          : userStorageData?.full_name &&
+                            !userStorageData.full_name.length
+                          ? userStorageData?.email ?? ""
+                          : ""
                       )
                     : dictionaries.conversation.history.greeting.template.general.message.replace(
                         "{{name}}",
-                        userStorageData?.email ?? ""
+                        userStorageData?.full_name &&
+                          !!userStorageData.full_name.length
+                          ? userStorageData?.full_name
+                          : userStorageData?.full_name &&
+                            !userStorageData.full_name.length
+                          ? userStorageData?.email ?? ""
+                          : ""
                       ),
                 user: lastPersona.name,
                 initial: lastPersona.name

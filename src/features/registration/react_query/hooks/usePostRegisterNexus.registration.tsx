@@ -26,9 +26,7 @@ export const useRegistrationPostRegisterNexus = () => {
     mutationFn: () => {
       const payload: PostRegisterNexusRequestPayloadInterface = {
         data: {
-          fullname: !watch(dictionaries.form.full_name.name).length
-            ? undefined
-            : watch(dictionaries.form.full_name.name),
+          fullname: watch(dictionaries.form.full_name.name),
           email: watch(dictionaries.form.email.name),
           password: watch(dictionaries.form.password.name),
         },

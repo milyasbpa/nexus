@@ -22,6 +22,13 @@ export const RegistrationFormRegistration = () => {
   const { mutate: postRegisterNexus } = useRegistrationPostRegisterNexus();
 
   const handleChangeFullName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.currentTarget.value.length) {
+      setError(e.currentTarget.name, {
+        message: dictionaries.form.errors.invalid_full_name.message,
+      });
+    } else {
+      clearErrors(e.currentTarget.name);
+    }
     setValue(e.currentTarget.name, e.currentTarget.value);
   };
 
@@ -61,12 +68,13 @@ export const RegistrationFormRegistration = () => {
   };
 
   const handleClickRegister = () => {
-    setValue(dictionaries.form.type.name, "register");
+    setValue(dictionaries.form.type.name, "registration");
     setValue(dictionaries.form.actions.register.is_loading.name, false);
     postRegisterNexus();
   };
 
   const isRegisterDisabled =
+    !watch(dictionaries.form.full_name.name).length ||
     !watch(dictionaries.form.email.name).length ||
     !watch(dictionaries.form.password.name).length ||
     !watch(dictionaries.form.password_confirmation.name).length ||
@@ -86,13 +94,30 @@ export const RegistrationFormRegistration = () => {
           "w-full"
         )}
       >
-        <Textfield
-          name={dictionaries.form.full_name.name}
-          label={dictionaries.form.full_name.label}
-          value={watch(dictionaries.form.full_name.name)}
-          placeholder={dictionaries.form.full_name.placeholder}
-          onChange={handleChangeFullName}
-        />
+        <div
+          className={clsx(
+            "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
+            "w-full"
+          )}
+        >
+          <Textfield
+            name={dictionaries.form.full_name.name}
+            label={dictionaries.form.full_name.label}
+            value={watch(dictionaries.form.full_name.name)}
+            placeholder={dictionaries.form.full_name.placeholder}
+            onChange={handleChangeFullName}
+          />
+          {errors[dictionaries.form.full_name.name] && (
+            <p
+              className={clsx(
+                "text-[0.625rem] text-[#FC5959] font-normal font-plusJakartaSans"
+              )}
+            >
+              {String(errors[dictionaries.form.full_name.name]?.message)}
+            </p>
+          )}
+        </div>
+
         <div
           className={clsx(
             "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",

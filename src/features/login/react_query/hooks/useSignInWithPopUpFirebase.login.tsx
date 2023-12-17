@@ -37,6 +37,10 @@ export const useLoginSignInWithPopupFirebase = () => {
           }
         )._tokenResponse.idToken
       );
+      setValue(
+        dictionaries.form.full_name.name,
+        mutation.data.user.displayName
+      );
       setValue(dictionaries.form.google_email.name, mutation.data.user.email);
       postLoginNexus();
     }

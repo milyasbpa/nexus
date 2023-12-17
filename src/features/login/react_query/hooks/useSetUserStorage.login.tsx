@@ -18,6 +18,7 @@ export const useLoginSetUserStorage = () => {
     mutationKey: LoginReactQueryKey.SetUserStorage(),
     mutationFn: () =>
       setUserStorage({
+        full_name: watch(dictionaries.form.full_name.name),
         email:
           watch(dictionaries.form.type.name) === "google_login"
             ? watch(dictionaries.form.google_email.name)

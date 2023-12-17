@@ -36,7 +36,7 @@ export const DragnDropFilePreviewDocuments = ({
             "text-center text-[1rem] font-medium"
           )}
         >
-          {name}
+          {name.length > 30 ? `${name.slice(0, 30)}...` : name}
         </p>
 
         <button

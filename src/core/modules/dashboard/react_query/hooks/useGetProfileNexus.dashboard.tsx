@@ -37,9 +37,12 @@ export const useDashboardGetProfileNexus = () => {
     },
   });
 
-  useEffect(() => {
-    if (query.data) {
-      setValue(dictionaries.profile.data.name, query.data.data.email);
-    }
-  }, [query.data]);
+  // useEffect(() => {
+  //   if (query.data) {
+  //     setValue(
+  //       dictionaries.profile.data.name,
+  //       query.data.data?.full_name ?? query.data.data.email
+  //     );
+  //   }
+  // }, [query.data]);
 };

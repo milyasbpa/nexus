@@ -4,6 +4,7 @@ export const defaultValues = {
   [getDictionaries("en").notification.message.name]: "",
   [getDictionaries("en").notification.variant.name]: "danger",
   // form
+  [getDictionaries("en").form.google_full_name.name]: "",
   [getDictionaries("en").form.full_name.name]: "",
   [getDictionaries("en").form.email.name]: "",
   [getDictionaries("en").form.password.name]: "",

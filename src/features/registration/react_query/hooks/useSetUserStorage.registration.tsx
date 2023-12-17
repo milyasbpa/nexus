@@ -18,6 +18,10 @@ export const useLoginSetUserStorage = () => {
     mutationKey: RegistrationReactQueryKey.SetUserStorage(),
     mutationFn: () =>
       setUserStorage({
+        full_name:
+          watch(dictionaries.form.type.name) === "google_registration"
+            ? watch(dictionaries.form.google_full_name.name)
+            : watch(dictionaries.form.full_name.name),
         email:
           watch(dictionaries.form.type.name) === "google_registration"
             ? watch(dictionaries.form.google_email.name)
@@ -29,7 +33,7 @@ export const useLoginSetUserStorage = () => {
 
   useEffect(() => {
     if (mutation.isSuccess) {
-      if (watch(dictionaries.form.type.name) !== "google_login") {
+      if (watch(dictionaries.form.type.name) !== "google_registration") {
         setValue(dictionaries.form.actions.register.is_loading.name, false);
       } else {
         setValue(
