@@ -76,7 +76,7 @@ export const UploadDocuments = () => {
 
     const maximumSize = 10; //in Mb
 
-    if (size >= maximumSize / 1024) {
+    if (size / 1024 >= maximumSize) {
       setValue(dictionaries.upload.alert.name, true);
       setError(dictionaries.upload.alert.name, {
         message: dictionaries.upload.errors.template.invalid_size.message,
