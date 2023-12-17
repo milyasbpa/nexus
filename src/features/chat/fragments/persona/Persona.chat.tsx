@@ -1,6 +1,5 @@
 import * as React from "react";
 import clsx from "clsx";
-import { libreBaskerville } from "@/core/fonts";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
@@ -8,10 +7,13 @@ import { PersonaDropdownChat } from "../../components/persona_dropdown";
 import { queryClient } from "@/core/config/react_query";
 import { ChatReactQueryKey } from "../../react_query/keys";
 import { UserStorageInterface } from "@/core/models/storage";
+import { useChatSetChatStorage } from "../../react_query/hooks/useSetChatStorage.chat";
 
 export const PersonaChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
+
+  const { mutate: setChatStorage } = useChatSetChatStorage();
 
   const name = watch(dictionaries.conversation.persona.name)?.name ?? "";
   const initial = name.split(" ").reduce((acc: any, value: string) => {
@@ -29,7 +31,10 @@ export const PersonaChat = () => {
       ) ?? null;
     setValue(dictionaries.conversation.persona.name, selectedPersona);
 
-    if (!selectedPersona || !userStorageData) return;
+    if (!selectedPersona) return;
+    setChatStorage();
+
+    if (!userStorageData) return;
 
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),
