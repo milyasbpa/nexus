@@ -128,7 +128,6 @@ export const UploadDocuments = () => {
   };
 
   const handleCloseAlert = () => {
-    console.log("ini apa");
     setValue(dictionaries.upload.alert.name, false);
   };
 
