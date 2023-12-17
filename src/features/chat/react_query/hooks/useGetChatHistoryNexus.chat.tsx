@@ -18,7 +18,7 @@ import {
 } from "@/core/models/storage";
 
 export const useChatGetChatHistoryNexus = () => {
-  const { watch, setValue } = useFormContext<ChatForm>();
+  const { setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
   const userStorageData = queryClient.getQueryData(
@@ -78,7 +78,7 @@ export const useChatGetChatHistoryNexus = () => {
 
       setValue(
         dictionaries.conversation.suggestion.name,
-        // Notes:open suggestion when chat is none
+        // Notes: open suggestion when chat is none
         !query.data.data.chats.length
       );
       setValue(

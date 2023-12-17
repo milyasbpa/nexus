@@ -10,6 +10,7 @@ import { queryClient } from "@/core/config/react_query";
 import { ChatReactQueryKey } from "../../react_query/keys";
 import { UserStorageInterface } from "@/core/models/storage";
 import PersonaBubbleConversationChat from "../../components/persona_bubble_conversation/PersonaBubbleConversation.chat";
+import { ErrorBubbleConversation } from "../../components/error_bubble_conversation";
 
 export const HistoryChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
@@ -74,6 +75,14 @@ export const HistoryChat = () => {
           if (history.user.toLowerCase().includes("user")) {
             return (
               <UserBubbleConversation
+                key={historyIndex}
+                message={history.message}
+              />
+            );
+          }
+          if (history.user.toLowerCase().includes("error")) {
+            return (
+              <ErrorBubbleConversation
                 key={historyIndex}
                 message={history.message}
               />

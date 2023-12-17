@@ -48,7 +48,14 @@ export const useChatPostSendChatNexus = () => {
 
   useEffect(() => {
     if (mutation.data) {
-      const persona = mutation.data.data.persona ?? "USER";
+      const persona =
+        mutation.data.data.persona === "FINANCIAL_CONSULTANT"
+          ? "Financial Analyst"
+          : mutation.data.data.persona === "LEGAL_CONSULTANT"
+          ? "Legal Consultant"
+          : mutation.data.data.persona === "GENERAL"
+          ? "General"
+          : "User";
       const initial = persona.split(" ").reduce((acc: any, value: string) => {
         const firstChar = value.charAt(0);
         return `${acc}${firstChar}`;
@@ -63,6 +70,21 @@ export const useChatPostSendChatNexus = () => {
       ]);
     }
   }, [mutation.data]);
+
+  useEffect(() => {
+    if (mutation.isError || mutation.error) {
+      setValue(dictionaries.conversation.history.name, [
+        ...watch(dictionaries.conversation.history.name),
+        {
+          message:
+            dictionaries.conversation.history.greeting.template.error.message,
+          initial:
+            dictionaries.conversation.history.greeting.template.error.initial,
+          user: dictionaries.conversation.history.greeting.template.error.user,
+        },
+      ]);
+    }
+  }, [mutation.isError, mutation.error]);
 
   return mutation;
 };

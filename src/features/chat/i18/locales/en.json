@@ -62,6 +62,11 @@
             "message": "Hello, {{name}}! Ready to discuss your legal documents. How can I support you today?",
             "initial": "",
             "user": ""
+          },
+          "error": {
+            "message": "Something error, after you send chat. Please retry again after wait a moment",
+            "initial": "E",
+            "user": "ERROR"
           }
         }
       }
