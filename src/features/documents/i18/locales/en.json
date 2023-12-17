@@ -70,7 +70,7 @@
         "input": {
           "name": "drag_n_drop_file_input-document",
           "message": "Drag and drop or {{actions}} files",
-          "description": "Support: pdf, jpg, jpeg and max size 10 mb",
+          "description": "Support: pdf format with maximum size 10 mb",
           "actions": "browse"
         },
         "preview": {

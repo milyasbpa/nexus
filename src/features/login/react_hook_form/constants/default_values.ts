@@ -11,4 +11,6 @@ export const defaultValues = {
   [getDictionaries("en").form.email.name]: "",
   [getDictionaries("en").form.password.name]: "",
   [getDictionaries("en").form.remember_me.name]: false,
+  [getDictionaries("en").form.actions.login.is_loading.name]: false,
+  [getDictionaries("en").form.actions.google_login.is_loading.name]: false,
 };

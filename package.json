@@ -25,6 +25,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.0",
+    "react-spinners": "^0.13.8",
     "universal-cookie": "^6.1.1",
     "uuid": "^9.0.1"
   },

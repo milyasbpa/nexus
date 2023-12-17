@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { NexusWebURL } from "@/core/routers/web";
 
 export const useLoginSetUserStorage = () => {
-  const { watch } = useFormContext<LoginForm>();
+  const { watch, setValue } = useFormContext<LoginForm>();
   const dictionaries = getDictionaries("en");
   const router = useRouter();
   const mutation = useMutation<UserStorageInterface, any>({
@@ -29,6 +29,12 @@ export const useLoginSetUserStorage = () => {
 
   useEffect(() => {
     if (mutation.isSuccess) {
+      if (watch(dictionaries.form.type.name) !== "google_login") {
+        setValue(dictionaries.form.actions.login.is_loading.name, false);
+      } else {
+        setValue(dictionaries.form.actions.google_login.is_loading.name, false);
+      }
+
       router.push(NexusWebURL.getDocuments());
     }
   }, [mutation.isSuccess]);

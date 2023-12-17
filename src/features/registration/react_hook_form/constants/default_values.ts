@@ -8,4 +8,6 @@ export const defaultValues = {
   [getDictionaries("en").form.email.name]: "",
   [getDictionaries("en").form.password.name]: "",
   [getDictionaries("en").form.password_confirmation.name]: "",
+  [getDictionaries("en").form.actions.register.is_loading.name]: false,
+  [getDictionaries("en").form.actions.google_register.is_loading.name]: false,
 };

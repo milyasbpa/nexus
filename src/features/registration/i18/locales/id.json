@@ -82,8 +82,18 @@
       "name": "remember-me_registration"
     },
     "actions": {
-      "register": "Register",
-      "google_register": "Register with google",
+      "register": {
+        "text": "Register",
+        "is_loading": {
+          "name": "register-registration"
+        }
+      },
+      "google_register": {
+        "text": "Register with google",
+        "is_loading": {
+          "name": "google_register-registration"
+        }
+      },
       "dont_have_account": {
         "description": "Have an account? ",
         "actions": {

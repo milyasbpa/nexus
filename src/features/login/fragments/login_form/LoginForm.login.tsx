@@ -11,6 +11,7 @@ import { useLoginSignInWithEmailAndPasswordFirebase } from "../../react_query/ho
 import { useLoginGetRememberMeStorage } from "../../react_query/hooks/useGetRememberMeStorage.login";
 import { useLoginSetRememberMeStorage } from "../../react_query/hooks/useSetRememberMeStorage.login";
 import { Regex } from "@/core/utils/validation";
+import { ClipLoader } from "react-spinners";
 
 export const LoginFormLogin = () => {
   const dictionaries = getDictionaries("en");
@@ -54,6 +55,7 @@ export const LoginFormLogin = () => {
 
   const handleClickLogin = () => {
     setValue(dictionaries.form.type.name, "email_password_login");
+    setValue(dictionaries.form.actions.login.is_loading.name, true);
     if (watch(dictionaries.form.remember_me.name)) {
       setRememberMeStorage();
     } else {
@@ -64,7 +66,8 @@ export const LoginFormLogin = () => {
   const isLoginDisabled =
     !watch(dictionaries.form.email.name)?.length ||
     !watch(dictionaries.form.password.name)?.length ||
-    !!Object.keys(errors).length;
+    !!Object.keys(errors).length ||
+    watch(dictionaries.form.actions.login.is_loading.name);
 
   return (
     <div
@@ -129,7 +132,7 @@ export const LoginFormLogin = () => {
 
       <button
         className={clsx(
-          "flex items-center justify-center",
+          "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]",
           "w-full",
           "rounded-[0.5rem]",
           "px-[1rem] py-[1rem]",
@@ -139,7 +142,14 @@ export const LoginFormLogin = () => {
         disabled={isLoginDisabled}
         onClick={handleClickLogin}
       >
-        {dictionaries.form.actions.login}
+        <ClipLoader
+          color={"#FFFFFF"}
+          loading={watch(dictionaries.form.actions.login.is_loading.name)}
+          size={16}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+        {dictionaries.form.actions.login.text}
       </button>
     </div>
   );

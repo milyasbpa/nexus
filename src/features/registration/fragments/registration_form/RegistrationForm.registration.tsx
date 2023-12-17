@@ -8,6 +8,7 @@ import { useFormContext } from "react-hook-form";
 import { RegistrationForm } from "../../react_hook_form/keys";
 import { useRegistrationPostRegisterNexus } from "../../react_query/hooks/usePostRegisterNexus.registration";
 import { Regex } from "@/core/utils/validation";
+import { ClipLoader } from "react-spinners";
 
 export const RegistrationFormRegistration = () => {
   const dictionaries = getDictionaries("en");
@@ -60,6 +61,8 @@ export const RegistrationFormRegistration = () => {
   };
 
   const handleClickRegister = () => {
+    setValue(dictionaries.form.type.name, "register");
+    setValue(dictionaries.form.actions.register.is_loading.name, false);
     postRegisterNexus();
   };
 
@@ -67,7 +70,8 @@ export const RegistrationFormRegistration = () => {
     !watch(dictionaries.form.email.name).length ||
     !watch(dictionaries.form.password.name).length ||
     !watch(dictionaries.form.password_confirmation.name).length ||
-    !!Object.keys(errors).length;
+    !!Object.keys(errors).length ||
+    watch(dictionaries.form.actions.register.is_loading.name);
 
   return (
     <div
@@ -164,7 +168,7 @@ export const RegistrationFormRegistration = () => {
       </div>
       <button
         className={clsx(
-          "flex items-center justify-center",
+          "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]",
           "w-full",
           "rounded-[0.5rem]",
           "px-[1rem] py-[1rem]",
@@ -174,7 +178,14 @@ export const RegistrationFormRegistration = () => {
         disabled={isRegisterDisabled}
         onClick={handleClickRegister}
       >
-        {dictionaries.form.actions.register}
+        <ClipLoader
+          color={"#FFFFFF"}
+          loading={watch(dictionaries.form.actions.register.is_loading.name)}
+          size={16}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+        {dictionaries.form.actions.register.text}
       </button>
     </div>
   );

@@ -4,14 +4,16 @@ import { getDictionaries } from "../../i18";
 import { useLoginSignInWithPopupFirebase } from "../../react_query/hooks/useSignInWithPopUpFirebase.login";
 import { useFormContext } from "react-hook-form";
 import { LoginForm } from "../../react_hook_form/keys";
+import { ClipLoader } from "react-spinners";
 
 export const GoogleLoginFormLogin = () => {
-  const { setValue } = useFormContext<LoginForm>();
+  const { watch, setValue } = useFormContext<LoginForm>();
 
   const { mutate: signInWithPopupFirebase } = useLoginSignInWithPopupFirebase();
   const dictionaries = getDictionaries("en");
   const handleClickLogin = () => {
     setValue(dictionaries.form.type.name, "google_login");
+    setValue(dictionaries.form.actions.google_login.is_loading.name, true);
     signInWithPopupFirebase();
   };
   return (
@@ -38,7 +40,22 @@ export const GoogleLoginFormLogin = () => {
           src={"/icons/login/google.svg"}
           className={clsx("absolute left-[1rem]", "w-[1.5rem] h-[1.5rem]")}
         />
-        {dictionaries.form.actions.google_login}
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]"
+          )}
+        >
+          <ClipLoader
+            color={"#002566"}
+            loading={watch(
+              dictionaries.form.actions.google_login.is_loading.name
+            )}
+            size={16}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+          {dictionaries.form.actions.google_login.text}
+        </div>
       </button>
     </div>
   );

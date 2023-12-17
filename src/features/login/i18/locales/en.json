@@ -68,8 +68,18 @@
       "name": "remember-me_login"
     },
     "actions": {
-      "login": "Login",
-      "google_login": "Login with google",
+      "login": {
+        "text": "Login",
+        "is_loading": {
+          "name": "is_loading_login"
+        }
+      },
+      "google_login": {
+        "text": "Login with google",
+        "is_loading": {
+          "name": "is_loading-google_login"
+        }
+      },
       "dont_have_account": {
         "description": "Don’t have an account? ",
         "actions": {
