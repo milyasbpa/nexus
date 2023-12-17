@@ -28,17 +28,29 @@ export const PersonaChat = () => {
         (item) => item.id === e.currentTarget.value
       ) ?? null;
     setValue(dictionaries.conversation.persona.name, selectedPersona);
+
+    if (!selectedPersona || !userStorageData) return;
+
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),
       {
-        ...dictionaries.conversation.history.greeting.template,
         message:
-          dictionaries.conversation.history.greeting.template.message.replace(
-            "{{name}}",
-            userStorageData?.email ?? ""
-          ),
-        user: selectedPersona?.name,
-        initial: selectedPersona?.name
+          selectedPersona.id === "FINANCIAL_CONSULTANT"
+            ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
+                "{{name}}",
+                userStorageData.email ?? ""
+              )
+            : selectedPersona.id === "LEGAL_CONSULTANT"
+            ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
+                "{{name}}",
+                userStorageData.email ?? ""
+              )
+            : dictionaries.conversation.history.greeting.template.general.message.replace(
+                "{{name}}",
+                userStorageData.email ?? ""
+              ),
+        user: selectedPersona.name,
+        initial: selectedPersona.name
           .split(" ")
           .reduce((acc: any, value: string) => {
             const firstChar = value.charAt(0);

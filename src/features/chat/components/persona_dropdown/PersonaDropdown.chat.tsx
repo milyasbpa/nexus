@@ -21,7 +21,7 @@ export const PersonaDropdownChat = ({
     setIsOpen((prev) => !prev);
   };
   const handleClickSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsOpen((prev) => false);
+    setIsOpen((_) => false);
     if (!onClickSelect) return;
     onClickSelect(e);
   };

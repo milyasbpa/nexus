@@ -80,12 +80,21 @@ export const useChatGetChatHistoryNexus = () => {
         !query.data.data.chats.length
           ? [
               {
-                ...dictionaries.conversation.history.greeting.template,
                 message:
-                  dictionaries.conversation.history.greeting.template.message.replace(
-                    "{{name}}",
-                    userStorageData?.email ?? ""
-                  ),
+                  lastPersona.id === "FINANCIAL_CONSULTANT"
+                    ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
+                        "{{name}}",
+                        userStorageData?.email ?? ""
+                      )
+                    : lastPersona.id === "LEGAL_CONSULTANT"
+                    ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
+                        "{{name}}",
+                        userStorageData?.email ?? ""
+                      )
+                    : dictionaries.conversation.history.greeting.template.general.message.replace(
+                        "{{name}}",
+                        userStorageData?.email ?? ""
+                      ),
                 user: lastPersona.name,
                 initial: lastPersona.name
                   .split(" ")
@@ -120,12 +129,21 @@ export const useChatGetChatHistoryNexus = () => {
                   };
                 }),
               {
-                ...dictionaries.conversation.history.greeting.template,
                 message:
-                  dictionaries.conversation.history.greeting.template.message.replace(
-                    "{{name}}",
-                    userStorageData?.email ?? ""
-                  ),
+                  lastPersona.id === "FINANCIAL_CONSULTANT"
+                    ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
+                        "{{name}}",
+                        userStorageData?.email ?? ""
+                      )
+                    : lastPersona.id === "LEGAL_CONSULTANT"
+                    ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
+                        "{{name}}",
+                        userStorageData?.email ?? ""
+                      )
+                    : dictionaries.conversation.history.greeting.template.general.message.replace(
+                        "{{name}}",
+                        userStorageData?.email ?? ""
+                      ),
                 user: lastPersona.name,
                 initial: lastPersona.name
                   .split(" ")

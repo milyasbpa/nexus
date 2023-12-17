@@ -4,12 +4,12 @@ import clsx from "clsx";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
-import { libreBaskerville } from "@/core/fonts";
 import { UserBubbleConversation } from "../../components/user_bubble_conversation";
 import { useChatGetChatHistoryNexus } from "../../react_query/hooks/useGetChatHistoryNexus.chat";
 import { queryClient } from "@/core/config/react_query";
 import { ChatReactQueryKey } from "../../react_query/keys";
 import { UserStorageInterface } from "@/core/models/storage";
+import PersonaBubbleConversationChat from "../../components/persona_bubble_conversation/PersonaBubbleConversation.chat";
 
 export const HistoryChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
@@ -80,56 +80,12 @@ export const HistoryChat = () => {
             );
           }
           return (
-            <div
+            <PersonaBubbleConversationChat
               key={historyIndex}
-              className={clsx(
-                "grid grid-cols-1 place-content-start place-items-start gap-[0.5rem]",
-                "w-full",
-                "px-[1rem] py-[1rem]",
-                "bg-[#F4F8FC]"
-              )}
-            >
-              <div
-                className={clsx(
-                  "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                  "w-full"
-                )}
-              >
-                <div
-                  className={clsx(
-                    "flex items-center justify-center",
-                    "bg-[#244E46]",
-                    "rounded-[0.25rem]",
-                    "text-[0.75rem] font-medium text-[white] font-libreBaskerville",
-                    "w-[1.75rem] h-[1.75rem]"
-                  )}
-                >
-                  {history.initial}
-                </div>
-                <p
-                  className={clsx(
-                    "teext-[0.875rem] text-[#232931] font-medium"
-                  )}
-                >
-                  {history.user}
-                </p>
-              </div>
-              <div
-                className={clsx(
-                  "grid grid-cols-1 place-content-start place-items-start",
-                  "pl-[2.25rem]",
-                  "w-full"
-                )}
-              >
-                <p
-                  className={clsx(
-                    "text-[0.875rem] text-[#232931] font-normal text-left"
-                  )}
-                >
-                  {history.message}
-                </p>
-              </div>
-            </div>
+              initial={history.initial}
+              user={history.user}
+              message={history.message}
+            />
           );
         }
       )}

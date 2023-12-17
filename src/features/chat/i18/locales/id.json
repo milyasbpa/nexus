@@ -48,9 +48,21 @@
       ],
       "greeting": {
         "template": {
-          "message": "Hello, {{name}}! Excited to explore financial insights with you. How can I assist you today?",
-          "initial": "",
-          "user": ""
+          "financial_analyst": {
+            "message": "Hello, {{name}}! Excited to explore financial insights with you. How can I assist you today?",
+            "initial": "",
+            "user": ""
+          },
+          "general": {
+            "message": "Hello, {{name}}! How can I assist you?",
+            "initial": "",
+            "user": ""
+          },
+          "legal_consultant": {
+            "message": "Hello, {{name}}! Ready to discuss your legal documents. How can I support you today?",
+            "initial": "",
+            "user": ""
+          }
         }
       }
     },
