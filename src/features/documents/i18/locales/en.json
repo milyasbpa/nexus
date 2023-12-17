@@ -1,5 +1,13 @@
 {
   "title": "Document",
+  "kickstart": {
+    "name": "kickstart-documents",
+    "title": "Kickstart with Nexus 🚀",
+    "message": "Transforming the way you engage with financial documents, Nexus enables you to effortlessly add document with a single click.",
+    "actions": {
+      "primary": "Get Started Now"
+    }
+  },
   "upload": {
     "button": {
       "placeholder": "Upload Document"

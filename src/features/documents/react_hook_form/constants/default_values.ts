@@ -1,5 +1,8 @@
 import { getDictionaries } from "../../i18";
 export const defaultValues = {
+  // kickstart
+  [getDictionaries("en").kickstart.name]: true,
+  // data tables
   [getDictionaries("en").data_table.search.input.name]: "",
 
   [getDictionaries("en").upload.dialog.name]: false,

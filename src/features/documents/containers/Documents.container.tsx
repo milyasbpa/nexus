@@ -10,6 +10,7 @@ import { defaultValues } from "../react_hook_form/constants/default_values";
 import { PesonaDocuments } from "../fragments/pesona";
 import { SearchDocuments } from "../fragments/search";
 import { useDocumentsGetUserStorage } from "../react_query/hooks/useGetUserStorage.documents";
+import { KickstartDocuments } from "../fragments/kickstart";
 
 export const DocumentsContainer = () => {
   useDocumentsGetUserStorage();
@@ -53,6 +54,7 @@ export const DocumentsContainer = () => {
             <DataTableDocuments />
           </div>
         </div>
+        <KickstartDocuments />
       </DashboardContainer>
     </FormProvider>
   );
