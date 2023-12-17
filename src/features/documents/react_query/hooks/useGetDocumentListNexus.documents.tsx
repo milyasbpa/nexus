@@ -56,6 +56,7 @@ export const useDocumentsGetDocumentListNexus = () => {
           date: dateString,
         };
       });
+      setValue(dictionaries.kickstart.name, !query.data.data.docs_list.length);
       setValue(dictionaries.data_table.name, tableData);
     }
   }, [query.data, query.isSuccess]);

@@ -7,12 +7,14 @@ import Link from "next/link";
 import { ProfileDashboard } from "../fragments/profile";
 import { FormProvider, useForm } from "react-hook-form";
 import { defaultValues } from "../react_hook_form/constants";
+import { usePathname } from "next/navigation";
 
 export interface DashboardContainerProps {
   children?: React.ReactNode;
 }
 
 export const DashboardContainer = ({ children }: DashboardContainerProps) => {
+  const pathname = usePathname();
   const dictionaries = getDictionaries("en");
   const methods = useForm({
     defaultValues: defaultValues,
@@ -51,9 +53,20 @@ export const DashboardContainer = ({ children }: DashboardContainerProps) => {
               <Link
                 href={menu.link}
                 key={menu.id}
-                className={clsx("text-[0.875rem] text-[#232931] font-semibold")}
+                className={clsx(
+                  "grid grid-cols-1 place-content-start place-items-start gap-[0.125rem]",
+                  "text-[0.875rem] text-[#232931] font-semibold"
+                )}
               >
                 {menu.name}
+
+                <div
+                  className={clsx(
+                    "w-[1.75rem] h-[0.125rem]",
+                    pathname.includes(menu.id) ? "bg-[#232931]" : "bg-[white]",
+                    "rounded-[0.25rem]"
+                  )}
+                />
               </Link>
             ))}
           </div>
