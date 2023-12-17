@@ -86,6 +86,13 @@ export const useChatGetChatHistoryNexus = () => {
         // Notes: open suggestion when chat is none
         !query.data.data.chats.length
       );
+      const name =
+        !!userStorageData?.full_name && userStorageData.full_name.length > 0
+          ? userStorageData?.full_name
+          : !userStorageData?.full_name.length
+          ? userStorageData?.email ?? ""
+          : "";
+
       setValue(
         dictionaries.conversation.history.name,
         !query.data.data.chats.length
@@ -95,34 +102,16 @@ export const useChatGetChatHistoryNexus = () => {
                   lastPersona.id === "FINANCIAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
                         "{{name}}",
-                        userStorageData?.full_name &&
-                          !!userStorageData.full_name.length
-                          ? userStorageData?.full_name
-                          : userStorageData?.full_name &&
-                            !userStorageData.full_name.length
-                          ? userStorageData?.email ?? ""
-                          : ""
+                        name
                       )
                     : lastPersona.id === "LEGAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
                         "{{name}}",
-                        userStorageData?.full_name &&
-                          !!userStorageData.full_name.length
-                          ? userStorageData?.full_name
-                          : userStorageData?.full_name &&
-                            !userStorageData.full_name.length
-                          ? userStorageData?.email ?? ""
-                          : ""
+                        name
                       )
                     : dictionaries.conversation.history.greeting.template.general.message.replace(
                         "{{name}}",
-                        userStorageData?.full_name &&
-                          !!userStorageData.full_name.length
-                          ? userStorageData?.full_name
-                          : userStorageData?.full_name &&
-                            !userStorageData.full_name.length
-                          ? userStorageData?.email ?? ""
-                          : ""
+                        name
                       ),
                 user: lastPersona.name,
                 initial: lastPersona.name
@@ -162,34 +151,16 @@ export const useChatGetChatHistoryNexus = () => {
                   lastPersona.id === "FINANCIAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
                         "{{name}}",
-                        userStorageData?.full_name &&
-                          !!userStorageData.full_name.length
-                          ? userStorageData?.full_name
-                          : userStorageData?.full_name &&
-                            !userStorageData.full_name.length
-                          ? userStorageData?.email ?? ""
-                          : ""
+                        name
                       )
                     : lastPersona.id === "LEGAL_CONSULTANT"
                     ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
                         "{{name}}",
-                        userStorageData?.full_name &&
-                          !!userStorageData.full_name.length
-                          ? userStorageData?.full_name
-                          : userStorageData?.full_name &&
-                            !userStorageData.full_name.length
-                          ? userStorageData?.email ?? ""
-                          : ""
+                        name
                       )
                     : dictionaries.conversation.history.greeting.template.general.message.replace(
                         "{{name}}",
-                        userStorageData?.full_name &&
-                          !!userStorageData.full_name.length
-                          ? userStorageData?.full_name
-                          : userStorageData?.full_name &&
-                            !userStorageData.full_name.length
-                          ? userStorageData?.email ?? ""
-                          : ""
+                        name
                       ),
                 user: lastPersona.name,
                 initial: lastPersona.name

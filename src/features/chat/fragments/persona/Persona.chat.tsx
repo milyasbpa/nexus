@@ -35,6 +35,12 @@ export const PersonaChat = () => {
     setChatStorage();
 
     if (!userStorageData) return;
+    const name =
+      userStorageData.full_name.length > 0
+        ? userStorageData.full_name
+        : !userStorageData.full_name.length
+        ? userStorageData.email ?? ""
+        : "";
 
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),
@@ -43,16 +49,16 @@ export const PersonaChat = () => {
           selectedPersona.id === "FINANCIAL_CONSULTANT"
             ? dictionaries.conversation.history.greeting.template.financial_analyst.message.replace(
                 "{{name}}",
-                userStorageData.email ?? ""
+                name
               )
             : selectedPersona.id === "LEGAL_CONSULTANT"
             ? dictionaries.conversation.history.greeting.template.legal_consultant.message.replace(
                 "{{name}}",
-                userStorageData.email ?? ""
+                name
               )
             : dictionaries.conversation.history.greeting.template.general.message.replace(
                 "{{name}}",
-                userStorageData.email ?? ""
+                name
               ),
         user: selectedPersona.name,
         initial: selectedPersona.name
