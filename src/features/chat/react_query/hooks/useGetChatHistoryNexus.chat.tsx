@@ -75,6 +75,12 @@ export const useChatGetChatHistoryNexus = () => {
             id: "GENERAL",
             name: "General",
           };
+
+      setValue(
+        dictionaries.conversation.suggestion.name,
+        // Notes:open suggestion when chat is none
+        !query.data.data.chats.length
+      );
       setValue(
         dictionaries.conversation.history.name,
         !query.data.data.chats.length

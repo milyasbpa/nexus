@@ -20,7 +20,7 @@ export const defaultValues = {
   [getDictionaries("en").conversation.history.name]: [],
   // getDictionaries("en").conversation.history.default_data,
   // suggestion
-  [getDictionaries("en").conversation.suggestion.name]: true,
+  [getDictionaries("en").conversation.suggestion.name]: false,
   [getDictionaries("en").conversation.suggestion.message.name]:
     getDictionaries("en").conversation.suggestion.message.data,
   // keyboard
