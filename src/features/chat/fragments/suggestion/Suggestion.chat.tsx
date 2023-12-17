@@ -19,6 +19,7 @@ export const SuggestionChat = () => {
 
   const handleSelectSuggestion = (e: React.MouseEvent<HTMLButtonElement>) => {
     setValue(dictionaries.conversation.question.name, e.currentTarget.value);
+    setValue(dictionaries.conversation.is_loading.name, true);
     postSendChatNexus();
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),

@@ -11,6 +11,7 @@ export const defaultValues = {
 
   // conversation
   [getDictionaries("en").conversation.name]: true,
+  [getDictionaries("en").conversation.is_loading.name]: false,
   // persona
   [getDictionaries("en").conversation.persona.name]: {
     id: "GENERAL",

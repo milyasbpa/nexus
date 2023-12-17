@@ -10,8 +10,7 @@ import { useChatPostSendChatNexus } from "../../react_query/hooks/usePostSendCha
 export const KeyboardChat = () => {
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
-  const { mutate: postSendChatNexus, isPending: isPendingPostSendChatNexus } =
-    useChatPostSendChatNexus();
+  const { mutate: postSendChatNexus } = useChatPostSendChatNexus();
 
   const handleClickHint = () => {
     setValue(
@@ -30,6 +29,7 @@ export const KeyboardChat = () => {
 
   const handleKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      setValue(dictionaries.conversation.is_loading.name, true);
       postSendChatNexus();
       setValue(dictionaries.conversation.history.name, [
         ...watch(dictionaries.conversation.history.name),
@@ -45,6 +45,7 @@ export const KeyboardChat = () => {
   };
 
   const handleClickEnter = () => {
+    setValue(dictionaries.conversation.is_loading.name, true);
     postSendChatNexus();
     setValue(dictionaries.conversation.history.name, [
       ...watch(dictionaries.conversation.history.name),
@@ -92,17 +93,17 @@ export const KeyboardChat = () => {
             "text-[1rem] font-normal text-[#232931]",
             "outline-none"
           )}
-          disabled={isPendingPostSendChatNexus}
+          disabled={watch(dictionaries.conversation.is_loading.name)}
           value={watch(dictionaries.conversation.keyboard.input.name)}
           placeholder={
-            isPendingPostSendChatNexus
+            watch(dictionaries.conversation.is_loading.name)
               ? "Wait your answer"
               : "Type your question"
           }
           onChange={handleChange}
           onKeyDown={handleKeyDownEnter}
         />
-        {isPendingPostSendChatNexus ? (
+        {watch(dictionaries.conversation.is_loading.name) ? (
           <div>
             <img
               src={"/icons/chat/loading.svg"}

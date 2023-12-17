@@ -20,6 +20,9 @@
   },
   "conversation": {
     "name": "conversation-chat",
+    "is_loading": {
+      "name": "is_loading_conversation-chat"
+    },
     "persona": {
       "name": "persona_name-chat",
       "data": [

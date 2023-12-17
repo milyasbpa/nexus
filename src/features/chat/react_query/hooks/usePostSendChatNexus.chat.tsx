@@ -68,6 +68,7 @@ export const useChatPostSendChatNexus = () => {
           user: persona,
         },
       ]);
+      setValue(dictionaries.conversation.is_loading.name, false);
     }
   }, [mutation.data]);
 
@@ -83,6 +84,7 @@ export const useChatPostSendChatNexus = () => {
           user: dictionaries.conversation.history.greeting.template.error.user,
         },
       ]);
+      setValue(dictionaries.conversation.is_loading.name, false);
     }
   }, [mutation.isError, mutation.error]);
 
