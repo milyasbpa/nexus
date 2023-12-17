@@ -39,6 +39,7 @@ export interface GetDocumentListNexusSuccessResponseDataDocListInterface {
 }
 
 export interface GetDocumentListNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }

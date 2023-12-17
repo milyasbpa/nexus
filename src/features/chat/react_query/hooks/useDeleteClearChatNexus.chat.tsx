@@ -1,20 +1,24 @@
 "use client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { ChatReactQueryKey } from "../keys";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { fetchDeleteClearChatNexus } from "@/core/services/nexus";
 import {
+  DeleteClearChatNexusErrorResponseInterface,
   DeleteClearChatNexusRequestPayloadInterface,
   DeleteClearChatNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
 import { useParams } from "next/navigation";
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useChatDeleteClearChatNexus = () => {
+  const router = useRouter();
   const { setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
@@ -24,7 +28,7 @@ export const useChatDeleteClearChatNexus = () => {
 
   const mutation = useMutation<
     DeleteClearChatNexusSuccessResponseInterface | undefined,
-    any
+    DeleteClearChatNexusErrorResponseInterface
   >({
     mutationKey: ChatReactQueryKey.DeleteClearChatNexus(),
     mutationFn: () => {
@@ -40,6 +44,22 @@ export const useChatDeleteClearChatNexus = () => {
       return fetchDeleteClearChatNexus(payload);
     },
   });
+
+  useEffect(() => {
+    if (mutation.isSuccess || mutation.data) {
+      queryClient.invalidateQueries({
+        queryKey: ChatReactQueryKey.GetChatHistoryNexus(),
+      });
+    }
+  }, [mutation.isSuccess, mutation.data]);
+
+  useEffect(() => {
+    if (mutation.isError || mutation.error) {
+      if (mutation.error.status === 401) {
+        router.push(NexusWebURL.getLogin());
+      }
+    }
+  }, [mutation.isError, mutation.error]);
 
   return mutation;
 };

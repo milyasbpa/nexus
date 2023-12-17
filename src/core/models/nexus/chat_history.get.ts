@@ -38,6 +38,7 @@ export interface GetChatHistoryNexusSuccessResponseInterface {
 }
 
 export interface GetChatHistoryNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }

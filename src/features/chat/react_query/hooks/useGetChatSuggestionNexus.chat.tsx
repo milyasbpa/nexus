@@ -2,18 +2,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { ChatReactQueryKey } from "../keys";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { fetchGetChatSuggestionNexus } from "@/core/services/nexus";
 import {
+  GetChatSuggestionNexusErrorResponseInterface,
   GetChatSuggestionNexusRequestPayloadInterface,
   GetChatSuggestionNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useChatGetChatSuggestionNexus = () => {
+  const router = useRouter();
   const { setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const userStorageData = queryClient.getQueryData(
@@ -22,7 +26,7 @@ export const useChatGetChatSuggestionNexus = () => {
 
   const query = useQuery<
     GetChatSuggestionNexusSuccessResponseInterface | undefined,
-    any
+    GetChatSuggestionNexusErrorResponseInterface
   >({
     enabled: !!userStorageData,
     queryKey: ChatReactQueryKey.GetChatSuggestionNexus(),
@@ -64,6 +68,14 @@ export const useChatGetChatSuggestionNexus = () => {
       );
     }
   }, [query.data]);
+
+  useEffect(() => {
+    if (query.isError || query.error) {
+      if (query.error.status === 401) {
+        router.push(NexusWebURL.getLogin());
+      }
+    }
+  }, [query.isError, query.error]);
 
   return query;
 };

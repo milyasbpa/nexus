@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { DocumentsReactQueryKey } from "../keys";
 import { getDictionaries } from "../../i18";
 import {
+  PostDocumentUploadNexusErrorResponseInterface,
   PostDocumentUploadNexusRequestPayloadInterface,
   PostDocumentUploadNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
@@ -14,6 +15,7 @@ import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
 import { useEffect } from "react";
 import { useDocumentsSetDocumentStorage } from "./useSetDocumentStorage.documents";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useDocumentsPostDocumentUploadNexus = () => {
   const dictionaries = getDictionaries("en");
@@ -27,7 +29,7 @@ export const useDocumentsPostDocumentUploadNexus = () => {
 
   const mutation = useMutation<
     PostDocumentUploadNexusSuccessResponseInterface | undefined,
-    any
+    PostDocumentUploadNexusErrorResponseInterface
   >({
     mutationKey: DocumentsReactQueryKey.PostDocumentUploadNexus(),
     mutationFn: () => {
@@ -93,6 +95,14 @@ export const useDocumentsPostDocumentUploadNexus = () => {
       setDocumentStorage(mutation.data.data);
     }
   }, [mutation.data]);
+
+  useEffect(() => {
+    if (mutation.isError || mutation.error) {
+      if (mutation.error.status === 401) {
+        router.push(NexusWebURL.getLogin());
+      }
+    }
+  }, [mutation.isError, mutation.error]);
 
   return mutation;
 };

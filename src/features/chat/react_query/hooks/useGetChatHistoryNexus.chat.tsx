@@ -1,5 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { ChatReactQueryKey } from "../keys";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
@@ -7,6 +8,7 @@ import { ChatForm } from "../../react_hook_form/keys";
 import { getDictionaries } from "../../i18";
 import { fetchGetChatHistoryNexus } from "@/core/services/nexus";
 import {
+  GetChatHistoryNexusErrorResponseInterface,
   GetChatHistoryNexusRequestPayloadInterface,
   GetChatHistoryNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
@@ -16,8 +18,10 @@ import {
   ChatStorageInterface,
   UserStorageInterface,
 } from "@/core/models/storage";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useChatGetChatHistoryNexus = () => {
+  const router = useRouter();
   const { setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
@@ -31,9 +35,10 @@ export const useChatGetChatHistoryNexus = () => {
 
   const query = useQuery<
     GetChatHistoryNexusSuccessResponseInterface | undefined,
-    any
+    GetChatHistoryNexusErrorResponseInterface
   >({
     enabled: !!userStorageData,
+    retry: false,
     queryKey: ChatReactQueryKey.GetChatHistoryNexus(),
     queryFn: () => {
       const payload: GetChatHistoryNexusRequestPayloadInterface = {
@@ -164,6 +169,14 @@ export const useChatGetChatHistoryNexus = () => {
       setValue(dictionaries.conversation.persona.name, lastPersona);
     }
   }, [query.data]);
+
+  useEffect(() => {
+    if (query.isError || query.error) {
+      if (query.error.status === 401) {
+        router.push(NexusWebURL.getLogin());
+      }
+    }
+  }, [query.isError, query.error]);
 
   return query;
 };

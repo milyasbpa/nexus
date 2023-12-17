@@ -35,6 +35,7 @@ export interface GetChatSuggestionNexusSuccessResponseInterface {
 }
 
 export interface GetChatSuggestionNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }

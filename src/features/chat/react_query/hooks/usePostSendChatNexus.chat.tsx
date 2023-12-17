@@ -1,5 +1,6 @@
 "use client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { ChatReactQueryKey } from "../keys";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
@@ -13,8 +14,10 @@ import {
 import { useParams } from "next/navigation";
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useChatPostSendChatNexus = () => {
+  const router = useRouter();
   const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const params = useParams();
@@ -74,17 +77,22 @@ export const useChatPostSendChatNexus = () => {
 
   useEffect(() => {
     if (mutation.isError || mutation.error) {
-      setValue(dictionaries.conversation.history.name, [
-        ...watch(dictionaries.conversation.history.name),
-        {
-          message:
-            dictionaries.conversation.history.greeting.template.error.message,
-          initial:
-            dictionaries.conversation.history.greeting.template.error.initial,
-          user: dictionaries.conversation.history.greeting.template.error.user,
-        },
-      ]);
-      setValue(dictionaries.conversation.is_loading.name, false);
+      if (mutation.error.status === 401) {
+        router.push(NexusWebURL.getLogin());
+      } else {
+        setValue(dictionaries.conversation.history.name, [
+          ...watch(dictionaries.conversation.history.name),
+          {
+            message:
+              dictionaries.conversation.history.greeting.template.error.message,
+            initial:
+              dictionaries.conversation.history.greeting.template.error.initial,
+            user: dictionaries.conversation.history.greeting.template.error
+              .user,
+          },
+        ]);
+        setValue(dictionaries.conversation.is_loading.name, false);
+      }
     }
   }, [mutation.isError, mutation.error]);
 

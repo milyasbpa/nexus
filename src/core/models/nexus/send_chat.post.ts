@@ -42,6 +42,7 @@ export interface PostSendChatNexusSuccessResponseInterface {
 }
 
 export interface PostSendChatNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }

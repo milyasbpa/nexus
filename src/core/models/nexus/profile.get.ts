@@ -27,6 +27,7 @@ export interface GetProfileNexusSuccessResponseInterface {
 }
 
 export interface GetProfileNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }

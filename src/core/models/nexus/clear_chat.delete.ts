@@ -28,6 +28,7 @@ export interface DeleteClearChatNexusSuccessResponseInterface {
 }
 
 export interface DeleteClearChatNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }

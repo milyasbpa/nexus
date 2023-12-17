@@ -1,9 +1,11 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { DocumentsReactQueryKey } from "../keys";
 import { getDictionaries } from "../../i18";
 import { fetchGetDocumentListNexus } from "@/core/services/nexus";
 import {
+  GetDocumentListNexusErrorResponseInterface,
   GetDocumentListNexusRequestPayloadInterface,
   GetDocumentListNexusSuccessResponseInterface,
 } from "@/core/models/nexus";
@@ -12,8 +14,10 @@ import { useFormContext } from "react-hook-form";
 import { DocumentsForm } from "../../react_hook_form/keys";
 import { queryClient } from "@/core/config/react_query";
 import { UserStorageInterface } from "@/core/models/storage";
+import { NexusWebURL } from "@/core/routers/web";
 
 export const useDocumentsGetDocumentListNexus = () => {
+  const router = useRouter();
   const dictionaries = getDictionaries("en");
   const { setValue } = useFormContext<DocumentsForm>();
 
@@ -23,7 +27,7 @@ export const useDocumentsGetDocumentListNexus = () => {
 
   const query = useQuery<
     GetDocumentListNexusSuccessResponseInterface | undefined,
-    any
+    GetDocumentListNexusErrorResponseInterface
   >({
     enabled: !!userStorageData,
     queryKey: DocumentsReactQueryKey.GetDocumentListNexus(),
@@ -55,6 +59,14 @@ export const useDocumentsGetDocumentListNexus = () => {
       setValue(dictionaries.data_table.name, tableData);
     }
   }, [query.data, query.isSuccess]);
+
+  useEffect(() => {
+    if (query.isError || query.error) {
+      if (query.error.status === 401) {
+        router.push(NexusWebURL.getLogin());
+      }
+    }
+  }, [query.isError, query.error]);
 
   return query;
 };

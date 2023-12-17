@@ -37,6 +37,7 @@ export interface PostDocumentUploadNexusSuccessResponseInterface {
 }
 
 export interface PostDocumentUploadNexusErrorResponseInterface {
-  error_code: string;
+  error: string;
   message: string;
+  status: number;
 }
