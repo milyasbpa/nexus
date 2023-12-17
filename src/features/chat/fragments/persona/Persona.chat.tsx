@@ -70,6 +70,43 @@ export const PersonaChat = () => {
       },
     ]);
   };
+  if (!watch(dictionaries.conversation.persona.name)) {
+    return (
+      <div
+        className={clsx(
+          "absolute top-0 left-0 right-0",
+          "px-[1rem] py-[1rem]",
+          "grid grid-flow-col items-center content-center justify-between justify-items-start",
+          "w-full",
+          "bg-white"
+        )}
+      >
+        <div
+          className={clsx(
+            "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
+            "w-full"
+          )}
+        >
+          <div
+            className={clsx(
+              "bg-[#EBF3FA]",
+              "rounded-[0.25rem]",
+              "w-[1.75rem] h-[1.75rem]",
+              "flex items-center justify-center"
+            )}
+          />
+          <div
+            className={clsx(
+              "bg-[#EBF3FA]",
+              "rounded-[0.25rem]",
+              "w-[8rem] h-[1.75rem]",
+              "flex items-center justify-center"
+            )}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

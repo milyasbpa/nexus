@@ -13,10 +13,7 @@ export const defaultValues = {
   [getDictionaries("en").conversation.name]: true,
   [getDictionaries("en").conversation.is_loading.name]: false,
   // persona
-  [getDictionaries("en").conversation.persona.name]: {
-    id: "GENERAL",
-    name: "General",
-  },
+  [getDictionaries("en").conversation.persona.name]: null,
   // history
   [getDictionaries("en").conversation.history.name]: [],
   // getDictionaries("en").conversation.history.default_data,
