@@ -24,6 +24,7 @@ export const defaultValues = {
   [getDictionaries("en").upload.pesona_dialog.name]: false,
   [getDictionaries("en").upload.pesona_dialog.full_name.name]: "",
   [getDictionaries("en").upload.pesona_dialog.input.name]: "",
+  [getDictionaries("en").upload.pesona_dialog.is_loading.name]: false,
 
   [getDictionaries("en").data_table.name]: [
     // {

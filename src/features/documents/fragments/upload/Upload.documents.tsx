@@ -10,7 +10,6 @@ import { URLUploadDocuments } from "../../components/url_upload";
 import { useFormContext } from "react-hook-form";
 import { DocumentsForm } from "../../react_hook_form/keys";
 import { PlusSmallIcon } from "@heroicons/react/20/solid";
-import { plusJakartaSans } from "@/core/fonts";
 import { DragnDropUploadDocuments } from "../../components/drag_n_drop";
 import { AlertComponent } from "@/core/components/alert";
 

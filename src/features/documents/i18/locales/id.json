@@ -54,6 +54,9 @@
           "description": "Discuss finances with our Financial Analysis AI. Perfect for insights on financial strategies and investments"
         }
       ],
+      "is_loading": {
+        "name": "pesona_dialog_upload_loading-documents"
+      },
       "actions": {
         "primary": {
           "text": "Upload"

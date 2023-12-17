@@ -20,7 +20,7 @@ import { NexusWebURL } from "@/core/routers/web";
 export const useDocumentsPostDocumentUploadNexus = () => {
   const dictionaries = getDictionaries("en");
   const router = useRouter();
-  const { watch } = useFormContext<DocumentsForm>();
+  const { watch, setValue } = useFormContext<DocumentsForm>();
   const { mutate: setDocumentStorage } = useDocumentsSetDocumentStorage();
 
   const userStorageData = queryClient.getQueryData(
@@ -93,6 +93,7 @@ export const useDocumentsPostDocumentUploadNexus = () => {
       });
 
       setDocumentStorage(mutation.data.data);
+      setValue(dictionaries.upload.pesona_dialog.is_loading.name, false);
     }
   }, [mutation.data]);
 

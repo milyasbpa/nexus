@@ -8,6 +8,7 @@ import { getDictionaries } from "../../i18";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { AgentSelectorCardDocuments } from "../../components/agent_selector_card";
 import { useDocumentsSetChatStorage } from "../../react_query/hooks/useSetChatStorage.documents";
+import { ClipLoader } from "react-spinners";
 
 export const PesonaDocuments = () => {
   const { watch, setValue } = useFormContext<DocumentsForm>();
@@ -32,6 +33,7 @@ export const PesonaDocuments = () => {
     );
   };
   const handleUpload = () => {
+    setValue(dictionaries.upload.pesona_dialog.is_loading.name, true);
     setChatStorage();
   };
 
@@ -122,20 +124,36 @@ export const PesonaDocuments = () => {
                   "rounded-[0.375rem]",
                   "text-[#FC5959] text-[0.75rem] font-semibold"
                 )}
+                disabled={watch(
+                  dictionaries.upload.pesona_dialog.is_loading.name
+                )}
                 onClick={handleCancel}
               >
                 {dictionaries.upload.pesona_dialog.actions.secondary.text}
               </button>
               <button
                 className={clsx(
-                  "w-[88px] h-[2rem]",
+                  "grid grid-flow-col items-center content-center justify-center justify-items-center gap-[0.5rem]",
+                  "w-full max-w-[108px] h-[2rem]",
                   "bg-[#232931] disabled:bg-[#EBF3FA]",
                   "rounded-[0.375rem]",
                   "text-[white] text-[0.75rem] font-semibold"
                 )}
-                disabled={!watch(dictionaries.upload.pesona_dialog.input.name)}
+                disabled={
+                  !watch(dictionaries.upload.pesona_dialog.input.name) ||
+                  watch(dictionaries.upload.pesona_dialog.is_loading.name)
+                }
                 onClick={handleUpload}
               >
+                <ClipLoader
+                  color={"#FFFFFF"}
+                  loading={watch(
+                    dictionaries.upload.pesona_dialog.is_loading.name
+                  )}
+                  size={12}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
                 {dictionaries.upload.pesona_dialog.actions.primary.text}
               </button>
             </div>
