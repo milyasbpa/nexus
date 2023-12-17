@@ -20,6 +20,11 @@ export const PersonaDropdownChat = ({
   const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
+  const handleClickSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setIsOpen((prev) => false);
+    if (!onClickSelect) return;
+    onClickSelect(e);
+  };
 
   return (
     <div className={clsx("relative")}>
@@ -53,7 +58,7 @@ export const PersonaDropdownChat = ({
               "bg-[white]"
             )}
             value={item.id}
-            onClick={onClickSelect}
+            onClick={handleClickSelect}
           >
             <img
               src={
