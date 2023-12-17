@@ -74,15 +74,15 @@ export const UploadDocuments = () => {
       return;
     }
 
-    const maximumSize = 10; //in Mb
+    // const maximumSize = 10; //in Mb
 
-    if (size / 1024 >= maximumSize) {
-      setValue(dictionaries.upload.alert.name, true);
-      setError(dictionaries.upload.alert.name, {
-        message: dictionaries.upload.errors.template.invalid_size.message,
-      });
-      return;
-    }
+    // if (size / 1024 >= maximumSize) {
+    //   setValue(dictionaries.upload.alert.name, true);
+    //   setError(dictionaries.upload.alert.name, {
+    //     message: dictionaries.upload.errors.template.invalid_size.message,
+    //   });
+    //   return;
+    // }
 
     clearErrors(dictionaries.upload.alert.name);
     const name = Array.from(data)
