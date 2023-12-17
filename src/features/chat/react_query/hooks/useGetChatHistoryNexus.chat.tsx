@@ -78,7 +78,23 @@ export const useChatGetChatHistoryNexus = () => {
       setValue(
         dictionaries.conversation.history.name,
         !query.data.data.chats.length
-          ? [dictionaries.conversation.history.greeting.template]
+          ? [
+              {
+                ...dictionaries.conversation.history.greeting.template,
+                message:
+                  dictionaries.conversation.history.greeting.template.message.replace(
+                    "{{name}}",
+                    userStorageData?.email ?? ""
+                  ),
+                user: lastPersona.name,
+                initial: lastPersona.name
+                  .split(" ")
+                  .reduce((acc: any, value: string) => {
+                    const firstChar = value.charAt(0);
+                    return `${acc}${firstChar}`;
+                  }, ""),
+              },
+            ]
           : [
               ...query.data.data.chats
                 .sort((a, b) => a.created_at - b.created_at)

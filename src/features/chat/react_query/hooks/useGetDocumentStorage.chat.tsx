@@ -31,6 +31,7 @@ export const useChatGetDocumentStorage = () => {
         `${process.env.NEXT_PUBLIC_WEB_URL}${process.env.NEXT_PUBLIC_GCP_STORAGE_PROXY_URL}`
       );
       setValue(dictionaries.pdf.file.name, fileURL);
+      setValue(dictionaries.pdf.private.name, query.data.private);
     }
   }, [query.data]);
 
