@@ -10,7 +10,7 @@ import { ChatForm } from "../../react_hook_form/keys";
 
 export const useChatGetDocumentStorage = () => {
   const dictionaries = getDictionaries("en");
-  const { watch, setValue } = useFormContext<ChatForm>();
+  const { setValue } = useFormContext<ChatForm>();
 
   const query = useQuery<DocumentStorageInterface | undefined, any>({
     queryKey: ChatReactQueryKey.GetDocumentStorage(),

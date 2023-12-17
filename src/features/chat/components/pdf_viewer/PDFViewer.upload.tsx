@@ -6,8 +6,9 @@ import {
   PageChangeEvent,
   PageLayout,
   Plugin,
-  Worker
+  Worker,
 } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 export interface IPDFViewerUploadProps {
   fileURL: string | Uint8Array;
