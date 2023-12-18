@@ -1,3 +1,5 @@
+import { GetChatSuggestionNexusRequestPayloadInterface } from "@/core/models/nexus";
+
 export const ChatReactQueryKey = {
   GetUserStorage: () => {
     return ["ChatReactQueryKey.GetUserStorage"];
@@ -11,8 +13,10 @@ export const ChatReactQueryKey = {
   SetChatStorage: () => {
     return ["ChatReactQueryKey.SetChatStorage"];
   },
-  GetChatSuggestionNexus: () => {
-    return ["ChatReactQueryKey.GetChatSuggestionNexus"];
+  GetChatSuggestionNexus: (
+    payload?: GetChatSuggestionNexusRequestPayloadInterface
+  ) => {
+    return ["ChatReactQueryKey.GetChatSuggestionNexus", [payload] as const];
   },
   GetFileWeb: () => {
     return ["ChatReactQueryKey.GetFileWeb"];

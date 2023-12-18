@@ -81,42 +81,62 @@ export const SuggestionChat = () => {
         )}
         style={{ gridTemplateColumns: `repeat(${items.length},1fr)` }}
       >
-        {items?.map((item: any, itemIndex: number) => (
+        {!items.length && (
           <div
-            key={itemIndex}
             className={clsx(
-              "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
-              "w-full",
-              "px-[0.5rem] py-[1rem]",
-              "bg-[#F4F8FC]",
-              "rounded-[0.25rem]"
+              "grid grid-cols-1 place-content-start place-items-start",
+              "w-full"
             )}
           >
-            <p className={clsx("text-[1rem] font-semibold text-[#002566]")}>
-              {item.category}
+            <p
+              className={clsx(
+                "text-[0.875rem] font-normal text-[#404852] text-left"
+              )}
+            >
+              {dictionaries.conversation.suggestion.empty.message}
             </p>
-            {item.data.map((childItem: any, childItemIndex: number) => (
-              <button
-                key={childItemIndex}
-                className={clsx(
-                  "grid grid-cols-1 place-content-start place-items-start",
-                  "w-full",
-                  "bg-white",
-                  "rounded-[0.5rem]",
-                  "px-[0.5rem] py-[0.5rem]"
-                )}
-                value={childItem.message}
-                onClick={handleSelectSuggestion}
-              >
-                <p
-                  className={clsx("text-[0.875rem] font-normal text-[#404852]")}
-                >
-                  {childItem.message}
-                </p>
-              </button>
-            ))}
           </div>
-        ))}
+        )}
+
+        {!!items.length &&
+          items?.map((item: any, itemIndex: number) => (
+            <div
+              key={itemIndex}
+              className={clsx(
+                "grid grid-cols-1 place-content-start place-items-start gap-[1rem]",
+                "w-full",
+                "px-[0.5rem] py-[1rem]",
+                "bg-[#F4F8FC]",
+                "rounded-[0.25rem]"
+              )}
+            >
+              <p className={clsx("text-[1rem] font-semibold text-[#002566]")}>
+                {item.category}
+              </p>
+              {item.data.map((childItem: any, childItemIndex: number) => (
+                <button
+                  key={childItemIndex}
+                  className={clsx(
+                    "grid grid-cols-1 place-content-start place-items-start",
+                    "w-full",
+                    "bg-white",
+                    "rounded-[0.5rem]",
+                    "px-[0.5rem] py-[0.5rem]"
+                  )}
+                  value={childItem.message}
+                  onClick={handleSelectSuggestion}
+                >
+                  <p
+                    className={clsx(
+                      "text-[0.875rem] font-normal text-[#404852] text-left"
+                    )}
+                  >
+                    {childItem.message}
+                  </p>
+                </button>
+              ))}
+            </div>
+          ))}
       </div>
     </div>
   );

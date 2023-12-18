@@ -77,6 +77,9 @@
     "suggestion": {
       "title": "Suggestion",
       "name": "suggested_conversation-chat",
+      "empty": {
+        "message": "There is no suggestion based on this persona, you can type directly your question or change persona to get another suggestions"
+      },
       "message": {
         "name": "suggested_message_conversation-chat",
         "data": [

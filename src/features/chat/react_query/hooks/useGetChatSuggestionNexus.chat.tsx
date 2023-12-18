@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { ChatReactQueryKey } from "../keys";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { ChatForm } from "../../react_hook_form/keys";
@@ -18,28 +18,39 @@ import { NexusWebURL } from "@/core/routers/web";
 
 export const useChatGetChatSuggestionNexus = () => {
   const router = useRouter();
-  const { setValue } = useFormContext<ChatForm>();
+  const { watch, setValue } = useFormContext<ChatForm>();
   const dictionaries = getDictionaries("en");
   const userStorageData = queryClient.getQueryData(
     ChatReactQueryKey.GetUserStorage()
   ) as undefined | UserStorageInterface;
 
+  const historyData = queryClient.getQueryData(
+    ChatReactQueryKey.GetChatHistoryNexus()
+  );
+
+  const payload: GetChatSuggestionNexusRequestPayloadInterface = useMemo(() => {
+    return {
+      params: {
+        persona: watch(dictionaries.conversation.persona.name)?.id ?? "GENERAL",
+      },
+      headers: {
+        uid: userStorageData?.uid ?? "",
+        ["access-token"]: userStorageData?.token ?? "",
+      },
+    };
+  }, [
+    watch(dictionaries.conversation.persona.name)?.id,
+    userStorageData?.uid,
+    userStorageData?.token,
+  ]);
+
   const query = useQuery<
     GetChatSuggestionNexusSuccessResponseInterface | undefined,
     GetChatSuggestionNexusErrorResponseInterface
   >({
-    enabled: !!userStorageData,
-    queryKey: ChatReactQueryKey.GetChatSuggestionNexus(),
+    enabled: !!userStorageData && !!historyData,
+    queryKey: ChatReactQueryKey.GetChatSuggestionNexus(payload),
     queryFn: () => {
-      const payload: GetChatSuggestionNexusRequestPayloadInterface = {
-        params: {
-          persona: "GENERAL",
-        },
-        headers: {
-          uid: userStorageData?.uid ?? "",
-          ["access-token"]: userStorageData?.token ?? "",
-        },
-      };
       return fetchGetChatSuggestionNexus(payload);
     },
   });
